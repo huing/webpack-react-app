@@ -1,0 +1,28 @@
+{
+  "plugins": [
+    // "@babel/plugin-transform-runtime",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "react-intl", {
+        "messagesDir": "./src/translations",
+        "enforceDescriptions": false
+      }
+    ],
+    ["import", {"libraryName": "antd", "style": true }]
+  ],
+  "presets": [
+    "react-app",
+    ["@babel/preset-env", {
+      "modules": false
+    }],
+    "@babel/preset-react",
+    "mobx"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
+}
