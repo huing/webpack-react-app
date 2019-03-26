@@ -14,7 +14,7 @@ class App extends Component {
               <Button type="primary">antd测试</Button>
             </div>
             <div className="long">
-              <DatePicker />
+              <DatePicker showTime />
             </div>
           </div>
           
