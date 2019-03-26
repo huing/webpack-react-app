@@ -23,6 +23,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
+const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -123,11 +124,14 @@ module.exports = function(webpackEnv) {
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
     // Stop compilation early in production
     bail: isEnvProduction,
-    devtool: isEnvProduction
-      ? shouldUseSourceMap
-        ? 'source-map'
-        : false
-      : isEnvDevelopment && 'cheap-module-source-map',
+    // devtool: isEnvProduction
+    //   ? shouldUseSourceMap
+    //     ? 'source-map'
+    //     : false
+    //   : isEnvDevelopment && 'cheap-module-source-map',
+    devtool: false,
+
+
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
@@ -138,6 +142,20 @@ module.exports = function(webpackEnv) {
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
     ].filter(Boolean),
+
+    // entry: {
+    //   entry: [
+    //     isEnvDevelopment &&
+    //       require.resolve('react-dev-utils/webpackHotDevClient'),
+    //     paths.appIndexJs,
+    //     // We include the app code last so that if there is a runtime error during
+    //     // initialization, it doesn't blow up the WebpackDevServer client, and
+    //     // changing JS code would still trigger a refresh.
+    //   ].filter(Boolean),
+    //   framework: ['react', 'react-dom', 'react-router', 'react-router-dom'],
+    // },
+
+
     output: {
       // The build folder.
       path: isEnvProduction ? paths.appBuild : undefined,
@@ -232,7 +250,34 @@ module.exports = function(webpackEnv) {
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
       splitChunks: {
         chunks: 'all',
-        // name: false,
+        minSize: 30000,
+        maxSize: 0,
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        automaticNameDelimiter: '~',
+        name: true,
+        cacheGroups: {
+          // vendor: {
+          //   test: /[\\/]node_modules[\\/]/,
+          //   name: true,
+          //   enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
+          //   priority: 10,
+          //   reuseExistingChunk: true,
+          // },
+          // react: {
+          //   test: 'framework',
+          //   name: 'framework',
+          //   enforce: true,
+          //   priority: 200,            
+          //   reuseExistingChunk: true,
+          // },
+          default: {
+            minChunks: 1,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
+        },
       },
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
@@ -284,8 +329,7 @@ module.exports = function(webpackEnv) {
       strictExportPresence: true,
       rules: [
         // Disable require.ensure as it's not a standard language feature.
-        { parser: { requireEnsure: false } },
-
+        {parser: {requireEnsure: false}},
         // First, run the linter.
         // It's important to do this before Babel processes the JS.
         {
@@ -494,6 +538,8 @@ module.exports = function(webpackEnv) {
             },
 
 
+            
+
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
             // In production, they would get copied to the `build` folder.
@@ -510,8 +556,17 @@ module.exports = function(webpackEnv) {
                 name: 'static/media/[name].[hash:8].[ext]',
               },
             },
+            
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
+          ],
+        },
+
+        {
+          loader:'webpack-ant-icon-loader',
+          enforce: 'pre',
+          include:[
+            path.resolve('node_modules/@ant-design/icons/lib/dist'),
           ],
         },
       ],
@@ -635,6 +690,8 @@ module.exports = function(webpackEnv) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
+
+      isEnvProduction && new BundleAnalyzerPlugin(),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

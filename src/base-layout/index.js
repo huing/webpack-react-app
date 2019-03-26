@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
-import logo from './logo.svg'
+import moment from 'moment'
+import {observer} from 'mobx-react'
 import {Button, DatePicker} from 'antd'
 import './App.css'
 import './index.styl'
 
+@observer
 class App extends Component {
   render() {
     return (
@@ -13,13 +15,20 @@ class App extends Component {
             <div>
               <Button type="primary">antd测试</Button>
             </div>
+            <div className="long ">
+              <DatePicker className="show-time-mm" showTime />
+            </div>
             <div className="long">
-              <DatePicker showTime />
+              <DatePicker 
+                showTime={{
+                  defaultValue: moment('00:00', 'HH:mm'),
+                  format: "HH:mm",
+                }} 
+                format="YYYY-MM-DD HH:mm" 
+              />
             </div>
           </div>
           
-          
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>

@@ -1,0 +1,87 @@
+.check-box.ant-checkbox-wrapper
+  display inline-block
+  width calc(100% / 6 - 1px)
+  height 68px
+  line-height 30px
+  // text-align center
+  color #333333
+  font-weight bold
+  overflow hidden
+  text-overflow ellipsis
+  // white-space nowrap
+  cursor pointer
+  border none 
+  border-bottom 1px solid #d5d8e0
+  border-right 1px solid #d5d8e0
+  // border-top-width 1.02px
+  background #fff
+  padding 0 15px
+  margin 0
+  &.top 
+    border-top 1px solid #d5d8e0
+  &.left
+    border-left 1px solid #d5d8e0
+  &.ant-checkbox-wrapper-checked      
+    border 2px solid #FE9437 !important
+    // z-index 2
+    background-color #FFFBF9 !important
+    .anticon
+      color #FE9437
+  &.tenant-count
+    background-color #eaeefa
+  .ant-checkbox
+    margin-left 0
+    display block 
+    width 0 
+    height 0
+    .ant-checkbox-input[type="checkbox"]
+      opacity 0 
+      width 0
+      height 0
+    .ant-checkbox-inner
+      opacity 0
+      width 0
+      height 0
+  .anticon
+    position absolute
+    z-index 1
+    font-size 32px
+    top 0
+    right 0
+    color #c2d5ff
+
+
+.ant-checkbox-wrapper + .ant-checkbox-wrapper
+  margin-left 0px !important
+
+.checkbox-border
+  position relative 
+.checkbox-border:before
+  content ''
+  display block
+  top 0
+  left 0
+  width 1px
+  height 100%
+  background-color #d5d8e0
+  position absolute
+  z-index 1
+.checkbox-border
+  .check-box:nth-child(-n+6)
+    border-top 1px solid #e8e8e8
+
+// .ant-checkbox-group
+//   position relative 
+// .ant-checkbox-group:before
+//   content ''
+//   display block
+//   top 0
+//   left 0
+//   width 1px
+//   height 100%
+//   background #d5d8e0
+//   position absolute
+//   z-index 1
+// .ant-checkbox-group
+//   .check-box:nth-child(-n+6)
+//     border-top 1px solid #e8e8e8

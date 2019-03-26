@@ -1,0 +1,52 @@
+.radio-btn.ant-radio-button-wrapper
+  width calc(100% / 6 - 1px)
+  height 68px
+  color #333333 !important
+  font-weight bold
+  overflow hidden 
+  text-overflow ellipsis
+  border none 
+  border-bottom 1px solid #d5d8e0
+  border-right 1px solid #d5d8e0
+  border-radius 0
+  &.top  
+    border-top 1px solid #d5d8e0
+  &.left
+    border-left 1px solid #d5d8e0
+  &.ant-radio-button-wrapper-checked
+    border 2px solid #FE9437 !important
+    background #FFFBF9 !important
+    box-shadow none
+    .anticon
+      color #FE9437
+  &.tenant-count
+    background-color #eaeefa
+  .anticon
+    position absolute
+    z-index 1
+    font-size 32px
+    top 0
+    right 0
+    color #c2d5ff
+
+
+// .ant-radio-group
+//   position relative 
+// .ant-radio-group:before
+//   content ''
+//   display block
+//   top 0
+//   left 0
+//   width 1px
+//   height 100%
+//   background-color #d5d8e0
+//   position absolute
+//   z-index 1
+// .ant-radio-group
+//   .radio-btn:nth-child(-n+6)
+//     border-top 1px solid #e8e8e8
+
+// 单选按钮圆角
+.radio-btn.ant-radio-button-wrapper:first-child,
+.radio-btn.ant-radio-button-wrapper:last-child
+  border-radius 0 !important
