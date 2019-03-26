@@ -252,31 +252,40 @@ module.exports = function(webpackEnv) {
         chunks: 'all',
         minSize: 30000,
         maxSize: 0,
-        minChunks: 1,
+        minChunks: 2,
         maxAsyncRequests: 5,
         maxInitialRequests: 3,
         automaticNameDelimiter: '~',
         name: true,
         cacheGroups: {
-          // vendor: {
-          //   test: /[\\/]node_modules[\\/]/,
-          //   name: true,
-          //   enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
-          //   priority: 10,
-          //   reuseExistingChunk: true,
-          // },
+          react: {
+            // test: /[\\/]node_modules[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: true,
+            enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
+            priority: 10,
+            reuseExistingChunk: true,
+          },
+          mobx: {
+            // test: /[\\/]node_modules[\\/]/,
+            test: /[\\/]node_modules[\\/]mobx[\\/]/,
+            name: true,
+            enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
+            priority: 10,
+            reuseExistingChunk: true,
+          },
           // react: {
-          //   test: 'framework',
+          //   test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
           //   name: 'framework',
           //   enforce: true,
           //   priority: 200,            
           //   reuseExistingChunk: true,
           // },
-          default: {
-            minChunks: 1,
-            priority: -20,
-            reuseExistingChunk: true,
-          },
+          // default: {
+          //   minChunks: 1,
+          //   priority: -20,
+          //   reuseExistingChunk: true,
+          // },
         },
       },
       // Keep the runtime chunk separated to enable long term caching
