@@ -260,7 +260,7 @@ module.exports = function(webpackEnv) {
         cacheGroups: {
           react: {
             // test: /[\\/]node_modules[\\/]/,
-            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            test: /[\\/]node_modules[\\/](react|react-dom|moment)[\\/]/,
             name: true,
             enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
             priority: 10,
@@ -268,7 +268,7 @@ module.exports = function(webpackEnv) {
           },
           mobx: {
             // test: /[\\/]node_modules[\\/]/,
-            test: /[\\/]node_modules[\\/]mobx[\\/]/,
+            test: /[\\/]node_modules[\\/](mobx|mobx-react)[\\/]/,
             name: true,
             enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
             priority: 10,

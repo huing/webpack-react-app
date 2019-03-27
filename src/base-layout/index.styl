@@ -1,2 +1,27 @@
-button
-  width 200px
+.app
+  text-align center
+  // background-color #282c34
+  height 100%
+  min-height 100vh
+  .app-header 
+    width 600px
+    padding 100px 0
+    margin auto
+    button
+      width 200px
+      margin-right 100px
+  .app-main
+    width 600px
+    margin auto
+    /* 所有具有"data-vegetable"属性的元素将被应用绿色的文本颜色 */
+    [data-vegetable] 
+      color green
+    /* 所有具有"data-vegetable"属性且属性值刚好为"liquid"的元素将被应用金色的背景颜色 */
+    [data-vegetable="liquid"]
+      background-color goldenrod
+    /* 所有具有"data-vegetable"属性且属性值包含"spicy"的元素，
+    即使元素的属性中还包含其他属性值，都会被应用红色的文本颜色 */
+    [data-vegetable~="spicy"] 
+      color red
+
+

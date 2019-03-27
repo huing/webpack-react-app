@@ -7,7 +7,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Redirect,
+  // Redirect,
   // withRouter,
 } from 'react-router-dom'
 
@@ -26,21 +26,23 @@ import store from './store'
 import router from './router'
 
 import * as serviceWorker from './serviceWorker'
+import TableDemo from './table-demo'
 
 
 class App extends Component {
   render() {
     return (
       <LocaleProvider locale={zhCN}>
-        <Provider store={store}>
-          <Router value={router}>
+        <Router value={router}>
+          <Provider {...store}>
             <Switch>
-              <Route component={UserLayout} path="/user" />                
-              <Route component={BaseLayout} path="/tab" />
-              <Redirect from="/" to="/user" />
+              <Route exact component={UserLayout} path="/user" />                
+              <Route exact component={BaseLayout} path="/tab" />
+              <Route exact component={TableDemo} path="/tab/table" />      
+              {/* <Redirect from="/" to="/user" /> */}
             </Switch>
-          </Router>
-        </Provider>
+          </Provider>            
+        </Router>
       </LocaleProvider>
     )
   }
