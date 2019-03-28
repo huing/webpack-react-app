@@ -6,7 +6,7 @@ axios.interceptors.response.use(response => {
     if (response.request.responseURL) {
       window.location.replace(response.request.responseURL)
     } else {
-      window.location.replace('/user/login')
+      window.location.replace('/login')
     }
     // console.log('response', response.request.responseURL) 
     // 重定向页面
@@ -19,14 +19,14 @@ axios.interceptors.response.use(response => {
   if (error && error.response) {
     switch (error.response.status) {
       case 302:
-        window.location.replace('/user/login')
+        window.location.replace('/login')
         console.log('重定向') 
         break 
       case 400:
         console.log('请求错误') 
         break 
       case 401:
-        window.location.replace('/user/login')
+        window.location.replace('/login')
         console.log('未授权，请登录') 
         break 
       case 403:

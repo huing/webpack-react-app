@@ -1,8 +1,10 @@
-import TableStore from './table-store.js'
-import CardStore from './card-store.js'
+import TableStore from './table-store'
+import CardStore from './card-store'
+import LoginStore from './login-store'
 
 export default {
   tableStore: TableStore,
-  cardStore: CardStore,
+  Root: CardStore,
+  Login: LoginStore,
 }
 

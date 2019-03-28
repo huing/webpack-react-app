@@ -1,19 +1,16 @@
-import {observable} from 'mobx'
+import {observable, action} from 'mobx'
 
-class CardStore {
-  @observable columns = [{
-    title: 'Product',
-    dataIndex: 'product',
-    key: 'product',
-  }, {
-    title: 'Qty',
-    dataIndex: 'qty',
-    key: 'qty',
-  }, {
-    title: 'Price',
-    dataIndex: 'price',
-    key: 'price',
-  }]
+class Root {
+  @observable userInfo = {
+    name: '',
+  }
+  @observable loading = false
+  @action updateName = name => {
+    this.userInfo.name = name
+  }
+  @action setLoading = boolean => {
+    this.loading = boolean
+  }
 }
 
-export default new CardStore() 
+export default new Root()

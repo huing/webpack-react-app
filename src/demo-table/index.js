@@ -5,13 +5,14 @@ import './index.styl'
 
 @inject('tableStore')
 @observer 
-class TableDemo extends Component {
+class DemoTable extends Component {
   render() {
     const {
       columns,
       data,
     } = this.props.tableStore
-    console.log(toJS(data || []))
+    // console.log(toJS(data || []))
+    
     return (
       <div className="demo-table">
         <table lang="en-US" className="with-currency">
@@ -34,7 +35,8 @@ class TableDemo extends Component {
             {
               toJS(data || []).map(item => 
                 <tr key={item.id}>
-                  {Object.keys(item).map(itemKey => <td>{itemKey}</td>)}
+                  {console.log(Object.keys(item))}
+                  {Object.keys(item).map(itemKey => <td key={itemKey}>{itemKey}</td>)}
                 </tr>
               )
             }
@@ -44,4 +46,4 @@ class TableDemo extends Component {
     )
   }
 }
-export default TableDemo
+export default DemoTable

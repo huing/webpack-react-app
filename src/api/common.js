@@ -6,18 +6,6 @@ const isProduction = process.env.NODE_ENV === 'production'
 const host = isProduction ? config.remoteHost : config.remoteHostDev
 const absHost = isProduction ? config.remoteHostAbs : config.remoteHostAbsDev
 
-export const $getIcon = (url, params) => axios.get(
-  `${host}${url}?timestamp=${(new Date()).getTime()}`, 
-  {
-    headers: {
-      language: (window.g_lang || 'zh-CN').split('-')[0],
-    }, 
-    params: Object.assign({}, params, {
-      language: (window.g_lang || 'zh-CN').split('-')[0],
-    }),
-  }
-)
-  .then(res => (res.data))
 
 export const $get = (url, params) => axios.get(
   `${host}${url}?timestamp=${(new Date()).getTime()}`, 
