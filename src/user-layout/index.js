@@ -11,6 +11,10 @@ import './index.styl'
 @inject('Login', 'Root')
 @observer
 class NormalLoginForm extends Component {
+  constructor(props) {
+    super(props) 
+    console.log('user-layout', props)
+  }
   handleSubmit = e => {
     e.preventDefault()
     const {Root, Login, history, form} = this.props

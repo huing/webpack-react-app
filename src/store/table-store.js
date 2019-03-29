@@ -28,12 +28,13 @@ class TableStore {
   }]
 
   @observable data = [{
-    product: 'Lawnchair',
-    qty: '1',
     price: '137.00',
     product1: 'Lawnchair',
     qty1: '1',
     price1: '137.00',
+    product: 'Lawnchair',
+    qty: '1',
+    
     id: 1,
   }, {
     product: 'Marshmallow rice bar',

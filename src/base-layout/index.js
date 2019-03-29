@@ -6,11 +6,18 @@ import {observer, inject} from 'mobx-react'
 import {Tooltip} from 'antd'
 import Loading from './Loading'
 import {routes} from '../config/routes'
+import logo from './logo.svg'
+import Sider from '../demo-sider'
 import './index.styl'
 
 @inject('Root')
 @observer
 class BaseLayouts extends Component {
+  constructor(props) {
+    super(props) 
+    console.log('base-layout', props)
+  }
+
   logout = () => {
     Cookies.remove('JSESSIONID', {path: '/'})
     Cookies.remove('userName', {path: '/'})
@@ -41,7 +48,10 @@ class BaseLayouts extends Component {
       <div className='base-layout'>
         <section className="section-layout">
           <aside className="aside-layout">
-            <Link to="/home/table">表单</Link>
+            <Link to='/home' className="link-logo">
+              <img src={logo} alt="logo" />
+            </Link>
+            <Sider />
           </aside>
           <section className="section-layout-right">
             <header className="header">

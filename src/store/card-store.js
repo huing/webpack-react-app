@@ -4,6 +4,9 @@ class Root {
   @observable userInfo = {
     name: '',
   }
+
+  static a = 'aaaa'
+
   @observable loading = false
   @action updateName = name => {
     this.userInfo.name = name

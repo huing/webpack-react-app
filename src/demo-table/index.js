@@ -6,39 +6,33 @@ import './index.styl'
 @inject('tableStore')
 @observer 
 class DemoTable extends Component {
-  render() {
-    const {
-      columns,
-      data,
-    } = this.props.tableStore
-    // console.log(toJS(data || []))
-    
+  render() {   
+    const {     
+      tableStore: {columns, data: dataSource},
+      // style,
+      className,
+    } = this.props
     return (
-      <div className="demo-table">
-        <table lang="en-US" className="with-currency">
+      <div className={`demo-table table-box ${className}`}>
+        <table>
           <thead>
             <tr>
               {
-                toJS(columns || []).map((item, index) => 
-                  <th key={item.dataIndex} scope="col">{item.title}</th>
+                toJS(columns || []).map(item => 
+                  <th key={item.dataIndex} data-index={item.dataIndex}>{item.title}</th>
                 )
               }
             </tr>
           </thead>
-          {/* <tfoot>
-            <tr>
-              <th colSpan="2" scope="row">Total:</th>
-              <td>148.55</td>
-            </tr>
-          </tfoot> */}
           <tbody>
             {
-              toJS(data || []).map(item => 
-                <tr key={item.id}>
-                  {console.log(Object.keys(item))}
-                  {Object.keys(item).map(itemKey => <td key={itemKey}>{itemKey}</td>)}
-                </tr>
-              )
+              toJS(dataSource || []).map((data, i) => {
+                return (
+                  <tr key={data.id}>
+                    {Object.entries(data).map(item => <td key={item[0]}>{item[1]}</td>)}
+                  </tr>
+                )
+              })
             }
           </tbody>
         </table>

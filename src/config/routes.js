@@ -11,17 +11,21 @@ const DelayLoading = ({pastDelay, error}) => {
   }
 }
 
-const DemoTable = Loadable({loader: () => import('../demo-table'), loading: DelayLoading, delay:3000})
+const Home = Loadable({loader: () => import('../home'), loading: DelayLoading, delay:3000})
+const DemoTable = Loadable({loader: () => import('../demo-table'), loading: DelayLoading, delay:8000})
 const DemoDate = Loadable({loader: () => import('../demo-date'), loading: DelayLoading, delay:3000})
 
 export const BaseLayout = Loadable({loader: () => import('../base-layout'), loading: DelayLoading, delay:3000})
 export const UserLayout = Loadable({loader: () => import('../user-layout'), loading: DelayLoading, delay:3000})
 
 export const routes = [{
-  path: '/home/table',
+  path: '/home',
+  component: Home,
+}, {
+  path: '/table',
   component: DemoTable,
 }, {
-  path: '/home/date',
+  path: '/date',
   component: DemoDate,
 // }, {
 //   path: '/user',

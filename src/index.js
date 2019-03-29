@@ -10,7 +10,7 @@ import './index.css'
 import './common/common.styl'
 import Frame from './frame'
 
-import * as serviceWorker from './serviceWorker'
+// import * as serviceWorker from './serviceWorker'
 
 class App extends Component {
   render() {
@@ -26,4 +26,4 @@ class App extends Component {
 export default App
 
 ReactDOM.render(<App />, document.getElementById('root'))
-serviceWorker.unregister()
+// serviceWorker.unregister()

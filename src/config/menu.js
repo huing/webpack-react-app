@@ -1,9 +1,13 @@
 export default [{
+  name: 'Home',
+  path: '/home',
+  icon: 'bar-chart',
+}, {
   name: 'DemoTable',
-  path: '/home/table',
-  icon: 'home',
+  path: '/table',
+  icon: 'bar-chart',
 }, {
   name: 'DemoDate',
-  path: '/home/date',
-  icon: 'date',
+  path: '/date',
+  icon: 'bar-chart',
 }]
