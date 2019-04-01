@@ -1,5 +1,7 @@
 import {IntlProvider, addLocaleData, intlShape} from 'react-intl'
 // import ReactIntl from 'react-intl'
+// const ReactIntl = require('react-intl')
+
 function setLocale(lang) {
   if (lang !== undefined && !/^([a-z]{2})-([A-Z]{2})$/.test(lang)) {
     // for reset when lang === undefined
@@ -51,11 +53,28 @@ function setIntlObject(theIntl) {
   intl = theIntl
 }
 
-export  {
+const {formatMessage} = intlApi
+
+// console.log('...intlApi', intlApi)
+export {
   // ...ReactIntl,
-  IntlProvider, addLocaleData, intlShape,
   // ...intlApi,
+  IntlProvider, 
+  addLocaleData, 
+  intlShape,
+  formatMessage,
   setLocale,
   getLocale,
   setIntlObject,
 }
+
+// module.exports = {
+//   // ...ReactIntl,
+//   IntlProvider, 
+//   addLocaleData, 
+//   intlShape,
+//   ...intlApi,
+//   setLocale,
+//   getLocale,
+//   setIntlObject,
+// }

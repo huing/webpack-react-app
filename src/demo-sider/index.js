@@ -1,71 +1,97 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import {withRouter, Link} from 'react-router-dom'
-import {Menu} from 'antd'
-import menus from '../config/menu'
+import {Menu, Icon} from 'antd'
+import menus, {menuData} from '../config/menu'
+import {getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus} from '../config/util'
 import './index.styl'
 
 const {SubMenu} = Menu
+const flatMenuKeys = getFlatMenuKeys(menuData)
 
 @withRouter
 @observer 
 class DemoSider extends Component {
-  state={
-    keys: ['/home'],
-    openKeys: ['/home'],
-  }
-
-  componentWillMount() {
-    this.selectKey()
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.location.pathname !== nextProps.location.pathname) {
-      this.selectKey()
+  constructor(props) {
+    super(props)
+    this.state = {
+      pathname: props.location.pathname,
+      flatMenuKeysLen: flatMenuKeys.length,
+      openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
     }
   }
 
-  selectKey = () => {
-    console.log()
-    let keys = []
-    keys.push(this.props.history.location.pathname)
-    this.setState({keys: keys})
+  isMainMenu = key => {
+    return menuData.some(item => {
+      if (key) {
+        return item.key === key || item.path === key
+      }
+      return false
+    })
   }
 
-  onSelect = ({key}) => {
-    this.props.history.push(key)
+  handleOpenChange = openKeys => {
+    const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1
+    this.setState({
+      openKeys: moreThanOne ? [openKeys.pop()] : [...openKeys],
+    })
   }
 
-  titleNode = item => {
-    return (
-      <span>
-        <span className={'font icon-' + item.icon}></span>
-        <span>{item.name}</span>
-      </span>
-    )
+  static getDerivedStateFromProps(props, state) {
+    const {pathname, flatMenuKeysLen} = state
+    if (props.location.pathname !== pathname || flatMenuKeys.length !== flatMenuKeysLen) {
+      return {
+        pathname: props.location.pathname,
+        flatMenuKeysLen: flatMenuKeys.length,
+        openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
+      }
+    }
+    return null
   }
 
   render() {
+    const {
+      location: {pathname},
+    } = this.props
+    const {openKeys} = this.state
+    let selectedKeys = getSelectedMenuKeys(flatMenuKeys, pathname)
+    if (!selectedKeys.length && openKeys) {
+      selectedKeys = [openKeys[openKeys.length - 1]]
+    }
+    let props = {}
+    if (openKeys) {
+      props = {
+        openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
+      }
+    }
     return (
-      <div className="demo-sider">
+      <div className="demo-sider"> 
         <Menu
+          key="Menu"
           mode="inline"
-          openKeys={this.state.openKeys}
-          selectedKeys={this.state.keys}
+          onOpenChange={this.handleOpenChange}
+          selectedKeys={selectedKeys}
+          {...props}
         >
           {
             (menus || []).map(item => 
-              (item.list && item.list.lenght > 0) ? (
-                <SubMenu key={item.path} title={this.titleNode(item)}>
-                  {item.list.map((listItem, ii) =>
-                    <Menu.Item key={`${item.path}${listItem.path}`}>
-                      <Link to={item.path}>{item.name}</Link>
+              (item.routes && item.routes.length > 0) ? (
+                <SubMenu 
+                  key={item.path} 
+                  title={<span>
+                    <Icon type={item.icon} />
+                    {item.name}
+                  </span>}
+                >
+                  {item.routes.map((routeItem, ii) =>
+                    <Menu.Item key={routeItem.path}>
+                      <Link to={routeItem.path}><Icon type={item.icon} />{item.name}</Link>
                     </Menu.Item>
                   )}
                 </SubMenu>
               ) : (
-                <Menu.Item key={item.path}>
-                  <Link to={item.path}>{item.name}</Link>
+                <Menu.Item key={item.path}>                  
+                  <Link to={item.path}><Icon type={item.icon} />{item.name}</Link>
                 </Menu.Item>
               )
             )
