@@ -9,7 +9,7 @@ import {breadcrumbNameMap} from '../config/menu'
 import Loading from './Loading'
 import {routes} from '../config/routes'
 import logo from './logo.svg'
-import Sider from '../demo-sider'
+import Sider from '../base-sider'
 import './index.styl'
 
 @inject('Root')

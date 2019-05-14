@@ -17,11 +17,20 @@ class NormalLoginForm extends Component {
       if (!err) {
         Login.setLoading(true)
         let {userName, password} = values
+        // const param = {
+        //   staffMobile: '13663762157',
+        //   staffPassword: md5('123456'),
+        // }
         const param = {
           accountNumber: '17601307306',
           password: md5('123456'),
         }
         const result = await io.login(param)
+
+        // const result = await fetch('http://localhost:8080/web/login/select', param)
+
+
+
         Login.setLoading(false)
         console.log('result', result)
         Login.setLoading(false)
@@ -29,8 +38,8 @@ class NormalLoginForm extends Component {
           let message = `M&${userName}&${password}`
           let key = 'react_starter'
           let session = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(message, key))
-          Cookies.set('JSESSIONID', session, {expires: 1, path: '/'})
-          Cookies.set('userName', userName, {expires: 1, path: '/'})
+          Cookies.set('JSESSIONID', session, {path: '/'})
+          Cookies.set('userName', userName, {path: '/'})
           Root.updateName(userName)
           history.push('/home')
         } else {

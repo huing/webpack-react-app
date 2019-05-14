@@ -8,7 +8,7 @@ class DemoPage extends Component {
     return (
       <div className="demo-page">
         page
-      </div>
+      </div> 
     )
   }
 }

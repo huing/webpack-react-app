@@ -33,23 +33,28 @@ class Frame extends Component {
     }
   }
 
-  componentWillMount() {
-    console.log('componentWillMount')
-    if (this.pathname === '/') {
-      if (Cookies.get('JSESSIONID')) {
-        this.props.history.replace('/home')
-      } else {
-        this.props.history.replace('/login')
-      }
-    } else {
-      this.checkJsessionID()
-    }
-  }
-
-  componentWillReceiveProps() {
-    console.log('componentWillReceiveProps')
+  componentDidMount() {
+    // console.log('componentDidMount')
     this.checkJsessionID()
   }
+
+  // componentWillMount() {
+  //   console.log('componentWillMount')
+  //   if (this.pathname === '/') {
+  //     if (Cookies.get('JSESSIONID')) {
+  //       this.props.history.replace('/home')
+  //     } else {
+  //       this.props.history.replace('/login')
+  //     }
+  //   } else {
+  //     this.checkJsessionID()
+  //   }
+  // }
+
+  // componentWillReceiveProps() {
+  //   console.log('componentWillReceiveProps')
+  //   this.checkJsessionID()
+  // }
 
   render() {
     return (

@@ -1,7 +1,7 @@
 export default {
   remoteHost: '/web',
   remoteHostDev: 'http://120.26.119.23:8092/web',
-  // remoteHostDev: 'http://localhost:8080/__webpack_hmr',
+  // remoteHostDev: 'http://localhost:8080/web',
 
   remoteHostAbs: 'https://hotel.sciener.cn',
   // remoteHostAbs: `http://${window.location.host}`,

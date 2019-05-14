@@ -3,19 +3,23 @@ import {formatMessage} from '../locales'
 const routes = [{
   name: 'Home',
   path: '/home',
-  icon: 'bar-chart',
+  icon: 'home',
 }, {
-  name: 'DemoTable',
+  name: 'Table',
   path: '/table',
-  icon: 'bar-chart',
-  routes: [{
-    name: 'test',
-    path: '/table/test',
-    icon: 'bar-chart',
-  }],
+  icon: 'table',
+  // routes: [{
+  //   name: 'test',
+  //   path: '/table/test',
+  //   icon: 'bar-chart',
+  // }],
 }, {
-  name: 'DemoDate',
+  name: 'Date',
   path: '/date',
+  icon: 'home',
+}, {
+  name: 'Chart',
+  path: '/chart',
   icon: 'bar-chart',
 }]
 

@@ -77,7 +77,7 @@ class DemoSider extends Component {
             (menus || []).map(item => 
               (item.routes && item.routes.length > 0) ? (
                 <SubMenu 
-                  key={item.path} 
+                  key={item.path}  
                   title={<span>
                     <Icon type={item.icon} />
                     {item.name}

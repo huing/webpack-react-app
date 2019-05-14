@@ -33,19 +33,11 @@ export const $post = (url, params) => {
     {
       headers: {
         language: lang,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).then(res => res.data)
 } 
-// (
-//   axios.post(`${host}${url}`, qs.stringify(params), 
-//     {
-//       headers: {
-//         language: lang,
-//         'Content-Type': 'application/x-www-form-urlencoded',
-//       },
-//     }).then(res => res.data)
-// )
 
 export const $postabs = (url, params = {}) => {
   const lang = (window.g_lang || 'zh-CN').split('-')[0]
@@ -53,7 +45,7 @@ export const $postabs = (url, params = {}) => {
     {
       headers: {
         language: lang,
-        'Content-Type': 'application/x-www-form-urlencoded',
+        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     }).then(res => res.data)
 }

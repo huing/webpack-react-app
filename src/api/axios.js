@@ -1,5 +1,16 @@
 import axios from 'axios'
 
+axios.create({
+  timeout: 1000,
+  withCredentials: true,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
+
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
 axios.interceptors.response.use(response => {
   if (response.headers['content-type'].startsWith('text/html')) {
     console.log('response text/html', response.request)

@@ -16,7 +16,7 @@ import zhCNMsg from './locales/zh-CN'
 import './index.css'
 import './common/common.styl'
 import Frame from './frame'
-// import * as serviceWorker from './serviceWorker'
+import * as serviceWorker from './serviceWorker'
 
 const localeInfo = { 
   'en-US': {
@@ -63,6 +63,8 @@ class App extends Component {
     )
   }
 }
+export default App
+
 const InjectedWrapper = (() => {
   let sfc = (props, context) => {
     setIntlObject(context.intl)
@@ -89,7 +91,5 @@ export function LocaleWrapper(props) {
   return ret
 }
 
-export default App
-
 ReactDOM.render(<App />, document.getElementById('root'))
-// serviceWorker.unregister()
+serviceWorker.unregister()

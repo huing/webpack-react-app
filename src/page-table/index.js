@@ -3,17 +3,18 @@ import {observer, inject} from 'mobx-react'
 import {toJS} from 'mobx'
 import './index.styl'
 
-@inject('tableStore')
+@inject('Table')
 @observer 
-class DemoTable extends Component {
+class DemoTable extends Component { 
   render() {   
     const {     
-      tableStore: {columns, data: dataSource},
+      Table: {columns, data: dataSource},
       // style,
       className,
     } = this.props
     return (
       <div className={`demo-table table-box ${className}`}>
+        
         <table>
           <thead>
             <tr>
