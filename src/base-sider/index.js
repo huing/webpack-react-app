@@ -85,7 +85,7 @@ class DemoSider extends Component {
                 >
                   {item.routes.map((routeItem, ii) =>
                     <Menu.Item key={routeItem.path}>
-                      <Link to={routeItem.path}><Icon type={item.icon} />{item.name}</Link>
+                      <Link to={routeItem.path}><Icon type={routeItem.icon} />{routeItem.name}</Link>
                     </Menu.Item>
                   )}
                 </SubMenu>

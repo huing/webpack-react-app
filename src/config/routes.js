@@ -26,4 +26,10 @@ export const routes = [{
 }, {
   path: '/chart',
   component: Loadable({loader: () => import('../page-chart'), loading: DelayLoading, delay: 3000}),
+}, {
+  path: '/chart/bar',
+  component: Loadable({loader: () => import('../page-chart-bar'), loading: DelayLoading, delay: 3000}),
+}, {
+  path: '/chart/shape',
+  component: Loadable({loader: () => import('../page-chart-shape'), loading: DelayLoading, delay: 3000}),
 }]

@@ -1,4 +1,4 @@
-import {formatMessage} from '../locales'
+// import {formatMessage} from '../locales'
 
 const routes = [{
   name: 'Home',
@@ -21,6 +21,15 @@ const routes = [{
   name: 'Chart',
   path: '/chart',
   icon: 'bar-chart',
+  routes: [{
+    name: 'Bar',
+    path: '/chart/bar',
+    icon: 'bar-chart',
+  }, {
+    name: 'Shape',
+    path: '/chart/shape',
+    icon: 'bar-chart',
+  }],
 }]
 
 function formatter(data, parentName) {
@@ -41,7 +50,8 @@ function formatter(data, parentName) {
       }
       // if enableMenuLocale use item.name,
       // close menu international
-      const name = formatMessage({id: locale, defaultMessage: item.name})
+      const name = item.name
+      // const name = formatMessage({id: locale, defaultMessage: item.name})
       const result = {
         ...item,
         name,
