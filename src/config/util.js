@@ -1,4 +1,4 @@
-import {formatMessage} from '../locales'
+// import {formatMessage} from '../locales'
 import pathToRegexp from 'path-to-regexp'
 
 export const matchParamsPath = (pathname, breadcrumbNameMap) => {
@@ -11,11 +11,13 @@ const getPageTitle = (pathname, breadcrumbNameMap) => {
   if (!currRouterData) {
     return 'title'
   }
-  const pageName = formatMessage({
-    id: currRouterData.locale || currRouterData.name,
-    defaultMessage: currRouterData.name,
-  })
-  return `${pageName}`
+  // const pageName = formatMessage({
+  //   id: currRouterData.locale || currRouterData.name,
+  //   defaultMessage: currRouterData.name,
+  // })
+
+  // return `${pageName}`
+  return `${currRouterData.name}`
 }
 
 export default getPageTitle

@@ -15,8 +15,9 @@ const getPageTitle = (pathname, breadcrumbNameMap) => {
   //   id: currRouterData.locale || currRouterData.name,
   //   defaultMessage: currRouterData.name,
   // })
-  const pageName = currRouterData.name
-  return `${pageName}`
+
+  // return `${pageName}`
+  return `${currRouterData.name}`
 }
 
 export default getPageTitle
