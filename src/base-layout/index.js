@@ -4,10 +4,10 @@ import DocumentTitle from 'react-document-title'
 import {Route, Link} from 'react-router-dom'
 import {observer, inject} from 'mobx-react'
 import {Tooltip} from 'antd'
-import getPageTitle from '../common/util'
+import {getPageTitle} from '../config/util'
 import {breadcrumbNameMap} from '../config/menu'
 import Loading from './Loading'
-import {routes} from '../config/routes'
+import routes from '../config/routes'
 import logo from './logo.svg'
 import Sider from '../base-sider'
 import './index.styl'
@@ -15,11 +15,6 @@ import './index.styl'
 @inject('Root')
 @observer
 class BaseLayouts extends Component {
-  // constructor(props) {
-  //   super(props) 
-  //   console.log('base-layout', props)
-  // }
-
   logout = () => {
     Cookies.remove('JSESSIONID', {path: '/'})
     Cookies.remove('userName', {path: '/'})
@@ -47,7 +42,7 @@ class BaseLayouts extends Component {
   render() {
     const {name} = this.props.Root.userInfo
     const {pathname} = this.props.location
-    // console.log('breadcrumbNameMap', breadcrumbNameMap)
+
     return (
       <DocumentTitle title={getPageTitle(pathname, breadcrumbNameMap)}>
         <div className='base-layout'>
@@ -72,9 +67,11 @@ class BaseLayouts extends Component {
               </header>
               <main>
                 <Loading>
-                  {routes.map((item, i) =>
-                    <Route key={item.path} path={item.path} component={item.component} exact />
-                  )}
+                  {
+                    (routes || []).map(item => 
+                      <Route key={item.path} path={item.path} component={item.component} exact />
+                    )
+                  }
                 </Loading>
               </main>
             </section>          

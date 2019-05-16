@@ -36,16 +36,14 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
-const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
+const cssRegex = /\.css$/
+const cssModuleRegex = /\.module\.css$/
+const sassRegex = /\.(scss|sass)$/
+const sassModuleRegex = /\.module\.(scss|sass)$/
 
-// const lessRegex = /\.less$/;
-// const lessModuleRegex = /\.module\.less$/;
 
-const stylusRegex = /\.styl$/;
-const stylusModuleRegex = /\.module\.styl$/;
+const stylusRegex = /\.styl$/
+const stylusModuleRegex = /\.module\.styl$/
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -56,22 +54,16 @@ module.exports = function(webpackEnv) {
   // Webpack uses `publicPath` to determine where the app is being served from.
   // It requires a trailing slash, or the file assets will get an incorrect path.
   // In development, we always serve from the root. This makes config easier.
-  // const publicPath = isEnvProduction
-  //   ? paths.servedPath
-  //   : isEnvDevelopment && '/';
-
-
-  const publicPath = ''
-
-
-
+  const publicPath = isEnvProduction
+    ? paths.servedPath
+    : isEnvDevelopment && '/'
 
 
 
 
   // Some apps do not use client-side routing with pushState.
   // For these, "homepage" can be set to "." to enable relative asset paths.
-  const shouldUseRelativeAssetPaths = publicPath === './';
+  const shouldUseRelativeAssetPaths = publicPath === './'
 
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
@@ -139,7 +131,6 @@ module.exports = function(webpackEnv) {
         ? 'source-map'
         : false
       : isEnvDevelopment && 'cheap-module-source-map',
-    // devtool: false,
 
 
     // These are the "entry points" to our application.
@@ -184,11 +175,6 @@ module.exports = function(webpackEnv) {
       // We use "/" in development.
       
       publicPath: publicPath,
-
-      // publicPath: 'http://localhost:8080/HotelCard/',
-
-      // publicPath: '/hotelManagement/',
-
 
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
@@ -265,46 +251,51 @@ module.exports = function(webpackEnv) {
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: 'all',
-        minSize: 30000,
-        maxSize: 0,
-        minChunks: 2,
-        maxAsyncRequests: 5,
-        maxInitialRequests: 3,
-        automaticNameDelimiter: '~',
-        name: true,
-        cacheGroups: {
-          react: {
-            // test: /[\\/]node_modules[\\/]/,
-            test: /[\\/]node_modules[\\/](react|react-dom|moment)[\\/]/,
-            name: true,
-            enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
-            priority: 10,
-            reuseExistingChunk: true,
-          },
-          mobx: {
-            // test: /[\\/]node_modules[\\/]/,
-            test: /[\\/]node_modules[\\/](mobx|mobx-react)[\\/]/,
-            name: true,
-            enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
-            priority: 10,
-            reuseExistingChunk: true,
-          },
-          // react: {
-          //   test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-          //   name: 'framework',
-          //   enforce: true,
-          //   priority: 200,            
-          //   reuseExistingChunk: true,
-          // },
-          // default: {
-          //   minChunks: 1,
-          //   priority: -20,
-          //   reuseExistingChunk: true,
-          // },
-        },
-      },
+
+
+      // splitChunks: {
+      //   chunks: 'all',
+      //   minSize: 30000,
+      //   maxSize: 0,
+      //   minChunks: 2,
+      //   maxAsyncRequests: 5,
+      //   maxInitialRequests: 3,
+      //   automaticNameDelimiter: '~',
+      //   name: true,
+      //   cacheGroups: {
+      //     react: {
+      //       // test: /[\\/]node_modules[\\/]/,
+      //       test: /[\\/]node_modules[\\/](react|react-dom|moment)[\\/]/,
+      //       name: true,
+      //       enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
+      //       priority: 10,
+      //       reuseExistingChunk: true,
+      //     },
+      //     mobx: {
+      //       // test: /[\\/]node_modules[\\/]/,
+      //       test: /[\\/]node_modules[\\/](mobx|mobx-react)[\\/]/,
+      //       name: true,
+      //       enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
+      //       priority: 10,
+      //       reuseExistingChunk: true,
+      //     },
+      //     // react: {
+      //     //   test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+      //     //   name: 'framework',
+      //     //   enforce: true,
+      //     //   priority: 200,            
+      //     //   reuseExistingChunk: true,
+      //     // },
+      //     // default: {
+      //     //   minChunks: 1,
+      //     //   priority: -20,
+      //     //   reuseExistingChunk: true,
+      //     // },
+      //   },
+      // },
+
+
+
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       runtimeChunk: true,
@@ -328,10 +319,7 @@ module.exports = function(webpackEnv) {
         .map(ext => `.${ext}`)
         .filter(ext => useTypeScript || !ext.includes('ts')),
       alias: {
-        // Support React Native Web
-        // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
-        // 'react-dom': '@hot-loader/react-dom',
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

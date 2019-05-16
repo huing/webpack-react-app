@@ -7,7 +7,10 @@ import {
   Switch,
   withRouter,
 } from 'react-router-dom'
-import {UserLayout, BaseLayout} from '../config/routes'
+
+import UserLayout from '../user-layout'
+import BaseLayout from '../base-layout'
+
 import store from '../store'
 
 @withRouter
@@ -38,6 +41,17 @@ class Frame extends Component {
     this.checkJsessionID()
   }
 
+  render() {
+    return (
+      <Provider {...store}>
+        <Switch>
+          <Route exact component={UserLayout} path="/login" />   
+          <Route path='/' component={BaseLayout} />
+        </Switch>
+      </Provider>            
+    )
+  }
+
   // componentWillMount() {
   //   console.log('componentWillMount')
   //   if (this.pathname === '/') {
@@ -55,17 +69,6 @@ class Frame extends Component {
   //   console.log('componentWillReceiveProps')
   //   this.checkJsessionID()
   // }
-
-  render() {
-    return (
-      <Provider {...store}>
-        <Switch>
-          <Route exact component={UserLayout} path="/login" />   
-          <Route path='/' component={BaseLayout} />
-        </Switch>
-      </Provider>            
-    )
-  }
 }
 
 export default Frame

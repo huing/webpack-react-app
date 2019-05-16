@@ -1,6 +1,6 @@
 // import {formatMessage} from '../locales'
 
-const routes = [{
+const menus = [{
   name: 'Home',
   path: '/home',
   icon: 'home',
@@ -8,11 +8,6 @@ const routes = [{
   name: 'Table',
   path: '/table',
   icon: 'table',
-  // routes: [{
-  //   name: 'test',
-  //   path: '/table/test',
-  //   icon: 'bar-chart',
-  // }],
 }, {
   name: 'Date',
   path: '/date',
@@ -41,17 +36,15 @@ function formatter(data, parentName) {
       if (!item.name || !item.path) {
         return null
       }
-
       let locale = 'menu'
       if (parentName && parentName !== '/') {
         locale = `${parentName}_${item.name}`
       } else {
         locale = `menu_${item.name}`
       }
-      // if enableMenuLocale use item.name,
-      // close menu international
       const name = item.name
-      // const name = formatMessage({id: locale, defaultMessage: item.name})
+      // 国际化
+      // const name = formatMessage({id: locale, defaultMessage: item.name}) 
       const result = {
         ...item,
         name,
@@ -83,7 +76,9 @@ const getBreadcrumbNameMap = menuData => {
       routerMap[menuItem.path] = menuItem
     })
   }
+
   flattenMenuData(menuData)
+
   return routerMap
 }
 
@@ -107,16 +102,16 @@ const filterMenuData = menuData => {
     .map(item => getSubMenu(item))
     .filter(item => item)
 }
-
-const originalMenuData = formatter(routes, 'title')
-
+// 菜单国际化
+const originalMenuData = formatter(menus, 'title')
+// 去除不显示的菜单项
 const menuData = filterMenuData(originalMenuData)
-
+// 面包线
 const breadcrumbNameMap = getBreadcrumbNameMap(originalMenuData)
+
 
 export {
   menuData,
   breadcrumbNameMap,
 }
 
-export default routes

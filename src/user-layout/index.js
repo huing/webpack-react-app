@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import DocumentTitle from 'react-document-title'
 import FormLogin from '../user-login'
-import getPageTitle from '../common/util'
+import {getPageTitle} from '../config/util'
 import './index.styl'
 
 const breadcrumbNameMap = {

@@ -2,11 +2,11 @@ import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import {withRouter, Link} from 'react-router-dom'
 import {Menu, Icon} from 'antd'
-import menus, {menuData} from '../config/menu'
+import {menuData} from '../config/menu'
 import {getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus} from '../config/util'
+
 import './index.styl'
 
-const {SubMenu} = Menu
 const flatMenuKeys = getFlatMenuKeys(menuData)
 
 @withRouter
@@ -19,6 +19,7 @@ class DemoSider extends Component {
       flatMenuKeysLen: flatMenuKeys.length,
       openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
     }
+    console.log('openKeys', this.state.openKeys)
   }
 
   isMainMenu = key => {
@@ -64,6 +65,7 @@ class DemoSider extends Component {
         openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
       }
     }
+
     return (
       <div className="demo-sider"> 
         <Menu
@@ -72,26 +74,32 @@ class DemoSider extends Component {
           onOpenChange={this.handleOpenChange}
           selectedKeys={selectedKeys}
           {...props}
-        >
+        > 
           {
-            (menus || []).map(item => 
-              (item.routes && item.routes.length > 0) ? (
-                <SubMenu 
+            (menuData || []).map(item => 
+              (item.children && item.children.length) ? (
+                <Menu.SubMenu 
                   key={item.path}  
                   title={<span>
                     <Icon type={item.icon} />
                     {item.name}
                   </span>}
                 >
-                  {item.routes.map((routeItem, ii) =>
-                    <Menu.Item key={routeItem.path}>
-                      <Link to={routeItem.path}><Icon type={routeItem.icon} />{routeItem.name}</Link>
-                    </Menu.Item>
-                  )}
-                </SubMenu>
+                  {
+                    item.children.map(subItem =>
+                      <Menu.Item key={subItem.path}>
+                        <Link to={subItem.path}>
+                          <Icon type={subItem.icon} />{subItem.name}
+                        </Link>
+                      </Menu.Item>
+                    )
+                  }
+                </Menu.SubMenu>
               ) : (
                 <Menu.Item key={item.path}>                  
-                  <Link to={item.path}><Icon type={item.icon} />{item.name}</Link>
+                  <Link to={item.path}>
+                    <Icon type={item.icon} />{item.name}
+                  </Link>
                 </Menu.Item>
               )
             )
