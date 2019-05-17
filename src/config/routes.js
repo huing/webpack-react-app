@@ -31,4 +31,7 @@ export default [{
 }, {
   path: '/chart/shape',
   component: Loadable({loader: () => import('../page-chart-shape'), loading: DelayLoading, delay: 3000}),
+}, {
+  path: '/chart/stack',
+  component: Loadable({loader: () => import('../page-chart-stack'), loading: DelayLoading, delay: 3000}),
 }]

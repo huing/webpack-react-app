@@ -1,12 +1,13 @@
 .demo-sider
-  // background rgba(0, 0, 0, 0.3)
-  // opacity 0.3
   height calc(100vh - 80px)
-  overflow-y auto 
+  // overflow hidden 
   width 100%
   padding 16px 0
-  .ant-menu
-    background linear-gradient(0deg,#3358f4,#1d8cf8) !important
-    .ant-menu-item
-     background transparent !important
-      // background linear-gradient(0deg,#3358f4,#1d8cf8)
+  
+  .ant-menu-inline, .ant-menu-item-selected
+    border-right none
+    background transparent  !important
+    // color white
+  .ant-menu-inline
+    .ant-menu-item-selected > a
+      color white 

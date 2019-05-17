@@ -24,6 +24,10 @@ const menus = [{
     name: 'Shape',
     path: '/chart/shape',
     icon: 'bar-chart',
+  }, {
+    name: 'Stack',
+    path: '/chart/stack',
+    icon: 'bar-chart',
   }],
 }]
 
