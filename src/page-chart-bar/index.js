@@ -102,13 +102,18 @@ class BarChart extends Component {
       
     gChart.on('mouseover', function(d) {
       select(this).selectAll('.rect-bg').attr('opacity', 0.3)
+      console.log(document.getElementById('chart-tooltip').offsetWidth)
     })
       .on('mousemove', function(d) {
+       
+
+        console.log(event.offsetX, event.screenX,
+          document.getElementById('chart-tooltip').offsetWidth, window.innerWidth )
 
         const left = event.screenX + document.getElementById('chart-tooltip').offsetWidth + 30 > window.innerWidth ? 
           mouse(this)[0] - document.getElementById('chart-tooltip').offsetWidth : mouse(this)[0] + 30
         select('#chart-tooltip')
-          .attr('style', 'left:' + left + 'px; top:' + (event.offsetY - 35) + 'px')
+          .attr('style', 'left:' + left + 'px; top:' + (event.offsetY + 35) + 'px')
           .html(`<div>${d.month}</div><div class="dot">添加锁：${d.lockCount}</div> `)
 
       })

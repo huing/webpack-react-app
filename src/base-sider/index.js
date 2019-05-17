@@ -71,6 +71,7 @@ class DemoSider extends Component {
         <Menu
           key="Menu"
           mode="inline"
+          className="demo-sider-menu"
           onOpenChange={this.handleOpenChange}
           selectedKeys={selectedKeys}
           {...props}

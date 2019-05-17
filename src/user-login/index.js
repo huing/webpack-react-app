@@ -56,6 +56,7 @@ class NormalLoginForm extends Component {
         <Form onSubmit={this.handleSubmit} className="login-form">
           <Form.Item>
             {getFieldDecorator('userName', {
+              initialValue: '17601307306',
               rules: [{
                 required: true, message: 'Please input your username!',
               }],
@@ -65,6 +66,7 @@ class NormalLoginForm extends Component {
           </Form.Item>
           <Form.Item>
             {getFieldDecorator('password', {
+              initialValue: '123456',
               rules: [{required: true, message: 'Please input your Password!'}],
             })(
               <Input 
