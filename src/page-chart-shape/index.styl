@@ -1,0 +1,26 @@
+$basecolor = #6997fe
+
+.chart
+  border 3px solid green
+  padding 10px
+  line-height 0
+  background #ffffff
+  .chart-tooltip 
+    line-height 1.5
+    color #ffffff
+    font-weight 400
+    background-color #000000
+    padding .5em
+    // text-shadow #f5f5f5 0 1px 0
+    white-space nowrap
+    border-radius 4px
+    opacity 0.8
+    position absolute
+    .dot::before
+      content ''
+      display inline-block
+      margin-right 5px
+      border-radius 10px
+      width 10px
+      height 10px
+      background-color $basecolor

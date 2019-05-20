@@ -35,6 +35,36 @@ class Chart {
     lockCount: 11, 
     month: '2019-05',
   }]
+
+
+  @observable shapeDataArr = [{
+    title: 'IC卡',
+    value: 915,
+    pre: '43.57%',
+    key: 1,
+  }, {
+    title: '钥匙',
+    value: 0,
+    pre: '42.1%',
+    key: 2,
+  }, {
+    title: '密码',
+    value: 0,
+    pre: '14.33%',
+    key: 3,
+  }]
+
+  @observable shapeData = {
+    cardCount: 915,
+    cardPercentage: '43.57%',
+    count: 2100,
+    keyCount: 884,
+    keyPercentage: '42.1%',
+    pwdCount: 301,
+    pwdPercentage: '14.33%',
+  }
+
+
 }
 
 export default new Chart()

@@ -31,7 +31,7 @@ class BarChart extends Component {
   }
 
   updateDimensions = () => {
-    this.width = document.getElementById('bar').offsetWidth - 20
+    this.width = document.getElementById('bar').offsetWidth - 22
   }
 
   createBarChart = () => {

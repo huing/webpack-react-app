@@ -68,7 +68,7 @@ class DemoSider extends Component {
 
     return (
       <div className="demo-sider"> 
-        <Menu
+        <Menu 
           key="Menu"
           mode="inline"
           className="demo-sider-menu"
