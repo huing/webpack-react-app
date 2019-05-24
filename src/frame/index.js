@@ -1,74 +1,50 @@
 import React, {Component} from 'react'
 import {Provider, observer} from 'mobx-react'
-import {observable} from 'mobx'
 import Cookies from 'js-cookie'
-import {
-  Route,
-  Switch,
-  withRouter,
-} from 'react-router-dom'
+import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
+import DocumentTitle from 'react-document-title'
 
-import UserLayout from '../user-layout'
-import BaseLayout from '../base-layout'
-
+import PageHeader from '../page-header'
+import routes from '../config/routes'
 import store from '../store'
+
+import 'antd/dist/antd.less'
+
+import './index.styl'
 
 @withRouter
 @observer
 class Frame extends Component {
-  @observable pathname = undefined
-
-  constructor(props) {
-    super(props)
-    // console.log('props', props)
-    this.pathname = props.location.pathname
-  }
-
-  checkJsessionID = () => {
-    if (this.props.location.pathname !== '/login') {
-      if (!Cookies.get('JSESSIONID')) {
-        this.props.history.replace('/login')
-      }
-    } else {
-      if (Cookies.get('JSESSIONID')) {
-        this.props.history.replace('/home')
-      }
-    }
-  }
-
   componentDidMount() {
-    // console.log('componentDidMount')
-    this.checkJsessionID()
+    if (this.props.location.pathname !== '/login' && !Cookies.get('userName')) {
+      this.props.history.replace('/login')
+    } 
+    // console.log('componentDidMount') 
   }
 
   render() {
     return (
-      <Provider {...store}>
-        <Switch>
-          <Route exact component={UserLayout} path="/login" />   
-          <Route path='/' component={BaseLayout} />
-        </Switch>
-      </Provider>            
+      <DocumentTitle title={'Demo'}>
+        <Provider {...store}>
+          <div className="page-frame">
+            <PageHeader />
+            <div className="page-section">
+              <Switch>
+                {
+                  (routes || []).map(item => 
+                    <Route exact={item.exact} path={item.path} component={item.component} key={item.path} />
+                  )
+                }
+                <Redirect exact from="/" to="/login" />
+                <Route render={() => <div>404</div>} />
+              </Switch>
+            </div>
+          </div>
+        </Provider>    
+      </DocumentTitle>        
     )
   }
 
-  // componentWillMount() {
-  //   console.log('componentWillMount')
-  //   if (this.pathname === '/') {
-  //     if (Cookies.get('JSESSIONID')) {
-  //       this.props.history.replace('/home')
-  //     } else {
-  //       this.props.history.replace('/login')
-  //     }
-  //   } else {
-  //     this.checkJsessionID()
-  //   }
-  // }
-
-  // componentWillReceiveProps() {
-  //   console.log('componentWillReceiveProps')
-  //   this.checkJsessionID()
-  // }
 }
 
 export default Frame

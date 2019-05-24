@@ -10,7 +10,7 @@ import './index.styl'
 
 @inject('Chart')
 @observer    
-class BarChart extends Component {
+class ShapeChart extends Component {
   @observable width = 0
 
   render() {
@@ -144,4 +144,4 @@ class BarChart extends Component {
   }
 
 }
-export default BarChart
+export default ShapeChart

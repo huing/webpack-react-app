@@ -16,14 +16,13 @@ import './index.styl'
 @observer
 class BaseLayouts extends Component {
   logout = () => {
-    Cookies.remove('JSESSIONID', {path: '/'})
     Cookies.remove('userName', {path: '/'})
     this.props.history.replace('/login')
   }
 
   componentWillMount() {
-    let {userInfo, updateName} = this.props.Root
-    if (userInfo.name === '') {
+    let {mInfo, updateName} = this.props.Root
+    if (mInfo.name === '') {
       updateName(Cookies.get('userName'))
     }
   }
@@ -40,7 +39,7 @@ class BaseLayouts extends Component {
   }
 
   render() {
-    const {name} = this.props.Root.userInfo
+    const {name} = this.props.Root.mInfo
     const {pathname} = this.props.location
 
     return (

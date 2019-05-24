@@ -44,12 +44,12 @@ class Chart {
     key: 1,
   }, {
     title: '钥匙',
-    value: 0,
+    value: 884,
     pre: '42.1%',
     key: 2,
   }, {
     title: '密码',
-    value: 0,
+    value: 301,
     pre: '14.33%',
     key: 3,
   }]
@@ -64,6 +64,213 @@ class Chart {
     pwdPercentage: '14.33%',
   }
 
+  @observable stackData = [{
+    month: '2019-05',
+    'hotel.sciener.cn': 2,
+    'hotel.ttlock.tech': 4,
+  }, {
+    month: '2019-04',
+    'hotel.sciener.cn': 2,
+    'hotel.ttlock.tech': 4,
+  }, {
+    month: '2019-03',
+    'hotel.sciener.cn': 2,
+    'hotel.ttlock.tech': 4,
+  }, {
+    month: '2019-02',
+    'hotel.sciener.cn': 2,
+    'hotel.sciener.tech': 6,
+  }, {
+    month: '2019-01',
+    'hotel.ttlock.tech': 4,
+  }, {
+    month: '2018-12',
+    'hotel.sciener.cn': 2,
+  }, {
+    month: '2018-11',
+    'hotel.sciener.cn': 2,
+  }, {
+    month: '2018-10',
+    'hotel.ttlock.tech': 4,
+  }, {
+    month: '2018-09',
+    'hotel.ttlock.cn': 4,
+  }, {
+    month: '2018-08',
+    'hotel.ttlock.tech': 4,
+  }, {
+    month: '2018-07',
+    'hotel.ttlock.cn': 4,
+  }, {
+    month: '2018-06',
+    'hotel.sciener.cn': 4,
+    'hotel.sciener.tech': 4,
+  }]
+
+  // @observable stackData = [{
+  //   month: '2019-05',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2019-05',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2019-04',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2019-04',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2019-03',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2019-03',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2019-02',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2019-02',
+  //   hotelCount: 4,
+  //   org: 'hotel.sciener.cn',
+  // }, {
+  //   month: '2019-02',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2019-01',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2018-12',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2018-12',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2018-11',
+  //   hotelCount: 2,
+  //   org: '120.26.119.23',
+  // }, {
+  //   month: '2018-10',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2018-09',
+  //   hotelCount: 4,
+  //   org: 'hotel.ttlock.cn',
+  // }, {
+  //   month: '2018-08',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2018-07',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2018-06',
+  //   hotelCount: 4,
+  //   org: 'localhost',
+  // }, {
+  //   month: '2018-06',
+  //   hotelCount: 4,
+  //   org: 'hotel.sciener.tech',
+  // }]
+  
+  // @observable stackData = [{
+  //   '2019-05': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2019-04': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2019-03': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2019-02': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2019-01': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-12': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-11': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-10': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-09': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-08': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-07': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  //   '2018-06': [{
+  //     hotelCount: 2,
+  //     org: '120.26.119.23',
+  //   }, {
+  //     hotelCount: 4,
+  //     org: 'localhost',
+  //   }],
+  // }]
 
 }
 

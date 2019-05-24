@@ -254,46 +254,25 @@ module.exports = function(webpackEnv) {
 
 
       // splitChunks: {
-      //   chunks: 'all',
-      //   minSize: 30000,
-      //   maxSize: 0,
-      //   minChunks: 2,
-      //   maxAsyncRequests: 5,
-      //   maxInitialRequests: 3,
-      //   automaticNameDelimiter: '~',
-      //   name: true,
+      //   // chunks: 'all',
+      //   // minSize: 30000,
+      //   // maxSize: 0,
+      //   // minChunks: 2,
+      //   // maxAsyncRequests: 5,
+      //   // maxInitialRequests: 3,
+      //   // automaticNameDelimiter: '~',
+      //   // name: true,
       //   cacheGroups: {
-      //     react: {
-      //       // test: /[\\/]node_modules[\\/]/,
-      //       test: /[\\/]node_modules[\\/](react|react-dom|moment)[\\/]/,
-      //       name: true,
+      //     vendor: {
+      //       chunks: 'all',
+      //       test: /[\\/]node_modules[\\/]/,
+      //       name: 'vendor',
+      //       minChunks: 3,
       //       enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
-      //       priority: 10,
-      //       reuseExistingChunk: true,
+      //       priority: 100,
       //     },
-      //     mobx: {
-      //       // test: /[\\/]node_modules[\\/]/,
-      //       test: /[\\/]node_modules[\\/](mobx|mobx-react)[\\/]/,
-      //       name: true,
-      //       enforce: true, // 不管 maxInitialRequest maxAsyncRequests maxSize minSize 怎么样都会生成这个 chunk
-      //       priority: 10,
-      //       reuseExistingChunk: true,
-      //     },
-      //     // react: {
-      //     //   test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-      //     //   name: 'framework',
-      //     //   enforce: true,
-      //     //   priority: 200,            
-      //     //   reuseExistingChunk: true,
-      //     // },
-      //     // default: {
-      //     //   minChunks: 1,
-      //     //   priority: -20,
-      //     //   reuseExistingChunk: true,
-      //     // },
       //   },
       // },
-
 
 
       // Keep the runtime chunk separated to enable long term caching
@@ -574,13 +553,13 @@ module.exports = function(webpackEnv) {
           ],
         },
 
-        {
-          loader:'webpack-ant-icon-loader',
-          enforce: 'pre',
-          include:[
-            path.resolve('node_modules/@ant-design/icons/lib/dist'),
-          ],
-        },
+        // {
+        //   loader:'webpack-ant-icon-loader',
+        //   enforce: 'pre',
+        //   include:[
+        //     path.resolve('node_modules/@ant-design/icons/lib/dist'),
+        //   ],
+        // },
       ],
     },
     plugins: [

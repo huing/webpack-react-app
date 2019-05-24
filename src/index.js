@@ -13,7 +13,6 @@ import {setIntlObject, addLocaleData, IntlProvider, intlShape} from './locales'
 import enUSMSg from './locales/en-US'
 import zhCNMsg from './locales/zh-CN'
 
-import './index.css'
 import './common/common.styl'
 import Frame from './frame'
 import * as serviceWorker from './serviceWorker'
