@@ -19,7 +19,7 @@ class DemoSider extends Component {
       flatMenuKeysLen: flatMenuKeys.length,
       openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
     }
-    console.log('openKeys', this.state.openKeys)
+    // console.log('openKeys', this.state.openKeys)
   }
 
   isMainMenu = key => {
@@ -67,11 +67,11 @@ class DemoSider extends Component {
     }
 
     return (
-      <div className="demo-sider"> 
+      <div className="page-sider"> 
         <Menu 
           key="Menu"
           mode="inline"
-          className="demo-sider-menu"
+          className="page-sider-menu"
           onOpenChange={this.handleOpenChange}
           selectedKeys={selectedKeys}
           {...props}

@@ -2,10 +2,12 @@ import React, {Component} from 'react'
 import {observer, inject} from 'mobx-react'
 import {toJS, observable} from 'mobx'
 
-import {scaleLinear, scaleBand} from 'd3-scale'
-import {axisBottom, axisLeft} from 'd3-axis'
-import {max} from 'd3-array'
-import {select, mouse, event} from 'd3-selection'
+import {
+  scaleLinear, scaleBand,
+  axisBottom, axisLeft,
+  max,
+  select, mouse, event,
+} from 'd3'
 
 import './index.styl'
 
@@ -25,7 +27,11 @@ class BarChart extends Component {
           viewBox={`0, 0, ${this.width}, 410`}
         >
         </svg>
-        <div className="chart-tooltip" id="chart-tooltip" style={{display: 'none'}}></div>
+        <div 
+          className="chart-tooltip tooltip" 
+          id="chart-tooltip" 
+          style={{display: 'none', left: 0, top: 0}}>
+        </div>
       </div> 
     )
   }
@@ -61,11 +67,9 @@ class BarChart extends Component {
       .attr('class', 'axis axisY')
       .call(axisLeft(yScale).ticks(5, 's'))
 
-    svg.append('g')
-      .call(xAxis)
+    svg.append('g').call(xAxis)
 
-    svg.append('g')
-      .call(yAxis)
+    svg.append('g').call(yAxis)
 
     const gChart = svg
       .selectAll('.g-bar')
@@ -102,26 +106,18 @@ class BarChart extends Component {
       
     gChart.on('mouseover', function(d) {
       select(this).selectAll('.rect-bg').attr('opacity', 0.3)
-      console.log(document.getElementById('chart-tooltip').offsetWidth)
     })
       .on('mousemove', function(d) {
-       
-
-        console.log(event.offsetX, event.screenX,
-          document.getElementById('chart-tooltip').offsetWidth, window.innerWidth )
-
         const left = event.screenX + document.getElementById('chart-tooltip').offsetWidth + 30 > window.innerWidth ? 
           mouse(this)[0] - document.getElementById('chart-tooltip').offsetWidth : mouse(this)[0] + 30
         select('#chart-tooltip')
           .attr('style', 'left:' + left + 'px; top:' + (event.offsetY + 35) + 'px')
           .html(`<div>${d.month}</div><div class="dot">添加锁：${d.lockCount}</div> `)
-
       })
       .on('mouseout', function(d) {
         select(this).selectAll('.rect-bg').attr('opacity', 0)
         select('#chart-tooltip').attr('style', 'display: none')
       })
-
   }
 
   componentDidMount() {

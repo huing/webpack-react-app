@@ -7,28 +7,24 @@
   .section-a
     flex 1
     min-width 1000px
-    border 1px solid red
-    // width 100%
-    // min-width 1000px
   .section-b
+    position relative
     background rgb(153, 175, 255) 
-  .section-c
-    z-index 1
-    width 1000px
-    box-shadow 0 0 20px 0 rgba(42,89,72,1)
-    margin 0 auto
-    .section-c-footer
-      height 100px
-      line-height 100px
-      text-align center
+    .footer-bottom
+      position absolute
+      height 90px
+      width 100%
+      left 0
+      top -90px
       background rgb(153, 175, 255) 
-      // .footer-bottom
-      //   position absolute
-      //   height 120px
-      //   width 100%
-      //   min-width 1000px
-      //   left 0
-      //   bottom 0
-      //   z-index -1
-      //   background rgb(153, 175, 255) 
+  .section-c
+    height 390px
+    margin 0 auto
+    box-shadow 0 0 20px 0 rgba(42,89,72,1)
+    z-index 1
+    .section-c-footer
+      height 90px
+      line-height 90px
+      text-align center
+
 

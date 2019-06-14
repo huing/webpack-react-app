@@ -89,6 +89,7 @@ class Chart {
   }, {
     month: '2018-11',
     'hotel.sciener.cn': 2,
+    'hotel.cn': 10,
   }, {
     month: '2018-10',
     'hotel.ttlock.tech': 4,

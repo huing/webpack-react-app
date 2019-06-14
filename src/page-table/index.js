@@ -15,6 +15,7 @@ class DemoTable extends Component {
     } = this.props
     return (
       <div>
+        <div>Table 1</div>
         <div className={`demo-table table-box ${className}`}>
           <table>
             <thead>
@@ -39,7 +40,7 @@ class DemoTable extends Component {
             </tbody>
           </table>
         </div>
-
+        <div>Table 2</div>
         {/* <Table
           dataSource={dataSource}
 

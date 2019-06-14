@@ -3,7 +3,6 @@ import {observer, inject} from 'mobx-react'
 import Cookies from 'js-cookie'
 
 import PageUser from '../page-user'
-
 import CustomizedForm from './form'
 
 import './index.styl'
@@ -14,16 +13,14 @@ class NormalLogin extends Component {
   handleSubmit = e => {
     e.preventDefault()
     const {Root, Login, history} = this.props
-
     this.userForm.validateFields(async(err, values) => {
       if (!err) {
         Login.setLoading(true)
-
-        Cookies.set('userName', values.userName, {path: '/'})
-        Root.updateName(values.userName)
+        Cookies.set('userName', values.account, {path: '/'})
+        Root.updateName(values.account)
         history.push('/home')
-
         Login.setLoading(false)
+        window.location.reload()
       }
     })
   }
@@ -39,7 +36,6 @@ class NormalLogin extends Component {
           />
         </div>
       </PageUser>
-      
     )
   }
 }

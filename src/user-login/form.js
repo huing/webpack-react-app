@@ -8,7 +8,7 @@ export default Form.create()(
     return (
       <Form onSubmit={submit}>
         <Form.Item>
-          {getFieldDecorator('userName', {
+          {getFieldDecorator('account', {
             initialValue: 'admin',
             rules: [{
               required: true, message: 'Please input your username!',

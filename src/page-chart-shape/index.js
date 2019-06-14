@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 import {observer, inject} from 'mobx-react'
 import {toJS, observable} from 'mobx'
-
-import {scaleOrdinal} from 'd3-scale'
-import {pie, arc} from 'd3-shape'
-import {select, event} from 'd3-selection'
+import {scaleOrdinal, pie, arc, select, event} from 'd3'
 
 import './index.styl'
 
@@ -24,7 +21,7 @@ class ShapeChart extends Component {
           viewBox={`0, 0, ${this.width}, 410`}
         >
         </svg>
-        <div className="chart-tooltip" id="chart-tooltip" style={{display: 'none'}}></div>
+        <div className="shape-tooltip tooltip" id="shape-tooltip" style={{display: 'none'}}></div>
       </div> 
     )
   }
@@ -39,24 +36,15 @@ class ShapeChart extends Component {
     const data = toJS(this.props.Chart.shapeDataArr)
 
     const margin = {top: 20, right: 30, bottom: 20, left: 30}
-
     const width = svg.attr('width') - margin.left - margin.right
     const height = svg.attr('height') - margin.top - margin.bottom
-    
     const radius = Math.min(width, height) / 2
-    
     const color = scaleOrdinal()
       .domain(data.map(d => d.title))
       .range(['#FE9437', '#F36762', '#6997FE'])
 
-    const shapeArc = arc()
-      .innerRadius(radius * 0.3)
-      .outerRadius(radius * 0.5)
-      
-
-    const outerArc = arc()
-      .innerRadius(radius * 0.6)
-      .outerRadius(radius * 0.7)
+    const shapeArc = arc().innerRadius(radius * 0.3).outerRadius(radius * 0.5)
+    const outerArc = arc().innerRadius(radius * 0.6).outerRadius(radius * 0.7)
 
     const shapePie = pie()  // 创建一个饼生成器
       .sort(null) // 设置排序比较器
@@ -65,37 +53,29 @@ class ShapeChart extends Component {
 
     svg.selectAll('g').remove()
 
-    // const g = svg.append('g').attr('transform', `translate(${width / 2},${height / 2})`)
     svg.append('g')
       .attr('class', 'slices')
       .attr('transform', `translate(${width / 2},${height / 2})`)
-    svg.append('g')
-      .attr('class', 'labels')
-      .attr('transform', `translate(${width / 2},${height / 2})`)
-    svg.append('g')
-      .attr('class', 'lines')
-      .attr('transform', `translate(${width / 2},${height / 2})`)
-    
-    svg.select('.slices')
       .selectAll('path')
       .data(shapePie(data))
       .enter()
       .append('path')
       .style('fill', (d, i) => {
-        console.log(d)
         return color(d.data.title)
       })
       .attr('d', shapeArc)
       .on('mousemove', function(d) {
-        select('#chart-tooltip')
-          .attr('style', 'left:' + (event.offsetX + 35) + 'px; top:' + (event.offsetY - 35) + 'px')
+        select('#shape-tooltip')
+          .attr('style', 'left:' + (event.clientX - 200 - 35) + 'px; top:' + (event.clientY - 35) + 'px')
           .html(`${d.data.title}: (${d.data.value}) ${d.data.pre}`)
       })
       .on('mouseout', function(d){
-        select('#chart-tooltip').attr('style', 'display: none')
+        select('#shape-tooltip').attr('style', 'display: none')
       })
 
-    svg.select('.lines')
+    svg.append('g')
+      .attr('class', 'labels')
+      .attr('transform', `translate(${width / 2},${height / 2})`)
       .selectAll('polyline')
       .data(shapePie(data))
       .enter()
@@ -108,7 +88,9 @@ class ShapeChart extends Component {
         return [shapeArc.centroid(d), outerArc.centroid(d), pos]
       })
 
-    svg.select('.labels')
+    svg.append('g')
+      .attr('class', 'lines')
+      .attr('transform', `translate(${width / 2},${height / 2})`)
       .selectAll('text')
       .data(shapePie(data))
       .enter()

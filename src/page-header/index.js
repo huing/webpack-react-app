@@ -1,23 +1,27 @@
 import React, {Component} from 'react'
-import {observer} from 'mobx-react'
-// import {Tooltip} from 'antd'
+import {observer, inject} from 'mobx-react'
+import {withRouter} from 'react-router-dom'
+import {Popover} from 'antd'
 import Cookies from 'js-cookie'
 
 import './index.styl'
 
+@withRouter
+@inject('Root')
 @observer 
 class DemoPage extends Component {
   logout = () => {
     Cookies.remove('userName', {path: '/'})
     this.props.history.replace('/login')
+    window.location.reload()
   }
 
-  // componentWillMount() {
-  //   let {mInfo, updateName} = this.props.Root
-  //   if (mInfo.name === '') {
-  //     updateName(Cookies.get('userName'))
-  //   }
-  // }
+  componentDidMount() {
+    let {mInfo, updateName} = this.props.Root
+    if (mInfo.name === '') {
+      updateName(Cookies.get('userName'))
+    }
+  }
 
   titleNode = () => {
     return (
@@ -31,18 +35,15 @@ class DemoPage extends Component {
   }
 
   render() {
-    // const {name} = this.props.Root.mInfo
-
+    const {name} = this.props.Root.mInfo
     return (
       <header className="page-header">
         <div className='global-header'>
-          {/* <div className="global-header-right">
-            <span className='font icon-touxiang'></span>
-            <Tooltip title={this.titleNode()}>
-              <span className='name'>{name}</span>
-            </Tooltip>
-          </div> */}
-          
+          <div className="global-header-right">
+            <Popover content={this.titleNode()}>
+              {name && <span className='name'>{name}</span>}
+            </Popover>
+          </div>
         </div>
       </header>
     )

@@ -90,6 +90,8 @@ module.exports = function(proxy, allowedHost) {
     public: allowedHost,
     proxy,
     before(app, server) {
+
+      console.log('11111111111111111111111111111111')
       if (fs.existsSync(paths.proxySetup)) {
         // This registers user provided middleware for proxy reasons
         require(paths.proxySetup)(app);
@@ -106,6 +108,12 @@ module.exports = function(proxy, allowedHost) {
       // it used the same host and port.
       // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
+
+      // app.use((req, res, next) => {
+      //   res.header("Access-Control-Allow-Origin", "*")
+      //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+      //   next()
+      // })
     },
   };
 };
