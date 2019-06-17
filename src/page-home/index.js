@@ -8,7 +8,7 @@ class DemoHome extends Component {
   render() {
     return (
       <div className="demo-home">
-        干啥！
+        1. 侧边栏 固定值 收缩
       </div>
     )
   }

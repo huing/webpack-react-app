@@ -1,8 +1,8 @@
 import {observable} from 'mobx'
 
 class TableStore {
-  @observable columns = [{
-    title: 'Product',
+  @observable col = [{
+    title: 'product',
     dataIndex: 'product',
     key: 'product',
   }, {
@@ -34,7 +34,6 @@ class TableStore {
     price1: '137.00',
     product: 'Lawnchair',
     qty: '1',
-    
     id: 1,
   }, {
     product: 'Marshmallow rice bar',

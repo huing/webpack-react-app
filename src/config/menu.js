@@ -7,7 +7,11 @@ const menus = [{
 }, {
   name: 'Table',
   path: '/table',
-  icon: 'table',
+  icon: 'home',
+}, {
+  name: 'Modal',
+  path: '/modal',
+  icon: 'home',
 }, {
   name: 'Date',
   path: '/date',

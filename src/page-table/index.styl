@@ -1,20 +1,24 @@
-.demo-table
-  margin 0 auto 
-  padding 10px 50px
-  // background linear-gradient(to bottom right, blue, white)
-  table 
+.table-one
+  margin 16px 0
+  .table 
     font 1em sans-serif
     border-collapse collapse
     border-spacing 0
     line-height 1.5
     width 100%
-    text-align center
+    text-align left
     color black
-    td, th 
-    border  1px solid black
-      padding 0.5em 0.5em 0.4em
-    // thead tr  
-    //   border-bottom 1px solid #999999
+    .thead > tr, .tbody > tr  
+      transition all 0.3s
+      border-bottom 1px solid #e8e8e8
+    .thead > tr > th 
+      font-weight 500
+      background #fafafa
+    .tbody > tr:hover
+      background rgba(220, 255, 204, 0.1)
+    .thead > tr > th, .tbody > tr > td 
+      padding 16px 16px
+      word-break break-word
         
 
     

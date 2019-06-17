@@ -1,53 +1,32 @@
 import React, {Component} from 'react'
-import {observer, inject} from 'mobx-react'
-// import {Table} from 'antd'
-import {toJS} from 'mobx'
+import {observer} from 'mobx-react'
+import TableOne from './table-one'
+import TableTwo from './table-two'
+import store from './store'
+
 import './index.styl'
 
-@inject('Table')
 @observer 
 class DemoTable extends Component { 
   render() {   
-    const {     
-      Table: {columns, data: dataSource},
-      // style,
-      className,
-    } = this.props
     return (
       <div>
         <div>Table 1</div>
-        <div className={`demo-table table-box ${className}`}>
-          <table>
-            <thead>
-              <tr>
-                {
-                  toJS(columns || []).map(item => 
-                    <th key={item.dataIndex} data-index={item.dataIndex}>{item.title}</th>
-                  )
-                }
-              </tr>
-            </thead>
-            <tbody>
-              {
-                toJS(dataSource || []).map((data, i) => {
-                  return (
-                    <tr key={data.id}>
-                      {Object.entries(data).map(item => <td key={item[0]}>{item[1]}</td>)}
-                    </tr>
-                  )
-                })
-              }
-            </tbody>
-          </table>
-        </div>
+        <TableOne className="table-one"/>
         <div>Table 2</div>
-        {/* <Table
-          dataSource={dataSource}
-
-        /> */}
+        <TableTwo />
       </div>
       
     )
+  }
+
+  componentDidMount() {
+    store.getDoor()
+    // store.getDoor()
+    // store.getDoor()
+    store.postDoor()
+    // store.postDoor()
+    // store.postDoor()
   }
 }
 export default DemoTable
