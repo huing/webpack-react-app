@@ -5,7 +5,8 @@ import qs from 'qs'
 
 let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://120.26.119.23:8090/web/'
+  // baseURL = 'http://120.26.119.23:8090/web/'
+  baseURL = 'http://localhost:3000'
 } else {
   baseURL = 'https://hotel.sciener.cn/'
 }

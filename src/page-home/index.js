@@ -9,6 +9,7 @@ class DemoHome extends Component {
     return (
       <div className="demo-home">
         1. 侧边栏 固定值 收缩
+        2. 日期
       </div>
     )
   }

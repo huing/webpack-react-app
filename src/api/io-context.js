@@ -5,11 +5,12 @@ import qs from 'qs'
 
 let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://120.26.119.23:8090/web/'
+  // baseURL = 'http://120.26.119.23:8090/web/'
+  baseURL = 'http://localhost:3000'
 } else {
   baseURL = 'https://hotel.sciener.cn/'
 }
-
+ 
 const instance = axios.create({
   baseURL: baseURL,
   headers: {
@@ -62,7 +63,7 @@ const codeMessage = {
 }
 
 const ajax = options => instance(options).then(response => {
-  // console.log(response)
+  console.log(response)
   if (response.status !== 200) {
     const errortext = codeMessage[response.status] 
     const {status, url} = response
