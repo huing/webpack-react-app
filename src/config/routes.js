@@ -39,6 +39,10 @@ export default [{
   component: Loadable({loader: () => import('../page-form'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
+  path: '/form/antd',
+  component: Loadable({loader: () => import('../page-form-antd'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
   path: '/modal',
   component: Loadable({loader: () => import('../page-modal'), loading: DelayLoading, delay: 3000}),
 }, {

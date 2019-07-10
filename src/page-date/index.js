@@ -19,6 +19,17 @@ class DemoTable extends Component {
           }} 
           format="YYYY-MM-DD HH:mm" 
         />
+
+        <div className="mt30">
+          <label className="form-item-label" htmlFor="date">日期</label>
+          <input 
+            className="form-item-input date"
+            pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" 
+            type="date" 
+            name="date" 
+            id="date" 
+          />
+        </div>
       </div>
     )
   }

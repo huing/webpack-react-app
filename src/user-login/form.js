@@ -14,7 +14,11 @@ export default Form.create()(
               required: true, message: 'Please input your username!',
             }],
           })(
-            <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />} placeholder="Username" />
+            <Input 
+              prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}} />} 
+              placeholder="Username" 
+              size="large"
+            />
           )}
         </Form.Item>
         <Form.Item>
@@ -25,12 +29,18 @@ export default Form.create()(
             <Input 
               prefix={<Icon type="lock" style={{color: 'rgba(0,0,0,.25)'}} />} 
               type="password" 
+              size="large"
               placeholder="Password" 
             />
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button 
+            type="primary" 
+            htmlType="submit" 
+            className="login-form-button"
+            size="large"
+          >
             Log in
           </Button>          
         </Form.Item>

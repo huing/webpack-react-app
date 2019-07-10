@@ -3,6 +3,7 @@ import {observer, inject} from 'mobx-react'
 import {withRouter} from 'react-router-dom'
 import {Popover} from 'antd'
 import Cookies from 'js-cookie'
+import cls from 'classnames'
 
 import './index.styl'
 
@@ -36,10 +37,14 @@ class DemoPage extends Component {
 
   render() {
     const {name} = this.props.Root.mInfo
+    const {pathname} = this.props.location
     return (
       <header className="page-header">
         <div className='global-header'>
-          <div className="global-header-right">
+          <div className={cls({
+            'global-header-right': true,
+            'hidden': pathname === '/login',
+          })}>
             <Popover content={this.titleNode()}>
               {name && <span className='name'>{name}</span>}
             </Popover>
