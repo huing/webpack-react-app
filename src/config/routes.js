@@ -35,6 +35,10 @@ export default [{
   component: Loadable({loader: () => import('../page-date'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
+  path: '/form',
+  component: Loadable({loader: () => import('../page-form'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
   path: '/modal',
   component: Loadable({loader: () => import('../page-modal'), loading: DelayLoading, delay: 3000}),
 }, {

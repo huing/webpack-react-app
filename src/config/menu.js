@@ -17,6 +17,10 @@ const menus = [{
   path: '/date',
   icon: 'home',
 }, {
+  name: 'Form',
+  path: '/form',
+  icon: 'home',
+}, {
   name: 'Chart',
   path: '/chart',
   icon: 'bar-chart',
