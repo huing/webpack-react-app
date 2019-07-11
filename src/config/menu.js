@@ -21,10 +21,10 @@ const menus = [{
   path: '/form',
   icon: 'home',
   routes: [{
-  //   name: 'Form CUS',
-  //   path: '/form/customize',
-  //   icon: 'home',
-  // }, {
+    name: 'Form CUS',
+    path: '/form/customize',
+    icon: 'home',
+  }, {
     name: 'Form Antd',
     path: '/form/antd',
     icon: 'home',

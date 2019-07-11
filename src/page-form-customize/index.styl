@@ -1,0 +1,55 @@
+$color = #2878ff
+.page-form
+  width 560px
+  .demo-form
+    // width 380px 
+    margin 0 90px
+    .form-item
+      position relative
+      color #333333
+      font-size 14px
+      font-weight 400
+      margin-bottom 21px
+      .form-item-label
+        .label-name
+          position absolute
+          top 10px
+          transition all 0.5s
+        .form-item-input
+          height 40px
+          width 100%
+          outline 0
+          border none
+          &:focus + .label-name
+            color #999999 
+            top -21px
+      .field-line
+        .input-line
+          margin 0
+          border none 
+          height 1px
+          background #e7e7e7
+          &.focus-line
+            background $color 
+          &.error
+            background red
+      .input-error
+        height 21px
+        line-height 21px
+        color red
+        transition all 0.5s
+      &.no-empty-state
+        .label-name
+          top -21px
+          color #999999 
+    .form-item-btn
+      height 40px
+      background $color
+      border-radius 4px
+      width 100%
+      outline 0
+      border none
+      color #ffffff
+    .drag-silde
+      margin-top -18px
+      margin-bottom 21px

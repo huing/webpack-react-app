@@ -2,169 +2,165 @@ import React from 'react'
 import {observer} from 'mobx-react'
 import {toJS, action, observable} from 'mobx'
 import cls from 'classnames'
-import {Form, Input, Select, Icon, Tooltip} from 'antd'
+import * as antd from 'antd'
+// import {Form, Input, Select, Icon, Tooltip} from 'antd'
+const {Form, Input, Select, Icon, Tooltip} = antd
+
+const FormItem = Form.Item
+const {Option} = Select
+const {TextArea} = Input
+
+const formLayout = {
+  wrapperCol: {
+    span: 21,
+  },
+  colon: false,
+}
 
 @observer 
 class PageForm extends React.Component {
-  @observable displayBlock = false // 是否折叠 默认折叠
-
-  @observable condition = {
-    apiName: false, // 报错状态Icon，默认不报错 API名称
-    count: false, // 报错状态Icon，默认不报错 调用次数限制
-  }
-  // @observable apiName = false // 报错状态Icon，默认不报错 API名称
-  // @observable count = false // 报错状态Icon，默认不报错 调用次数限制
+  @observable displayBlock = true // 是否折叠 默认折叠
 
   @action handleSubmit = e => {
     e.preventDefault()
-    this.props.form.validateFields((errors, values) => {
+    const {form, submit} = this.props
+    form.validateFields((errors, values) => {
       if (errors) {
         return
       }
-      this.props.submit(values)
+      submit(values)
     })
   }
 
   @action handleClick = () => {
-    console.log(!!this.displayBlock)
     this.displayBlock = !this.displayBlock
   }
 
   render() {
     const {
-      store,
+      depEnvData,
+      values,
       form: {
         getFieldDecorator,
       },
+      formData,
     } = this.props
+    const record = toJS(values) || {}
+    const http = ['POST', 'GET', 'DELETE', 'PUT']
 
-    const values = toJS(store.values) || {}
+    const formItems = formData.map(k => {
+      const Comp = antd[k.comp]
+      console.log(Comp, Input)
+      return (
+        <FormItem
+          {...formLayout}
+          label={k.label}
+          key={k.decorator}
+        >
+          {getFieldDecorator(`${k.decorator}`, {
+            initialValue: [],
+            // validateTrigger: ['onChange', 'onBlur'],
+            rules: k.rules,
+          })(<Comp />)}
+        </FormItem>
+      )
+    })
 
     return (
-      <Form className="api-form" onSubmit={this.handleSubmit}> 
-        <Form.Item label="API名称" colon={false}>
+      <Form className="api-form" onSubmit={this.handleSubmit} hideRequiredMark>
+        <FormItem {...formLayout} label="API名称">
           {getFieldDecorator('apiName', {
-            initialValue: values.apiName,
+            initialValue: record.apiName,
             rules: [{
-              validator: (rule, value, callback) => {
-                this.condition.apiName = true
-                if (!value) {
-                  callback('请输入API名称，仅限字母、数字和下划线，且长度范围3-128位，必填')
-                } else if (!/^[0-9a-zA-Z_]*$/g.test(value)) {
-                  callback('仅限字母、数字和下划线')
-                } else if (value.length < 3 || value.length > 128 ) {
-                  callback('长度范围3-128位')
-                } else {
-                  this.condition.apiName = false
-                  callback()
-                }
-              },
+              required: true,
+              message: '请输入API名称，仅限字母、数字和下划线，且长度范围3-128位，必填',
+            }, {
+              pattern: /^[0-9a-zA-Z_]*$/,
+              message: '仅限字母、数字和下划线',
+            }, {
+              min: 3,
+              message: '长度范围3-128位',
+            }, {
+              max: 128,
+              message: '长度范围3-128位',
             }],
           })(
             <Input
               placeholder="请输入API名称，仅限字母、数字和下划线，且长度范围3-128位，必填"
               autoComplete="off"
-              suffix={this.condition.apiName ? <Icon type="close-circle" style={{color: 'red'}} /> : <span />}
             />
           )}
-        </Form.Item>
-        <Form.Item label="API分组" colon={false} >
+        </FormItem>
+        <FormItem {...formLayout} label="API分组">
           {getFieldDecorator('apiGroup', {
-            initialValue: values.apiGroup || '默认分组',
+            initialValue: record.apiGroup || '默认分组',
             rules: [{
-              validator: (rule, value, callback) => {
-                if (!value) {
-                  callback('请选择分组')
-                } else {
-                  callback()
-                }
-              },
+              required: true,
+              message: '请选择分组',
             }],
           })(
-            <Select allowClear>
-              <Select.Option value="默认分组" > 默认分组 </Select.Option>
+            <Select>
+              <Option value="默认分组">默认分组</Option>
             </Select>
           )}
-        </Form.Item>
-        <Form.Item label="HTTP请求方式" colon={false} >
+        </FormItem>
+        <FormItem {...formLayout} label="HTTP请求方式">
           {getFieldDecorator('http', {
-            initialValue: values.http || 'POST',
+            initialValue: record.http || 'POST',
             rules: [{
-              validator: (rule, value, callback) => {
-                if (!value) {
-                  callback('请选择HTTP请求方式')
-                } else {
-                  callback()
-                }
-              },
+              required: true,
+              message: '请选择HTTP请求方式',
             }],
           })(
-            <Select style={{width: 120}} allowClear>
-              <Select.Option value="POST"> POST </Select.Option>
-              <Select.Option value="GET"> GET </Select.Option>
-              <Select.Option value="DELETE"> DELETE </Select.Option>
-              <Select.Option value="PUT"> PUT </Select.Option>
-            </Select>
-          )}
-        </Form.Item>
-        <Form.Item label="返回类型" colon={false} >
-          {getFieldDecorator('json', {
-            initialValue: values.json || 'JSON',
-            rules: [{
-              validator: (rule, value, callback) => {
-                if (!value) {
-                  callback('请选择返回类型')
-                } else {
-                  callback()
-                }
-              },
-            }],
-          })(
-            <Select  style={{width: 120}} allowClear>
-              <Select.Option value="JSON"> JSON </Select.Option>
-            </Select>
-          )}
-        </Form.Item>
-        <Form.Item label="部署环境" colon={false} >
-          {getFieldDecorator('depEnv', {
-            initialValue: values.depEnv,
-            rules: [{
-              validator: (rule, value, callback) => {
-                if (!value) {
-                  callback('请选择部署环境')
-                } else {
-                  callback()
-                }
-              },
-            }],
-          })(
-            <Select placeholder="请选择" allowClear>
+            <Select style={{width: 120}}>
               {
-                toJS(store.depEnvDate || []).map(item => 
-                  <Select.Option key={item.id} value={item.value}> {item.value} </Select.Option>
-                )
+                toJS(http).map(item => <Option key={item} value={item}>{item}</Option>)
               }
             </Select>
           )}
-        </Form.Item>
-        <Form.Item label="描述" colon={false} >
-          {getFieldDecorator('description', {
-            initialValue: values.description,
+        </FormItem>
+        <FormItem {...formLayout} label="返回类型">
+          {getFieldDecorator('json', {
+            initialValue: record.json || 'JSON',
             rules: [{
-              validator: (rule, value, callback) => {
-                if (!value) {
-                  callback('必填，最多512个字符')
-                } else if (value && value.length > 512) {
-                  callback('最多512个字符')
-                } else {
-                  callback()
-                }
-              },
+              required: true,
+              message: '请选择返回类型',
             }],
           })(
-            <Input.TextArea placeholder="必填，最多512个字符" />
+            <Select style={{width: 120}}>
+              <Option value="JSON">JSON</Option>
+            </Select>
           )}
-        </Form.Item>
+        </FormItem>
+        <FormItem {...formLayout} label="部署环境">
+          {getFieldDecorator('depEnv', {
+            initialValue: record.depEnv,
+            rules: [{
+              required: true,
+              message: '请选择部署环境',
+            }],
+          })(
+            <Select placeholder="请选择">
+              {
+                toJS(depEnvData || []).map(item => <Option key={item.id} value={item.value}>{item.value}</Option>)
+              }
+            </Select>
+          )}
+        </FormItem>
+        <FormItem {...formLayout} label="描述">
+          {getFieldDecorator('desc', {
+            initialValue: record.desc,
+            rules: [{
+              required: true,
+              message: '必填，最多512个字符',
+            }, {
+              max: 521,
+              message: '最多512个字符',
+            }],
+          })(
+            <TextArea placeholder="必填，最多512个字符" />
+          )}
+        </FormItem>
         <button
           type="button"
           className="collapse-btn"
@@ -174,41 +170,44 @@ class PageForm extends React.Component {
           <Icon 
             type="down" 
             className={cls({
-              'collapse-btn-icon': true, 
-              'transform': !!this.displayBlock,
+              'collapse-btn-icon': true,
+              transform: !!this.displayBlock,
             })} 
           />
         </button>
-        <div className={cls({
-          'item-count': true,
-          'show': !!this.displayBlock,
-        })}>
-          <Form.Item label="调用次数限制" colon={false} >
-            {getFieldDecorator('Count', {
-              initialValue: values.Count || 1500,
+        <div 
+          className={cls({
+            'item-count': true,
+            show: !!this.displayBlock,
+          })}
+          id="formInput"
+        >
+          <FormItem {...formLayout} label="调用次数限制">
+            {getFieldDecorator('count', {
+              initialValue: record.count || 1500,
               rules: [{
+                required: true,
+                message: '请输入次数',
+              }, {
                 validator: (rule, value, callback) => {
-                  this.condition.count = true
-                  if (!value) {
-                    callback('请输入次数')
-                  } else if (value && value > 1500) {
+                  if (value && value > 1500) {
                     callback('单用户每秒调用次数不超过1500次')
                   } else {
-                    this.condition.count = false
                     callback()
                   }
                 },
               }],
             })(
-              <Input suffix={this.condition.count ? <Icon type="close-circle" style={{color: 'red'}} /> : <span />} />
+              <Input />
             )}
-          </Form.Item>
-          <Tooltip 
+          </FormItem>
+          <Tooltip
             className="count-tooltip"
             title="单用户每秒调用次数，不超过1500次"
           >
             <Icon type="question-circle-o" />
           </Tooltip>
+          {formItems}
         </div>
 
         <button type="submit" className="mt68">提交</button>
@@ -216,4 +215,4 @@ class PageForm extends React.Component {
     )
   }
 }
-export default Form.create({})(PageForm)
+export default Form.create()(PageForm)
