@@ -8,14 +8,13 @@ import zhIntl from 'react-intl/locale-data/zh'
 import enIntl from 'react-intl/locale-data/en'
 // import moment from 'moment'
 import 'moment/locale/zh-cn'
-
+ 
 import {setIntlObject, addLocaleData, IntlProvider, intlShape} from './locales'
 import enUSMSg from './locales/en-US'
 import zhCNMsg from './locales/zh-CN'
 
 import './common/common.styl'
 import Frame from './frame'
-import * as serviceWorker from './serviceWorker'
 
 const localeInfo = { 
   'en-US': {
@@ -91,4 +90,4 @@ export function LocaleWrapper(props) {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
-serviceWorker.unregister()
+
