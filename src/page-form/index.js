@@ -8,10 +8,17 @@ import './index.styl'
 @observer 
 class DemoForm extends Component {
   @observable objValue = {}
+  @observable objError = {}
 
   @action handleSubmit = e => {
     e.preventDefault()
-    console.log(toJS(this.objValue))
+
+    if (JSON.stringify(toJS(this.objError)) === '{}') {
+      this.handleError()
+      return
+    }
+
+    console.log(toJS(this.objValue), toJS(this.objError))
   }
 
   @action handleError = (name, value) => {
@@ -27,35 +34,41 @@ class DemoForm extends Component {
     switch(name) {
       case 'email': 
         flag = pattern.email.test(value)
-        if (!flag) {
-          this.objValue[name].error = '邮箱格式不正确'
+        if (!value) {
+          this.objError = {...this.objError, [name]: '邮箱必填'}
+        } else if (!flag) {
+          this.objError = {...this.objError, [name]: '邮箱格式不正确'}
         } else {
-          this.objValue[name].error = undefined
+          this.objError = {...this.objError, [name]: undefined}
         }
         break
       case 'name': 
         flag = pattern.name.test(value)
-        if (!flag || value.length !== 6) {
-          this.objValue[name].error = '验证码不正确'
+        if (!value) {
+          this.objError = {...this.objError, [name]: '验证码必填'}
+        } else if (!flag || value.length !== 6) {
+          this.objError = {...this.objError, [name]: '验证码不正确'}
         } else {
-          this.objValue[name].error = undefined
+          this.objError = {...this.objError, [name]: undefined}
         }
         break
       case 'password': 
         flag = pattern.password.test(value)
-        if (flag) {
-          this.objValue[name].error = '密码不能包含空格'
+        if (!value) {
+          this.objError = {...this.objError, [name]: '密码必填'}
+        } else if (flag) {
+          this.objError = {...this.objError, [name]: '密码不能包含空格'}
         } else if (value.length < 6 || value.length > 20) {
-          this.objValue[name].error = '密码应为6-20位'
+          this.objError = {...this.objError, [name]: '密码应为6-20位'}
         } else {
-          this.objValue[name].error = undefined
+          this.objError = {...this.objError, [name]: undefined}
         }
         break
-      case 'newpassword': 
+      case 'newpassword':
         if (this.objValue[name].value !== this.objValue.password.value) {
-          this.objValue[name].error = '两次密码不一样'
+          this.objError = {...this.objError, [name]: '两次密码不一样'}
         } else {
-          this.objValue[name].error = undefined
+          this.objError = {...this.objError, [name]: undefined}
         }
         break
       default: break
@@ -68,18 +81,16 @@ class DemoForm extends Component {
     // this.objValue= Object.assign({}, this.objValue, {
     //   [e.target.name]: e.target.value.trim(),
     // })
-    this.objValue = {...this.objValue,
-      [e.target.name]: {
-        value: e.target.value.trim(),
-        error: undefined,
-      },
+    this.objValue = {
+      ...this.objValue,
+      [e.target.name]: e.target.value.trim(),
     }
     this.handleError(e.target.name, e.target.value)
   }
   
   render() {
 
-    console.log(!!this.objValue.email && !!this.objValue.email.value)
+    console.log(!!this.objValue.email)
 
     return (
       <div className="page-form">
@@ -88,7 +99,7 @@ class DemoForm extends Component {
 
             <div className={cls({
               'form-item': true,
-              'no-empty-state': !!this.objValue.email && !!this.objValue.email.value,
+              'no-empty-state': !!this.objValue.email,
             })} >
               <input className="form-item-input" type="email" name="email" id="email"  />
               <label className="form-item-label" htmlFor="email">email</label>
@@ -98,7 +109,7 @@ class DemoForm extends Component {
                   'focus-line error': false,
                 })} /> 
               </div>
-              <div className="input-error">{!!this.objValue.email && this.objValue.email.error}</div>
+              <div className="input-error">{this.objError.email}</div>
             </div>
             
             <div className={cls({
@@ -113,7 +124,7 @@ class DemoForm extends Component {
                   'focus-line error': false,
                 })} /> 
               </div>
-              <div className="input-error">{!!this.objValue.name && this.objValue.name.error}</div>
+              <div className="input-error">{this.objError.name}</div>
             </div>
 
             <div className={cls({
@@ -128,7 +139,7 @@ class DemoForm extends Component {
                   'focus-line error': false,
                 })} /> 
               </div>
-              <div className="input-error">{!!this.objValue.password && this.objValue.password.error}</div>
+              <div className="input-error">{this.objError.password}</div>
             </div>
 
             <div className={cls({
@@ -149,7 +160,7 @@ class DemoForm extends Component {
                   'focus-line error': false,
                 })} /> 
               </div>
-              <div className="input-error">{!!this.objValue.newpassword && this.objValue.newpassword.error}</div>
+              <div className="input-error">{this.objError.newpassword}</div>
             </div>
 
             <div className="form-item">
