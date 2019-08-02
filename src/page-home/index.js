@@ -1,19 +1,78 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
+import {observable, action, toJS, autorun, runInAction} from 'mobx'
 
 import './index.styl'
+
+console.log(typeof 0)
+console.log(typeof 'ss')
+console.log(typeof undefined)
+
+console.log(typeof null)
+console.log(typeof [])
+
+console.log(typeof {})
+console.log(typeof new Map())
+
+const todoStore = observable({
+  /* 一些观察的状态 */
+  todos: [],
+  /* 推导值 */
+  get completedCount() {
+    return this.todos.filter(todo => todo.completed).length
+  },
+})
+
+const map = observable({
+  obj: {
+    a: 'aValue',
+    b: 'bValue',
+  },
+})
+autorun(() => {
+  // console.log(' %s vs %s ',
+  //   Object.keys(map).toString(),
+  //   Object.values(map).toString())
+
+  console.log(toJS(map))
+})
+autorun(() => {map.obj.c = 'cValue'})
+
+// map.obj.c = 'hahahah'
+
+map.obj = {...map.obj, d: 'dValue'}
+map.obj = Object.assign({}, map.obj, {e: 'eValue'})
+
+/* 观察状态改变的函数 */
+autorun(() => {
+  // console.log('Completed %d of %d items',
+  //   todoStore.completedCount,
+  //   todoStore.todos.length)
+  console.log(toJS(todoStore))
+})
+
+/* ..以及一些改变状态的动作 */
+todoStore.todos[0] = {
+  title: 'Take a walk',
+  completed: false,
+}
+// -> 同步打印 'Completed 0 of 1 items'
+
+todoStore.todos[0].completed = true
+// -> 同步打印 'Completed 1 of 1 items'
 
 
 @observer 
 class DemoHome extends Component {
+  @observable array = []
+
+  @observable object = {}
+
+  @observable num1 = undefined
+
+  @observable num2 = null
+
   render() {
-
-    const a = ['a'],
-      b = 's',
-      c = 0
-
-    console.log(a, b, c)
-
     return (
       <div className="demo-home">
         <div>1. 侧边栏 固定值 收缩</div>
@@ -29,82 +88,8 @@ class DemoHome extends Component {
           </a>
         </div>
         <div>useContext</div>
-        <div>lll</div>
-        <div>lllmaster</div>
       </div>
     )
   }
 }
 export default DemoHome
-/* eslint-disable */
-
-function mixins(...list) {
-  return function(target) {
-    Object.assign(target.prototype, ...list)
-  }
-}
-
-function readonly(target, name, descriptor) {
-  descriptor.writable = true 
-  return descriptor
-}
-
-function nonenumerable(target, name, descriptor) {
-  console.log(target, name, descriptor)
-  descriptor.enumerable = false 
-  console.log(target, name, descriptor)
-  return descriptor
-}
-
-function log(target, name, descriptor) {
-  var oldValue = descriptor.value
-
-  descriptor.value = function() {
-    console.log(`Calling ${name} with`, arguments)
-    return oldValue.apply(this, arguments)
-  }
-
-  return descriptor
-}
-
-
-const Foo = {
-  foo() {
-    console.log('foo')
-  },
-}
-
-@mixins(Foo)
-class Person {
-  constructor(props) {
-    this.rt = 1
-    this.fg = 2
-    this.children = [1, 2, 3]
-  }
-
-  first = 1
-  last = 2
-
-  @readonly
-  ss() {
-    return `${this.first} ${this.last}`
-  }
-
-  @nonenumerable
-  get kidCount() {
-    this.children.map(item => console.log(item))
-    return this.children.length
-  }
-
-
-  @log 
-  add(a, b) {
-    return a + b
-  }
-}
-
-let obj = new Person()
-
-// console.log(Object.getOwnPropertyDescriptors(Person))
-console.log(obj.kidCount, obj.add(2, 4))
-

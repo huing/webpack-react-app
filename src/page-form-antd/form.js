@@ -50,7 +50,6 @@ class PageForm extends React.Component {
 
     const formItems = formData.map(k => {
       const Comp = antd[k.comp]
-      console.log(Comp, Input)
       return (
         <FormItem
           {...formLayout}
