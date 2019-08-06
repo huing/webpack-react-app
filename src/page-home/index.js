@@ -4,16 +4,6 @@ import {observable, action, toJS, autorun, runInAction} from 'mobx'
 
 import './index.styl'
 
-console.log(typeof 0)
-console.log(typeof 'ss')
-console.log(typeof undefined)
-
-console.log(typeof null)
-console.log(typeof [])
-
-console.log(typeof {})
-console.log(typeof new Map())
-
 const todoStore = observable({
   /* 一些观察的状态 */
   todos: [],
