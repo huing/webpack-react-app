@@ -1,56 +1,8 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {observable, action, toJS, autorun, runInAction} from 'mobx'
+import {observable} from 'mobx'
 
 import './index.styl'
-
-const todoStore = observable({
-  /* 一些观察的状态 */
-  todos: [],
-  /* 推导值 */
-  get completedCount() {
-    return this.todos.filter(todo => todo.completed).length
-  },
-})
-
-const map = observable({
-  obj: {
-    a: 'aValue',
-    b: 'bValue',
-  },
-})
-autorun(() => {
-  // console.log(' %s vs %s ',
-  //   Object.keys(map).toString(),
-  //   Object.values(map).toString())
-
-  console.log(toJS(map))
-})
-autorun(() => {map.obj.c = 'cValue'})
-
-// map.obj.c = 'hahahah'
-
-map.obj = {...map.obj, d: 'dValue'}
-map.obj = Object.assign({}, map.obj, {e: 'eValue'})
-
-/* 观察状态改变的函数 */
-autorun(() => {
-  // console.log('Completed %d of %d items',
-  //   todoStore.completedCount,
-  //   todoStore.todos.length)
-  console.log(toJS(todoStore))
-})
-
-/* ..以及一些改变状态的动作 */
-todoStore.todos[0] = {
-  title: 'Take a walk',
-  completed: false,
-}
-// -> 同步打印 'Completed 0 of 1 items'
-
-todoStore.todos[0].completed = true
-// -> 同步打印 'Completed 1 of 1 items'
-
 
 @observer 
 class DemoHome extends Component {
@@ -83,3 +35,25 @@ class DemoHome extends Component {
   }
 }
 export default DemoHome
+
+const Fun1 = () => {
+  console.log('Fun1')
+}
+const Fun2 = () => {
+  console.log('Fun2')
+}
+function Fun() {
+  const num = 1
+  const flag = true
+  if (flag) {
+    if (num === 1) {
+      Fun1()
+      return
+    } 
+    
+    Fun2()
+    return
+  }
+  console.log('false')
+}
+Fun()
