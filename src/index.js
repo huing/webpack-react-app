@@ -36,19 +36,19 @@ const localeInfo = {
 let appLocale = {
   locale: 'zh-CN',
   messages: {},
-  data: require('react-intl/locale-data/zh'),
+  data: zhIntl,
   momentLocale: 'zh-cn',
 }
 
 if (localStorage.getItem('umi_locale') && localeInfo[localStorage.getItem('umi_locale')]) {
   appLocale = localeInfo[localStorage.getItem('umi_locale')]
-} else if (localeInfo[navigator.language]){
+} else if (localeInfo[navigator.language]) {
   appLocale = localeInfo[navigator.language]
 } else {
   appLocale = localeInfo['zh-CN'] || appLocale
 }
 window.g_lang = appLocale.locale
-appLocale.data && addLocaleData(appLocale.data)
+addLocaleData(appLocale.data)
 
 class App extends Component {
   render() {
@@ -64,7 +64,7 @@ class App extends Component {
 export default App
 
 const InjectedWrapper = (() => {
-  let sfc = (props, context) => {
+  const sfc = (props, context) => {
     setIntlObject(context.intl)
     return props.children
   }
@@ -75,7 +75,7 @@ const InjectedWrapper = (() => {
 })()
 
 export function LocaleWrapper(props) {
-  let ret  = props.children 
+  let ret = props.children 
   ret = (
     <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
       <InjectedWrapper>{ret}</InjectedWrapper>
@@ -90,4 +90,3 @@ export function LocaleWrapper(props) {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
-

@@ -11,23 +11,23 @@ import MenuSider from '../base-sider'
 import routes from '../config/routes'
 import store from '../store'
 
-import 'antd/dist/antd.less'
 import './index.styl'
 
 @withRouter
 @observer
 class Frame extends Component {
   componentDidMount() {
-    if (this.props.location.pathname !== '/login' && !Cookies.get('userName')) {
-      this.props.history.replace('/login')
+    const {location, history} = this.props
+    if (location.pathname !== '/login' && !Cookies.get('userName')) {
+      history.replace('/login')
     } 
     // console.log('componentDidMount') 
   }
 
   render() {
-    const {pathname} = this.props.location
+    const {location: {pathname}} = this.props
     return (
-      <DocumentTitle title={'Demo'}>
+      <DocumentTitle title="Demo">
         <Provider {...store}>
           <div className="page-frame">
             <PageHeader /> 
@@ -37,12 +37,13 @@ class Frame extends Component {
             <div className={cls({
               'page-section': true,
               'page-section-left': pathname.indexOf('/login') === -1,
-            })}>
+            })}
+            >
               <Switch>
                 {
-                  (routes || []).map(item => 
+                  (routes || []).map(item => (
                     <Route exact={item.exact} path={item.path} component={item.component} key={item.path} />
-                  )
+                  ))
                 }
                 <Redirect exact from="/" to="/login" />
                 <Route render={() => <div>404</div>} />
@@ -53,7 +54,6 @@ class Frame extends Component {
       </DocumentTitle>        
     )
   }
-
 }
 
 export default Frame

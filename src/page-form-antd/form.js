@@ -48,22 +48,22 @@ class PageForm extends React.Component {
     const record = toJS(values) || {}
     const http = ['POST', 'GET', 'DELETE', 'PUT']
 
-    const formItems = formData.map(k => {
-      const Comp = antd[k.comp]
-      return (
-        <FormItem
-          {...formLayout}
-          label={k.label}
-          key={k.decorator}
-        >
-          {getFieldDecorator(`${k.decorator}`, {
-            initialValue: [],
-            // validateTrigger: ['onChange', 'onBlur'],
-            rules: k.rules,
-          })(<Comp />)}
-        </FormItem>
-      )
-    })
+    // const formItems = formData.map(k => {
+    //   const Comp = antd[k.comp]
+    //   return (
+    //     <FormItem
+    //       {...formLayout}
+    //       label={k.label}
+    //       key={k.decorator}
+    //     >
+    //       {getFieldDecorator(`${k.decorator}`, {
+    //         initialValue: [],
+    //         // validateTrigger: ['onChange', 'onBlur'],
+    //         rules: k.rules,
+    //       })(<Comp />)}
+    //     </FormItem>
+    //   )
+    // })
 
     return (
       <Form className="api-form" onSubmit={this.handleSubmit} hideRequiredMark>
@@ -206,7 +206,7 @@ class PageForm extends React.Component {
           >
             <Icon type="question-circle-o" />
           </Tooltip>
-          {formItems}
+          {/* {formItems} */}
         </div>
 
         <button type="submit" className="mt68">提交</button>
