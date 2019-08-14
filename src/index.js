@@ -1,92 +1,67 @@
-import React, {Component} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import {LocaleProvider} from 'antd'
-import {BrowserRouter as Router} from 'react-router-dom'
-import zhCNAntd from 'antd/lib/locale-provider/zh_CN'
-import enUSAntd from 'antd/lib/locale-provider/en_US'
-import zhIntl from 'react-intl/locale-data/zh'
-import enIntl from 'react-intl/locale-data/en'
-// import moment from 'moment'
-import 'moment/locale/zh-cn'
- 
-import {setIntlObject, addLocaleData, IntlProvider, intlShape} from './locales'
-import enUSMSg from './locales/en-US'
-import zhCNMsg from './locales/zh-CN'
 
-import './common/common.styl'
-import Frame from './frame'
+class Comp1 extends React.Component {
+  handleClick = () => {
+    const {change} = this.props
+    change() 
+    console.log(Date.now())
+  }
 
-const localeInfo = { 
-  'en-US': {
-    messages: {...enUSMSg},
-    locale: 'en-US',
-    antd: enUSAntd,
-    data: enIntl,
-    momentLocale: '',
-  },
-  'zh-CN': {
-    messages: {...zhCNMsg},
-    locale: 'zh-CN',
-    antd: zhCNAntd,
-    data: zhIntl,
-    momentLocale: 'zh-cn',
-  },
-}
-
-let appLocale = {
-  locale: 'zh-CN',
-  messages: {},
-  data: zhIntl,
-  momentLocale: 'zh-cn',
-}
-
-if (localStorage.getItem('umi_locale') && localeInfo[localStorage.getItem('umi_locale')]) {
-  appLocale = localeInfo[localStorage.getItem('umi_locale')]
-} else if (localeInfo[navigator.language]) {
-  appLocale = localeInfo[navigator.language]
-} else {
-  appLocale = localeInfo['zh-CN'] || appLocale
-}
-window.g_lang = appLocale.locale
-addLocaleData(appLocale.data)
-
-class App extends Component {
   render() {
+    const {item1} = this.props
     return (
-      <LocaleWrapper>
-        <Router>
-          <Frame />
-        </Router>
-      </LocaleWrapper>
+      <button type="button" onClick={this.handleClick}>
+        {JSON.stringify(item1)}
+      </button>
     )
   }
 }
-export default App
 
-const InjectedWrapper = (() => {
-  const sfc = (props, context) => {
-    setIntlObject(context.intl)
-    return props.children
+class Comp2 extends React.Component {
+  render() {
+    const {item2} = this.props
+    return (
+      <div>
+        {JSON.stringify(item2)}
+      </div>
+    )
   }
-  sfc.contextTypes = {
-    intl: intlShape,
-  }
-  return sfc
-})()
+}
 
-export function LocaleWrapper(props) {
-  let ret = props.children 
-  ret = (
-    <IntlProvider locale={appLocale.locale} messages={appLocale.messages}>
-      <InjectedWrapper>{ret}</InjectedWrapper>
-    </IntlProvider>
-  )
-  ret = (
-    <LocaleProvider locale={appLocale.antd ? (appLocale.antd.default || appLocale.antd) : zhCNAntd}>
-      {ret}
-    </LocaleProvider>
-  )
-  return ret
+export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      item: [],
+    }
+  }
+
+  handleChange = () => {
+    this.setState(state => ({
+      item: [...state.item, {id: Date.now(), text: 'efg'}],
+    }))
+  }
+
+  render() {
+    const {item} = this.state
+    return (
+      <div>
+        {JSON.stringify(item)}
+        <div>
+          <Comp1 item1={item} change={this.handleChange} />
+          <Comp2 item2={item} />
+        </div>
+      </div>
+
+    )
+  }
+
+  componentDidMount() {
+    this.setState(state => ({
+      item: [...state.item, {id: Date.now(), text: 'abc'}],
+    }))
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
