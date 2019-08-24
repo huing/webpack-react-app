@@ -1,3 +1,5 @@
+// import './index-o'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 
@@ -29,6 +31,56 @@ class Comp2 extends React.Component {
   }
 }
 
+class Demo extends React.PureComponent {
+  componentDidMount() {
+    const $parent = ReactDOM.findDOMNode(this)
+    const $child = $parent.querySelector('.child')
+    $parent.addEventListener('click', this.onParentDOMClick, false)
+    $child.addEventListener('click', this.onChildDOMClick, false)
+  }
+
+  onParentDOMClick = evt => {
+    // evt.preventDefault()
+    // evt.stopPropagation()
+    console.log(typeof evt, evt)
+    console.log(
+      Object.getOwnPropertyDescriptor(evt, 'preventDefault'),
+      Object.getOwnPropertyDescriptor(evt, 'stopPropagation'),
+    )
+    console.log('parent dom event')
+  }
+  
+  onChildDOMClick = evt => {
+    console.log('child dom event')
+  }    
+  
+  onParentClick = evt => {
+    console.log(typeof evt, evt)
+    console.log('parent react event')
+  }
+
+  onChildClick = evt => {
+    console.log(
+      Object.getOwnPropertyDescriptor(evt, 'preventDefault'),
+      Object.getOwnPropertyDescriptor(evt, 'stopPropagation'),
+    )
+    // console.log(evt.hasOwnProperty('stopPropagation'))
+    evt.stopPropagation()
+    console.log(typeof evt, evt)
+    console.log('child react event')
+  }
+
+  render() {
+    return (
+      <div onClick={this.onParentClick}>
+        <div className="child" onClick={this.onChildClick}>
+          Demo
+        </div>
+      </div>
+    )
+  }
+}
+
 export default class App extends React.Component {
   constructor(props) {
     super(props)
@@ -51,6 +103,7 @@ export default class App extends React.Component {
         <div>
           <Comp1 item1={item} change={this.handleChange} />
           <Comp2 item2={item} />
+          <Demo />
         </div>
       </div>
 

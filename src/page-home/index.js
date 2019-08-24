@@ -1,33 +1,25 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {observer} from 'mobx-react'
 import {observable} from 'mobx'
 
 import './index.styl'
 
 class DataSource123456 {
-  // constructor(props) {
-  //   super(props)
-  //   console.log(props)
-  // }
-
-  getComments(...res) {
-    console.log(res)
+  getComments() {
     return [{name: '123'}]
   }
 
-  getBlogPost(...id) {
-    console.log(id)
-    return [{name: '456', id}]
+  getBlogPost() {
+    return [{name: '456'}]
   }
 
   addChangeListener(cb) {
     cb()
-    console.log(cb)
   }
 
   removeChangeListener(cb) {
     cb()
-    console.log(cb)
   }
 }
 
@@ -35,6 +27,7 @@ const DataSource = new DataSource123456()
 
 class CommentList extends React.Component {
   render() {
+    // console.log(this.props)
     return <div>{JSON.stringify(this.props)}</div>
   }
 }
@@ -56,7 +49,6 @@ function withSubscription(WrappedComponent, selectData) {
       this.state = {
         data: selectData(DataSource, props),
       }
-      console.log(props)
     }
 
     componentDidMount() {
@@ -103,9 +95,37 @@ class DemoHome extends React.Component {
 
   @observable num2 = null
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '原始值',
+    }
+  } 
+
+  componentDidMount() {
+    this.setState({
+      name: 'DidMount改变',
+    }, () => {
+      console.log(this.state.name)
+    })
+    console.log(this.state.name)
+  }
+
+  handleC = e => {
+    console.log(e, e.target)
+    this.setState({
+      name: '点击改变',
+    }, () => {
+      console.log(this.state.name)
+    })
+    console.log(this.state.name)
+  }
+ 
   render() {
+    console.log(this.state.name)
     return (
       <div className="demo-home">
+        <button type="button" onClick={this.handleC}>点击</button>
         <div>1. 侧边栏 固定值 收缩</div>
         <div>2. 日期</div>
         <div>3. 正则表达式</div>
