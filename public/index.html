@@ -12,5 +12,26 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <!--  style="display: none" -->
     <div id="root"></div>
+    <!-- <div>nihao home</div>
+    <div>hello world</div> -->
+
+
+    <script>
+      const arr = [1, 2, 3, 4, 5, 6]
+      function shuffle (input) {
+        // console.log(this)
+        // let input = this;
+        for (let i = input.length - 1; i >= 0; i--) {
+          let randomIndex = Math.floor(Math.random() * (i+1));
+          let itemAtIndex = input[randomIndex];
+          input[randomIndex] = input[i];
+          input[i] = itemAtIndex;
+        }
+        return input;
+      }
+      console.log(shuffle(arr))
+
+    </script>
+
   </body>
 </html>

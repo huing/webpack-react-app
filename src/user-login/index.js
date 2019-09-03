@@ -29,7 +29,7 @@ class NormalLogin extends Component {
     return (
       <PageUser>
         <div className="user-login"> 
-          <div className="img"></div>
+          <div className="img" />
           <CustomizedForm 
             ref={form => this.userForm = form}
             submit={this.handleSubmit} 
