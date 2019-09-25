@@ -3,11 +3,11 @@
     ["import", {
       "libraryName": "antd",
       "libraryDirectory": "es",
-      "style": true,
+      "style": true
     }]
   ],
   "presets": [
     "react-app",
-    "mobx",
+    "mobx"
   ]
 }

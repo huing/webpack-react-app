@@ -13,8 +13,8 @@ const menus = [{
   path: '/modal',
   icon: 'home',
 }, {
-  name: 'Date',
-  path: '/date',
+  name: 'Tree',
+  path: '/tree',
   icon: 'home',
 }, {
   name: 'Form',
@@ -46,6 +46,10 @@ const menus = [{
     path: '/chart/stack',
     icon: 'bar-chart',
   }],
+}, {
+  name: 'Date',
+  path: '/date',
+  icon: 'home',
 }]
 
 function formatter(data, parentName) {
