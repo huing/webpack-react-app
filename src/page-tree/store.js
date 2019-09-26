@@ -1,13 +1,34 @@
-import {observable} from 'mobx'
+import {observable, action, toJS} from 'mobx'
 
 class TreeStore {
+  @observable obj1 = []
+
+  @action Fun = data => data.reduce((acc, cur) => [...acc, {children: cur.sun, ...cur.parent}], [])
+
+  @action changeData = data => {
+    for (let i = 0; i < data.length; i += 1) {
+      console.info(toJS(data[i]))
+      if (data[i].sun) {
+        this.changeData(data[i].sun)
+      }
+      data[i] = {...data[i].parent, ...data[i]}
+    }
+    // return data
+  }
+
   @observable treeData = [
     {
       parent: {
         key: 1,
         title: 1,
       },
-      sun: [],
+      sun: [{
+        parent: {
+          key: 11,
+          title: 11,
+        },
+        sun: [],
+      }],
     },
     {
       parent: {

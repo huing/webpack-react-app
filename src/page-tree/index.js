@@ -4,13 +4,15 @@ import {toJS} from 'mobx'
 import store from './store'
 import './index.styl'
 
+store.changeData(store.treeData)
+// console.log(store.changeData(store.treeData))
+console.info(toJS(store.treeData))
 @observer 
 class DemoPage extends Component {
   render() {
-    console.log(toJS(store))
     return (
       <div className="demo-page">
-        page
+        123
       </div> 
     )
   }
