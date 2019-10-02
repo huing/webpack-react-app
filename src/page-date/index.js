@@ -6,7 +6,7 @@ import {Button, DatePicker} from 'antd'
 import './index.styl'
 import '../common/fun.styl'
 
-
+let id =null
 @observer 
 class DemoTable extends Component {
   handleSubmit = e => {
@@ -18,10 +18,30 @@ class DemoTable extends Component {
     console.log(e.target.value)
   }
 
+  componentDidMount() {
+    const parent = document.getElementById('margintop')
+
+    id = setInterval(() => {
+      const nodeList = document.querySelectorAll('.rect')
+      console.log(nodeList)
+      parent.appendChild(nodeList[0])
+    }, 3000)
+    
+  }
+
+  componentWillUnmount() {
+    clearInterval(id) 
+  }
+
   render() {
     return (
       <div className="demo-table">
-        <Button type="primary">antd测试</Button>
+        <div className="margintop" id="margintop">
+          <div className="rect a" />
+          <div className="rect b" />
+          <div className="rect c" />
+        </div>
+        {/* <Button type="primary">antd测试</Button>
         <DatePicker 
           showTime={{
             defaultValue: moment('00:00', 'HH:mm'),
@@ -59,8 +79,7 @@ class DemoTable extends Component {
               <button type="submit">Submit</button>
             </div>
           </form>
-        </div>
-       
+        </div> */}
       </div>
     )
   }
