@@ -1,5 +1,5 @@
 {
-  "name": "webpack-react-app",
+  "name": "react-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -101,8 +101,8 @@
       "node"
     ],
     "watchPlugins": [
-      "D:\\vscode\\webpack-react-app\\node_modules\\jest-watch-typeahead\\filename.js",
-      "D:\\vscode\\webpack-react-app\\node_modules\\jest-watch-typeahead\\testname.js"
+      "D:\\vscode\\react-app\\node_modules\\jest-watch-typeahead\\filename.js",
+      "D:\\vscode\\react-app\\node_modules\\jest-watch-typeahead\\testname.js"
     ]
   },
   "devDependencies": {
