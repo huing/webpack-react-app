@@ -4,6 +4,11 @@ import API from '../api'
 class Store {
   @observable value = null
 
+  @action Hello = async () => {
+    const res = await API.Hello()
+    await API.CatsDetail()
+  }
+
   @action getHomeValue = async (id = 1) => {
     try {
       const res = await API.Cats({

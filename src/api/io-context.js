@@ -40,7 +40,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(config => {
-  console.log(789, config)
+  // console.log(789, config)
   // Do something before request is sent 在发送请求之前做些什么
   return config
 }, error => {
@@ -61,8 +61,7 @@ instance.interceptors.response.use(response => {
     })
     console.log(`请求错误 ${status}: ${url}`, errortext)
   } 
-  // return response.data
-  return response
+  return response.data
 }, error => {
   console.log(456, error)
   // Do something with response error 对响应错误做点什么
@@ -74,12 +73,7 @@ instance.interceptors.response.use(response => {
 })
 
 const get = (url, params) => instance.get(url, {params})
-  .then(response => response)
-  .catch(error => console.log(error))
-
 const post = (url, params) => instance.post(url, params)
-  .then(response => response)
-  .catch(error => console.log(error))
 
 export default {
   get, 

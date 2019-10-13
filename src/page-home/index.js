@@ -6,6 +6,7 @@ import './index.styl'
 @observer 
 class DemoHome extends React.Component {
   componentDidMount() {
+    store.Hello()
     store.getHomeValue()
   }
 
