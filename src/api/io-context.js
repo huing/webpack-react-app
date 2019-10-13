@@ -1,48 +1,6 @@
-
-/* eslint-disable */
 import axios from 'axios'
 import qs from 'qs'
-
-let baseURL = ''
-if (process.env.NODE_ENV === 'development') {
-  // baseURL = 'http://120.26.119.23:8090/web/'
-  baseURL = 'http://localhost:3000'
-} else {
-  baseURL = 'https://hotel.sciener.cn/'
-}
- 
-const instance = axios.create({
-  baseURL: baseURL,
-  headers: {
-    post: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    get: {
-
-    },
-    language: (window.g_lang || 'zh-CN').split('-')[0]
-  },
-  transformRequest: [data => qs.stringify(data)],
-})
-
-instance.interceptors.request.use(function (config) {
-  // Do something before request is sent 在发送请求之前做些什么
-  return config
-}, function (error) {
-  // Do something with request error 对请求错误做些什么
-  return Promise.reject(error)
-})
-
-
-
-// Add a response interceptor 添加响应拦截器
-instance.interceptors.response.use(function (response) {
-  // Do something with response data 对响应数据做点什么
-  return response
-}, function (error) {
-  // Do something with response error 对响应错误做点什么
-  return Promise.reject(error)
-})
+import {notification} from 'antd'
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -62,15 +20,68 @@ const codeMessage = {
   504: '网关超时。',
 }
 
-const ajax = options => instance(options).then(response => {
-  console.log(response)
+let baseURL = ''
+if (process.env.NODE_ENV === 'development') {
+  baseURL = 'http://localhost:3006'
+} 
+ 
+const instance = axios.create({
+  baseURL,
+  headers: {
+    post: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    get: {
+
+    },
+    language: (window.g_lang || 'zh-CN').split('-')[0],
+  },
+  transformRequest: [data => qs.stringify(data)],
+})
+
+instance.interceptors.request.use(config => {
+  console.log(789, config)
+  // Do something before request is sent 在发送请求之前做些什么
+  return config
+}, error => {
+  console.log(102, error)
+  // Do something with request error 对请求错误做些什么
+  return Promise.reject(error)
+})
+// Add a response interceptor 添加响应拦截器
+instance.interceptors.response.use(response => {
+  console.log(123, response)
+  // Do something with response data 对响应数据做点什么
   if (response.status !== 200) {
     const errortext = codeMessage[response.status] 
     const {status, url} = response
+    notification.error({
+      message: `请求错误 ${status}: ${url}`,
+      description: errortext,
+    })
     console.log(`请求错误 ${status}: ${url}`, errortext)
   } 
-  return response.data
+  // return response.data
+  return response
+}, error => {
+  console.log(456, error)
+  // Do something with response error 对响应错误做点什么
+  return Promise.reject(error)
+  // return Promise.resolve(response: {
+  //   data: {},
+  //   status: 404,
+  // })
 })
-.catch(error => console.log(error))
 
-export default ajax
+const get = (url, params) => instance.get(url, {params})
+  .then(response => response)
+  .catch(error => console.log(error))
+
+const post = (url, params) => instance.post(url, params)
+  .then(response => response)
+  .catch(error => console.log(error))
+
+export default {
+  get, 
+  post, 
+}

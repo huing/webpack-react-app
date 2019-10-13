@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-import {LocaleProvider} from 'antd'
+import {ConfigProvider, LocaleProvider} from 'antd'
 import {BrowserRouter as Router} from 'react-router-dom'
 import zhCNAntd from 'antd/lib/locale-provider/zh_CN'
 import enUSAntd from 'antd/lib/locale-provider/en_US'
@@ -82,9 +82,9 @@ export function LocaleWrapper(props) {
     </IntlProvider>
   )
   ret = (
-    <LocaleProvider locale={appLocale.antd ? (appLocale.antd.default || appLocale.antd) : zhCNAntd}>
+    <ConfigProvider locale={appLocale.antd ? (appLocale.antd.default || appLocale.antd) : zhCNAntd}>
       {ret}
-    </LocaleProvider>
+    </ConfigProvider>
   )
   return ret
 }
