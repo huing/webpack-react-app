@@ -88,3 +88,130 @@ class Store {
   }
 }
 export default new Store()
+// function getListData(value) {
+//   const obj = {
+//     5: [
+//       {
+//         id: 1,
+//         type: 1,
+//         content: { nick: 'a1' },
+//         nextDate: true
+//       },
+//       {
+//         id: 3,
+//         type: 1,
+//         content: { nick: 'b2' }
+//       }
+//     ],
+//     6: [
+//       {
+//         id: 1,
+//         type: 1,
+//         beforeDate: true,
+//         content: { nick: 'a1' }
+//       },
+//       {
+//         id: 3,
+//         type: 1,
+//         content: { nick: 'c2' }
+//       },
+//       {
+//         id: 4,
+//         type: 2,
+//         content: { nick: 'b3' },
+//         nextDate: true
+//       }
+//     ],
+//     7: [
+//       {
+//         id: 1,
+//         type: 2,
+//         content: { nick: 'a1' }
+//       },
+//       {
+//         id: 2,
+//         type: 2,
+//         before: [0],
+//         beforeDate: true,
+//         content: { nick: 'b3' }
+//       },
+//       {
+//         id: 3,
+//         type: 3,
+//         content: { nick: 'e4' },
+//         nextDate: true
+//       }
+//     ],
+//     8: [
+//       {
+//         id: 1,
+//         type: 1,
+//         content: { nick: 'h1' },
+//         next: [0],
+//         nextDate: true
+//       },
+//       {
+//         id: 2,
+//         type: 1,
+//         content: { nick: 'a3' },
+//         nextDate: true
+//       },
+//       {
+//         id: 3,
+//         type: 3,
+//         beforeDate: true,
+//         content: { nick: 'e4' }
+//       },
+//       {
+//         id: 4,
+//         type: 2,
+//         content: { nick: '5' }
+//       },
+//       {
+//         id: 5,
+//         type: 1,
+//         content: { nick: '6' }
+//       }
+//     ],
+//     9: [
+//       {
+//         id: 1,
+//         type: 1,
+//         beforeDate: true,
+//         content: { nick: 'h1' }
+//       },
+//       {
+//         id: 2,
+//         type: 1,
+//         content: { nick: 'm2' }
+//       },
+//       {
+//         id: 3,
+//         type: 1,
+//         content: { nick: 'a3' },
+//         nextDate: true,
+//         beforeDate: true
+//       },
+//       {
+//         id: 4,
+//         type: 2,
+//         content: { nick: '5' }
+//       }
+//     ],
+//     10: [
+//       {
+//         id: 1,
+//         type: 1,
+//         content: { nick: 'a3' },
+//         beforeDate: true,
+//         before: [0, 0]
+//       },
+//       {
+//         id: 2,
+//         type: 3,
+//         content: { nick: '4' }
+//       }
+//     ]
+//   }
+//   return obj[value.date()] || []
+// }
