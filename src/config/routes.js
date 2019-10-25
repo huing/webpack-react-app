@@ -7,9 +7,7 @@ const DelayLoading = ({pastDelay, error}) => {
   } else if (error) {
     console.log('page error', error)
     return <div>Sorry, there was a problem loading the page.</div>
-  } else {
-    return null
-  }
+  } 
   return null
 }
 
@@ -33,6 +31,10 @@ export default [{
 }, {
   path: '/date',
   component: Loadable({loader: () => import('../page-date'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
+  path: '/date/calendar',
+  component: Loadable({loader: () => import('../page-date-calendar'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
   path: '/tree',

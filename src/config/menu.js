@@ -50,6 +50,11 @@ const menus = [{
   name: 'Date',
   path: '/date',
   icon: 'home',
+  routes: [{
+    name: 'Calendar',
+    path: '/date/calendar',
+    icon: 'bar-chart',
+  }],
 }]
 
 function formatter(data, parentName) {
