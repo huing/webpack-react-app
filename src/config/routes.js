@@ -51,6 +51,11 @@ export default [{
 }, {
   path: '/modal',
   component: Loadable({loader: () => import('../page-modal'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
+  path: '/modal/transition',
+  component: Loadable({loader: () => import('../page-css-transition'), loading: DelayLoading, delay: 3000}),
+  exact: true,
 }, {
   path: '/chart/bar',
   component: Loadable({loader: () => import('../page-chart-bar'), loading: DelayLoading, delay: 3000}),

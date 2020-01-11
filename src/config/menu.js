@@ -12,6 +12,11 @@ const menus = [{
   name: 'Modal',
   path: '/modal',
   icon: 'home',
+  routes: [{
+    name: 'Modal CSS',
+    path: '/modal/transition',
+    icon: 'home',
+  }],
 }, {
   name: 'Tree',
   path: '/tree',
