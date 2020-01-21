@@ -9,11 +9,15 @@ const menus = [{
   path: '/table',
   icon: 'home',
 }, {
-  name: 'Modal',
+  name: '动画',
   path: '/modal',
   icon: 'home',
   routes: [{
-    name: 'Modal CSS',
+    name: '动画',
+    path: '/modal/modal',
+    icon: 'home',
+  }, {
+    name: '动画 CSS',
     path: '/modal/transition',
     icon: 'home',
   }],
