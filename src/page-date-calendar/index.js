@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Calendar, Badge} from 'antd'
 import {observer} from 'mobx-react'
-import store from './store'
 import './index.styl'
 
 @observer 

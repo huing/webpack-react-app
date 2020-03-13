@@ -1,5 +1,5 @@
 // import {formatMessage} from '../locales'
-import pathToRegexp from 'path-to-regexp'
+import {pathToRegexp} from 'path-to-regexp' 
 
 // 返回对应的面包项
 export const matchParamsPath = (pathname, breadcrumbNameMap) => {

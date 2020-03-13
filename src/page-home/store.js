@@ -15,7 +15,7 @@ class Store {
   }
 
   @action Hello = async () => {
-    const res = await API.Hello({
+    await API.Hello({
       firstName: 'firstName',
       lastName: 'lastName',
       age: 23,

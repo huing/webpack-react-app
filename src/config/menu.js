@@ -25,19 +25,19 @@ const menus = [{
   name: 'Tree',
   path: '/tree',
   icon: 'home',
-}, {
-  name: 'Form',
-  path: '/form',
-  icon: 'home',
-  routes: [{
-    name: 'Form CUS',
-    path: '/form/customize',
-    icon: 'home',
-  }, {
-    name: 'Form Antd',
-    path: '/form/antd',
-    icon: 'home',
-  }],
+// }, {
+//   name: 'Form',
+//   path: '/form',
+//   icon: 'home',
+//   routes: [{
+//     name: 'Form CUS',
+//     path: '/form/customize',
+//     icon: 'home',
+//   }, {
+//     name: 'Form Antd',
+//     path: '/form/antd',
+//     icon: 'home',
+//   }],
 }, {
   name: 'Chart',
   path: '/chart',

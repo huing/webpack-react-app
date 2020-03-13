@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import {withRouter, Link} from 'react-router-dom'
-import {Menu, Icon} from 'antd'
+import {Menu} from 'antd'
 import {menuData} from '../config/menu'
 import {getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus} from '../config/util'
 
@@ -82,7 +82,6 @@ class DemoSider extends Component {
                 <Menu.SubMenu 
                   key={item.path}  
                   title={<span>
-                    <Icon type={item.icon} />
                     {item.name}
                   </span>}
                 >
@@ -90,7 +89,7 @@ class DemoSider extends Component {
                     item.children.map(subItem =>
                       <Menu.Item key={subItem.path}>
                         <Link to={subItem.path}>
-                          <Icon type={subItem.icon} />{subItem.name}
+                          {subItem.name}
                         </Link>
                       </Menu.Item>
                     )
@@ -99,7 +98,7 @@ class DemoSider extends Component {
               ) : (
                 <Menu.Item key={item.path}>                  
                   <Link to={item.path}>
-                    <Icon type={item.icon} />{item.name}
+                    {item.name}
                   </Link>
                 </Menu.Item>
               )

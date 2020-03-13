@@ -3,8 +3,7 @@ import {observer} from 'mobx-react'
 import {toJS, action, observable} from 'mobx'
 import cls from 'classnames'
 import * as antd from 'antd'
-// import {Form, Input, Select, Icon, Tooltip} from 'antd'
-const {Form, Input, Select, Icon, Tooltip} = antd
+const {Form, Input, Select, Tooltip} = antd
 
 const FormItem = Form.Item
 const {Option} = Select
@@ -43,7 +42,6 @@ class PageForm extends React.Component {
       form: {
         getFieldDecorator,
       },
-      formData,
     } = this.props
     const record = toJS(values) || {}
     const http = ['POST', 'GET', 'DELETE', 'PUT']
@@ -166,13 +164,6 @@ class PageForm extends React.Component {
           onClick={this.handleClick}
         >
           高级配置&nbsp;
-          <Icon 
-            type="down" 
-            className={cls({
-              'collapse-btn-icon': true,
-              transform: !!this.displayBlock,
-            })} 
-          />
         </button>
         <div 
           className={cls({
@@ -204,9 +195,8 @@ class PageForm extends React.Component {
             className="count-tooltip"
             title="单用户每秒调用次数，不超过1500次"
           >
-            <Icon type="question-circle-o" />
+            123
           </Tooltip>
-          {/* {formItems} */}
         </div>
 
         <button type="submit" className="mt68">提交</button>

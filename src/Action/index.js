@@ -1,7 +1,6 @@
 import React, { PureComponent, Children } from 'react'
 import styles from './style.module.less'
 import cls from 'classnames'
-import { Icon } from 'antd'
 import { getRes, isNoProp } from './common.util'
 
 const Item = () => null
@@ -46,7 +45,7 @@ class Action extends PureComponent {
         style={{ ...style, borderBottom: bordered ? '1px solid #e7e7e7' : 0 }}
       >
         {options.map(item => {
-          const { value, title, icon, disabled } = item || {}
+          const { value, title, disabled } = item || {}
           return (
             <div
               key={value}
@@ -59,7 +58,6 @@ class Action extends PureComponent {
               )}
             >
               <span>
-                {icon && <Icon style={{ marginRight: 4 }} type={icon} />}
                 {title}
               </span>
             </div>

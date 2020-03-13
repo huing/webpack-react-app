@@ -10,19 +10,14 @@ import './index.styl'
 @inject('Login', 'Root')
 @observer
 class NormalLogin extends Component {
-  handleSubmit = e => {
-    e.preventDefault()
+  handleSubmit = values => {
     const {Root, Login, history} = this.props
-    this.userForm.validateFields(async(err, values) => {
-      if (!err) {
-        Login.setLoading(true)
-        Cookies.set('userName', values.account, {path: '/'})
-        Root.updateName(values.account)
-        history.push('/home')
-        Login.setLoading(false)
-        window.location.reload()
-      }
-    })
+    Login.setLoading(true)
+    Cookies.set('userName', values.account, {path: '/'})
+    Root.updateName(values.account)
+    history.push('/home')
+    Login.setLoading(false)
+    window.location.reload()
   }
 
   render() {
@@ -30,10 +25,7 @@ class NormalLogin extends Component {
       <PageUser>
         <div className="user-login"> 
           <div className="img" />
-          <CustomizedForm 
-            ref={form => this.userForm = form}
-            submit={this.handleSubmit} 
-          />
+          <CustomizedForm submit={this.handleSubmit} />
         </div>
       </PageUser>
     )
