@@ -5,6 +5,15 @@ import API from '../api'
 class Store {
   @observable value = null
 
+  @observable tab = ''
+
+  @action changeTab = key => {
+    console.log(key)
+    runInAction(() => {
+      this.tab = key
+    })
+  }
+
   @action Hello = async () => {
     const res = await API.Hello({
       firstName: 'firstName',
