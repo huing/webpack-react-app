@@ -5,6 +5,7 @@ import Hooks from './Hooks'
 // import HooksTwo from './HooksTwo'
 import Action from '../Action'
 import './index.styl'
+// import './index.scss'
 
 @observer 
 class DemoHome extends React.Component {
@@ -32,6 +33,9 @@ class DemoHome extends React.Component {
             <Action.Item value={item} key={item}>{item}</Action.Item>
           ))}
         </Action>
+        <div className='p30 border'>
+          <div className='card'></div>
+        </div>
       </div>
     )
   }
