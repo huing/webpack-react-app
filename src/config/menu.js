@@ -9,18 +9,9 @@ const menus = [{
   path: '/table',
   icon: 'home',
 }, {
-  name: '动画',
-  path: '/modal',
+  name: 'CSS',
+  path: '/css',
   icon: 'home',
-  routes: [{
-    name: '动画',
-    path: '/modal/modal',
-    icon: 'home',
-  }, {
-    name: '动画 CSS',
-    path: '/modal/transition',
-    icon: 'home',
-  }],
 }, {
   name: 'Tree',
   path: '/tree',

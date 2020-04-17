@@ -5,8 +5,6 @@ import {Menu} from 'antd'
 import {menuData} from '../config/menu'
 import {getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus} from '../config/util'
 
-import './index.styl'
-
 const flatMenuKeys = getFlatMenuKeys(menuData)
 
 @withRouter
@@ -67,45 +65,40 @@ class DemoSider extends Component {
     }
 
     return (
-      <div className="page-sider"> 
-        <Menu 
-          key="Menu"
-          mode="inline"
-          className="page-sider-menu"
-          onOpenChange={this.handleOpenChange}
-          selectedKeys={selectedKeys}
-          {...props}
-        > 
-          {
-            (menuData || []).map(item => 
-              (item.children && item.children.length) ? (
-                <Menu.SubMenu 
-                  key={item.path}  
-                  title={<span>
-                    {item.name}
-                  </span>}
-                >
-                  {
-                    item.children.map(subItem =>
-                      <Menu.Item key={subItem.path}>
-                        <Link to={subItem.path}>
-                          {subItem.name}
-                        </Link>
-                      </Menu.Item>
-                    )
-                  }
-                </Menu.SubMenu>
-              ) : (
-                <Menu.Item key={item.path}>                  
-                  <Link to={item.path}>
-                    {item.name}
-                  </Link>
-                </Menu.Item>
-              )
+      <Menu 
+        key="Menu"
+        mode="inline"
+        theme="dark"
+        onOpenChange={this.handleOpenChange}
+        selectedKeys={selectedKeys}
+        {...props}
+      > 
+        {
+          (menuData || []).map(item => 
+            (item.children && item.children.length) ? (
+              <Menu.SubMenu 
+                key={item.path}  
+                title={<span>{item.name}</span>}>
+                {
+                  item.children.map(subItem =>
+                    <Menu.Item key={subItem.path}>
+                      <Link to={subItem.path}>
+                        {subItem.name}
+                      </Link>
+                    </Menu.Item>
+                  )
+                }
+              </Menu.SubMenu>
+            ) : (
+              <Menu.Item key={item.path}>                  
+                <Link to={item.path}>
+                  {item.name}
+                </Link>
+              </Menu.Item>
             )
-          }
-        </Menu>
-      </div>
+          )
+        }
+      </Menu>
     )
   }
 }

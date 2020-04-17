@@ -19,7 +19,9 @@ class DemoHome extends React.Component {
     const {value, changeTab, tab} = store
     return (
       <div className="demo-home">
-        <div>1. 侧边栏 固定值 收缩</div>
+        <div className='p30 border'>
+          <div className='linear'></div>
+        </div>
         <div>2. 日期</div>
         <div>3. 正则表达式</div>
         <div>4. 深拷贝</div>

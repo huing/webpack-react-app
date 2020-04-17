@@ -3,7 +3,7 @@ import {observer} from 'mobx-react'
 import {action} from 'mobx'
 import './index.styl'
 import './index.css'
-
+import './index.less'
 /* eslint-disable */
 
 let id = null
@@ -180,68 +180,17 @@ class PageModal extends Component {
 
   render() {
     return (
-      <div className="page-modal">
-        <button 
-          type="button" 
-          className="btn btn-info btn-lg" 
-          data-toggle="modal" 
-          data-target="#myModal"
-          id="myBtn"
-          onClick={this.handleBtnClick}
-        >
-          Open Modal
-        </button>
-
-        <div id="myModal" className="modal">
-          <div className="modal-content">
-            <div className="modal-header">
-              <span 
-                className="close" 
-                data-dismiss="modal"
-                id="closeBtn"
-                // onClick={this.handleCloseBtn}
-              >
-                &times;
-              </span>
-              <h4 className="modal-title">Modal Header</h4>
-            </div>
-            
-            <div className="modal-body">
-              <p>Some text in the modal...</p>
-            </div>
-          </div>
-        </div>
-        <div className="line" />
-
+      <div className="page-swiper">
         <div className="swiper-test">
           <div className="swiper">
             <div className="swiper-container" id="margintop">
               <div id="item1" className="swiper-item rect" style={{background: '#000'}}>1</div>
               <div id="item2" className="swiper-item rect" style={{background: '#4269eb'}}>2</div>
               <div id="item3" className="swiper-item rect" style={{background: '#247902'}}>3</div>
-              {/* <div id="item4" className="swiper-item rect" style={{background: '#747902'}}>4</div> */}
+              <div id="item4" className="swiper-item rect" style={{background: '#747902'}}>4</div>
             </div>
           </div>
         </div>
-
-
-        {/* <div id="myModal" className="modal fade" role="dialog">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <button type="button" className="close" data-dismiss="modal">&times;</button>
-                <h4 className="modal-title">Modal Header</h4>
-              </div>
-              <div className="modal-body">
-                <p>Some text in the modal.</p>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div> */}
-
       </div> 
     )
   }

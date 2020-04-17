@@ -49,12 +49,8 @@ export default [{
 //   component: Loadable({loader: () => import('../page-form-antd'), loading: DelayLoading, delay: 3000}),
 //   exact: true,
 // }, {
-  path: '/modal/modal',
-  component: Loadable({loader: () => import('../page-modal'), loading: DelayLoading, delay: 3000}),
-  exact: true,
-}, {
-  path: '/modal/transition',
-  component: Loadable({loader: () => import('../page-css-transition'), loading: DelayLoading, delay: 3000}),
+  path: '/css',
+  component: Loadable({loader: () => import('../page-css'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
   path: '/chart/bar',
