@@ -13,14 +13,6 @@ const DelayLoading = ({pastDelay, error}) => {
 
 //  routes 
 export default [{
-  path: '/login',
-  component: Loadable({loader: () => import('../user-login'), loading: DelayLoading, delay: 3000}),
-  exact: true,
-}, {
-  path: '/register',
-  component: Loadable({loader: () => import('../user-register'), loading: DelayLoading, delay: 3000}),
-  exact: true,
-}, {
   path: '/home',
   component: Loadable({loader: () => import('../page-home'), loading: DelayLoading, delay: 3000}),
   exact: true,

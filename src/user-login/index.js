@@ -15,7 +15,7 @@ class NormalLogin extends Component {
     Login.setLoading(true)
     Cookies.set('userName', values.account, {path: '/'})
     Root.updateName(values.account)
-    history.push('/home')
+    history.push('/operation/home')
     Login.setLoading(false)
     window.location.reload()
   }

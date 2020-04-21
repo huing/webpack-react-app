@@ -19,8 +19,9 @@ class DemoHome extends React.Component {
     const {value, changeTab, tab} = store
     return (
       <div className="demo-home">
-        <div className='p30 border'>
-          <div className='linear'></div>
+        <div className='p30 border line_height'>
+          <span className='line_height_title'>我是一段文本xxxxxx</span>
+          <span className='line_height_icon_arrow'></span>
         </div>
         <div>2. 日期</div>
         <div>3. 正则表达式</div>
@@ -36,7 +37,7 @@ class DemoHome extends React.Component {
           ))}
         </Action>
         <div className='p30 border'>
-          <div className='card'></div>
+          <div className='card_empty'></div>
         </div>
       </div>
     )

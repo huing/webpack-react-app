@@ -79,6 +79,7 @@ function formatter(data, parentName) {
         ...item,
         name,
         locale,
+        path: '/operation' + item.path,
       }
       if (item.routes) {
         const children = formatter(item.routes, locale)
@@ -136,6 +137,8 @@ const filterMenuData = menuData => {
 const originalMenuData = formatter(menus, 'title')
 // 去除不显示的菜单项
 const menuData = filterMenuData(originalMenuData)
+
+console.log(menuData)
 // 面包线
 const breadcrumbNameMap = getBreadcrumbNameMap(originalMenuData)
 

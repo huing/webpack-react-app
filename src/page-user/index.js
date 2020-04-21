@@ -10,9 +10,7 @@ class DemoPage extends Component {
         <div className="section-a"></div>
         <div className="section-c">
           {this.props.children}
-          <footer className="section-c-footer">
-            footer
-          </footer>
+          <footer className="section-c-footer"></footer>
         </div>
         <div className="section-a section-b">
           <div className="footer-bottom"></div>
