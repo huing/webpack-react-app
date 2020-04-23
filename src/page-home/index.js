@@ -3,7 +3,7 @@ import {observer} from 'mobx-react'
 import store from './store'
 import Hooks from './Hooks'
 // import HooksTwo from './HooksTwo'
-import Action from '../Action'
+import Action from '../components/Action'
 import './index.styl'
 // import './index.scss'
 
