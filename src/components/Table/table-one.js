@@ -1,15 +1,11 @@
 import React, {Component} from 'react'
-import {observer, inject} from 'mobx-react'
+import {observer} from 'mobx-react'
 import {toJS} from 'mobx'
 
-@inject('Table')
 @observer 
 class TableTwo extends Component {
   render() {
-    const {     
-      Table: {col, data},
-      className,
-    } = this.props
+    const { className, store: {col, data}} = this.props
     return (
       <div className={`demo-table table-box ${className}`}>
         <table className="table">
@@ -30,8 +26,7 @@ class TableTwo extends Component {
                     {
                       toJS(col || []).map(item => {
                         return <td key={item.title} data-index={item.title}>{data[item.title.toLowerCase()]}</td>
-                      }
-                        
+                      }                     
                       )
                     }
                   </tr>

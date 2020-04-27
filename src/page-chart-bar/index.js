@@ -1,17 +1,16 @@
 import React, {Component} from 'react'
-import {observer, inject} from 'mobx-react'
+import {observer} from 'mobx-react'
 import {toJS, observable} from 'mobx'
-
 import {
   scaleLinear, scaleBand,
   axisBottom, axisLeft,
   max,
   select, mouse, event,
 } from 'd3'
-
+import store from './store'
 import './index.styl'
 
-@inject('Chart')
+
 @observer    
 class BarChart extends Component {
   @observable width = 0
@@ -43,7 +42,7 @@ class BarChart extends Component {
   createBarChart = () => {
     const svg = select('#bar').select('svg')
 
-    const data = toJS(this.props.Chart.LockCount)
+    const data = toJS(store.LockCount)
     const dataMax = max(data, d => d.lockCount)
 
     const margin = {left: 40, top: 20, right: 0, bottom: 30}

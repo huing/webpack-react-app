@@ -72,8 +72,8 @@ instance.interceptors.response.use(response => {
   // })
 })
 
-const get = (url, params) => instance.get(url, {params})
-const post = (url, params) => instance.post(url, params)
+const get = url => params => instance.get(url, {params})
+const post = url => params => instance.post(url, params)
 
 export default {
   get, 

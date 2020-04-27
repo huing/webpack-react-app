@@ -11,36 +11,19 @@ const DelayLoading = ({pastDelay, error}) => {
   return null
 }
 
-//  routes 
 export default [{
   path: '/home',
   component: Loadable({loader: () => import('../page-home'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
-  path: '/table',
-  component: Loadable({loader: () => import('../page-table'), loading: DelayLoading, delay: 3000}),
+  path: '/antd/calendar',
+  component: Loadable({loader: () => import('../page-antd-calendar'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
-  path: '/date',
-  component: Loadable({loader: () => import('../page-date'), loading: DelayLoading, delay: 3000}),
+  path: '/antd/tree',
+  component: Loadable({loader: () => import('../page-antd-tree'), loading: DelayLoading, delay: 3000}),
   exact: true,
 }, {
-  path: '/date/calendar',
-  component: Loadable({loader: () => import('../page-date-calendar'), loading: DelayLoading, delay: 3000}),
-  exact: true,
-}, {
-  path: '/tree',
-  component: Loadable({loader: () => import('../page-tree'), loading: DelayLoading, delay: 3000}),
-  exact: true,
-}, {
-//   path: '/form/customize',
-//   component: Loadable({loader: () => import('../page-form-customize'), loading: DelayLoading, delay: 3000}),
-//   exact: true,
-// }, {
-//   path: '/form/antd',
-//   component: Loadable({loader: () => import('../page-form-antd'), loading: DelayLoading, delay: 3000}),
-//   exact: true,
-// }, {
   path: '/css',
   component: Loadable({loader: () => import('../page-css'), loading: DelayLoading, delay: 3000}),
   exact: true,

@@ -11,7 +11,6 @@ class TableTwo extends Component {
     total: 500,
     showLessItems: true,
   }
-
   render() {
     const dataSource = []
     for (let i = 1; i <= 500; i++) {

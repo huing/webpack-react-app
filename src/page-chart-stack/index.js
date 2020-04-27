@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {observer, inject} from 'mobx-react'
+import {observer} from 'mobx-react'
 import {toJS, observable, action} from 'mobx'
 import {
   max, select, event, mouse,
@@ -7,11 +7,9 @@ import {
   axisBottom, axisLeft,
   stack, stackOrderNone, stackOffsetNone,
 } from 'd3'
-
+import store from './store'
 import './index.styl'
 
-
-@inject('Chart')
 @observer    
 class ShapeChart extends Component {
   @observable width = 0
@@ -33,18 +31,17 @@ class ShapeChart extends Component {
   }
 
   updateDimensions = () => {
-    // console.log(document.getElementById('stack').offsetWidth)
     this.width = document.getElementById('stack').offsetWidth - 24
   }
 
   @action parentData = () => {
-    const org = toJS(this.props.Chart.stackData).reduce((acc, cur) => 
+    const org = toJS(store.stackData).reduce((acc, cur) => 
       [...acc, ...Object.keys(cur)], [])
       .filter((element, index, array) => 
         element !== 'month' && array.indexOf(element) === index)
-    const month = toJS(this.props.Chart.stackData).reduce((acc, cur) => 
+    const month = toJS(store.stackData).reduce((acc, cur) => 
       acc.includes(cur.month) ? acc : [...acc, cur.month], [])
-    const stackData = toJS(this.props.Chart.stackData).reduce((acc, cur) => {
+    const stackData = toJS(store.stackData).reduce((acc, cur) => {
       let count = 0
       let sortItem = {}
       org.map(item => {

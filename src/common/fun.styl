@@ -7,9 +7,6 @@ add2(a, b = unit(a, px))
 add3(a, b)
   unit(a, px) + unit(b, px)
 
-// sizes = 15px 10px
-// sizes[0]
-
 sizes()
   15px 20px
 
@@ -36,6 +33,5 @@ for $key in 0 9 100
   border 10px solid green
   box-sizing border-box
   font-size sizes()[1]
-  // box-sizing content-box
   padding add(10px, 5)
   margin add2(50)

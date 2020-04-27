@@ -1,11 +1,10 @@
 import React, {Component} from 'react'
-import {observer, inject} from 'mobx-react'
+import {observer} from 'mobx-react'
 import {toJS, observable} from 'mobx'
 import {scaleOrdinal, pie, arc, select, event} from 'd3'
-
+import store from './store'
 import './index.styl'
 
-@inject('Chart')
 @observer    
 class ShapeChart extends Component {
   @observable width = 0
@@ -33,7 +32,7 @@ class ShapeChart extends Component {
   createBarChart = () => {
     const svg = select('#shape').select('svg')
 
-    const data = toJS(this.props.Chart.shapeDataArr)
+    const data = toJS(store.shapeDataArr)
 
     const margin = {top: 20, right: 30, bottom: 20, left: 30}
     const width = svg.attr('width') - margin.left - margin.right

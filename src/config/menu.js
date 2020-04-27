@@ -1,34 +1,11 @@
-// import {formatMessage} from '../locales'
-
 const menus = [{
   name: 'Home',
   path: '/home',
   icon: 'home',
 }, {
-  name: 'Table',
-  path: '/table',
-  icon: 'home',
-}, {
   name: 'CSS',
   path: '/css',
   icon: 'home',
-}, {
-  name: 'Tree',
-  path: '/tree',
-  icon: 'home',
-// }, {
-//   name: 'Form',
-//   path: '/form',
-//   icon: 'home',
-//   routes: [{
-//     name: 'Form CUS',
-//     path: '/form/customize',
-//     icon: 'home',
-//   }, {
-//     name: 'Form Antd',
-//     path: '/form/antd',
-//     icon: 'home',
-//   }],
 }, {
   name: 'Chart',
   path: '/chart',
@@ -47,17 +24,21 @@ const menus = [{
     icon: 'bar-chart',
   }],
 }, {
-  name: 'Date',
-  path: '/date',
+  name: 'Antd',
+  path: '/antd',
   icon: 'home',
   routes: [{
     name: 'Calendar',
-    path: '/date/calendar',
+    path: '/antd/calendar',
+    icon: 'bar-chart',
+  }, {
+    name: 'Tree',
+    path: '/antd/tree',
     icon: 'bar-chart',
   }],
 }]
 
-function formatter(data, parentName) {
+function formatter(data) {
   if (!data) {
     return undefined
   }
@@ -66,24 +47,14 @@ function formatter(data, parentName) {
       if (!item.name || !item.path) {
         return null
       }
-      let locale = 'menu'
-      if (parentName && parentName !== '/') {
-        locale = `${parentName}_${item.name}`
-      } else {
-        locale = `menu_${item.name}`
-      }
       const name = item.name
-      // 国际化
-      // const name = formatMessage({id: locale, defaultMessage: item.name}) 
       const result = {
         ...item,
         name,
-        locale,
         path: '/operation' + item.path,
       }
       if (item.routes) {
-        const children = formatter(item.routes, locale)
-        // Reduce memory usage
+        const children = formatter(item.routes)
         result.children = children
       }
       delete result.routes
@@ -97,28 +68,23 @@ const getBreadcrumbNameMap = menuData => {
     return {}
   }
   const routerMap = {}
-
   const flattenMenuData = data => {
     data.forEach(menuItem => {
       if (menuItem.children) {
         flattenMenuData(menuItem.children)
       }
-      // Reduce memory usage
       routerMap[menuItem.path] = menuItem
     })
   }
-
   flattenMenuData(menuData)
-
   return routerMap
 }
 
 const getSubMenu = item => {
-  // doc: add hideChildrenInMenu
   if (item.children && !item.hideChildrenInMenu && item.children.some(child => child.name)) {
     return {
       ...item,
-      children: filterMenuData(item.children), // eslint-disable-line
+      children: filterMenuData(item.children),
     }
   }
   return item
@@ -133,15 +99,12 @@ const filterMenuData = menuData => {
     .map(item => getSubMenu(item))
     .filter(item => item)
 }
-// 菜单国际化
-const originalMenuData = formatter(menus, 'title')
+
+const originalMenuData = formatter(menus)
 // 去除不显示的菜单项
 const menuData = filterMenuData(originalMenuData)
-
-console.log(menuData)
 // 面包线
 const breadcrumbNameMap = getBreadcrumbNameMap(originalMenuData)
-
 
 export {
   menuData,

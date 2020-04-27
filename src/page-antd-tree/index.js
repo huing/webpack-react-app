@@ -13,12 +13,6 @@ class DemoPage extends Component {
     super(props)
     store.changeData(store.treeData)
   }
-
-  // componentDidMount() {
-  //   // console.log(store.changeData(store.treeData))
-  //   console.info(toJS(store.treeData))
-  // }
-
   renderTreeNodes = data => {
     data.map(item => {
       if (item.children) {

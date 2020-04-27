@@ -1,8 +1,8 @@
 import ioContext from './io-context'
 
-const Hello = params => ioContext.post('/users', params)
-const Cats = params => ioContext.get('/cats', params)
-const CatsDetail = params => ioContext.get('/cats/detail', params)
+const Hello = ioContext.post('/users')
+const Cats = ioContext.get('/cats')
+const CatsDetail = ioContext.get('/cats/detail')
 
 export default {
   Hello,

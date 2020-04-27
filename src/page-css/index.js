@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import './index.less'
+import './empty.styl'
 
 @observer 
 class PageCSS extends Component {
@@ -13,7 +14,7 @@ class PageCSS extends Component {
   }
   render() {
     return (
-      <div className="page-css">
+      <div className='page-css'>
         <div className="card">
           {this.getText()}
         </div>
@@ -33,6 +34,9 @@ class PageCSS extends Component {
         <div className="box" />
 
         <div className="line" />
+        <div className='p30 border'>
+          <div className='card_empty'></div>
+        </div>
       </div> 
     )
   }

@@ -1,15 +1,14 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {withRouter, Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Menu} from 'antd'
 import {menuData} from '../config/menu'
 import {getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus} from '../config/util'
 
 const flatMenuKeys = getFlatMenuKeys(menuData)
 
-@withRouter
 @observer 
-class DemoSider extends Component {
+class Sider extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,7 +16,6 @@ class DemoSider extends Component {
       flatMenuKeysLen: flatMenuKeys.length,
       openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
     }
-    // console.log('openKeys', this.state.openKeys)
   }
 
   isMainMenu = key => {
@@ -102,4 +100,4 @@ class DemoSider extends Component {
     )
   }
 }
-export default DemoSider
+export default Sider
