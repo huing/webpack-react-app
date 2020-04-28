@@ -32,7 +32,6 @@ class Header extends Component {
 
   render() {
     const {store} = this.props
-    console.log(store)
     const {adminName} = store
     return (
       <div className="page-header">

@@ -1,12 +1,15 @@
 import {action, runInAction, observable} from 'mobx'
+import BaseStore from '@components/BaseTable/store'
 import Api from '../api'
 
-class Store {
+console.log('--------', BaseStore)
+
+class Store extends BaseStore {
   @observable detail = {}
   @action init = () => {
     this.getDetail()
   }
-  getDetail = async () => {
+  @action getDetail = async () => {
     const data = await Api.Hello({
 
     })

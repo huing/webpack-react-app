@@ -1,25 +1,25 @@
-// import {observable, action} from 'mobx'
-import LoginStore from '../user-login/store'
-
-class Store extends LoginStore {
-  constructor(props) {
-    super(props)
-    console.log(this, props)
+import {observable, action} from 'mobx'
+// import LoginStore from '../user-login/store'
+// extends LoginStore 
+class Store {
+  // constructor(props) {
+  //   super(props)
+  //   console.log(this, props)
+  // }
+  @observable loading = false
+  @action setLoading = boolean => {
+    this.loading = boolean
   }
-  // @observable loading = false
-  // @action setLoading = boolean => {
-  //   this.loading = boolean
-  // }
 
-  // @observable mInfo = {
-  //   name: '',
-  // }
+  @observable mInfo = {
+    name: '',
+  }
 
-  // static a = 'aaaa'
+  static a = 'aaaa'
 
-  // @action updateName = name => {
-  //   this.mInfo.name = name
-  // }
+  @action updateName = name => {
+    this.mInfo.name = name
+  }
 }
 
 export default new Store()

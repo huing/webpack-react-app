@@ -404,12 +404,12 @@ module.exports = function(webpackEnv) {
                 babelrc: false,
                 configFile: false,
                 compact: false,
-                presets: [
-                  [
-                    require.resolve('babel-preset-react-app/dependencies'),
-                    { helpers: true },
-                  ],
-                ],
+                // presets: [
+                //   [
+                //     require.resolve('babel-preset-react-app/dependencies'),
+                //     { helpers: true },
+                //   ],
+                // ],
                 cacheDirectory: true,
                 // See #6846 for context on why cacheCompression is disabled
                 cacheCompression: false,

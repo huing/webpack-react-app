@@ -1,7 +1,7 @@
 import { observable, action, runInAction } from 'mobx'
 import {isObj, hasSomeKey} from '@util'
 
-export default class Store {
+class Store {
   $params = {}
   $listApi = null
   $filters = {}
@@ -102,3 +102,4 @@ export default class Store {
     }
   }
 }
+export default Store

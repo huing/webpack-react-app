@@ -33,7 +33,7 @@ class BaseBread extends PureComponent {
     )
     return (
       <div className='view'>
-        {_header != '' && (
+        {_header !== '' && (
           <header style={headerStyle} className='header'>
             {_header}
           </header>

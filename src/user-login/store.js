@@ -10,5 +10,6 @@ class Store {
     this.adminName = name
   }
 }
-export default Store
-// export default new Store()
+// export default Store
+export default new Store()
+// console.log(Store)
