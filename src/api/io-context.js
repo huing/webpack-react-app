@@ -22,8 +22,10 @@ const codeMessage = {
 
 let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'http://localhost:3006'
-} 
+  baseURL = 'https://lingxi-dev.bleshop.cn/bingling/manageApi'
+} else {
+  baseURL = 'https://lingxi.bleshop.cn/bingling/manageApi'
+}
  
 const instance = axios.create({
   baseURL,
@@ -34,7 +36,6 @@ const instance = axios.create({
     get: {
 
     },
-    language: (window.g_lang || 'zh-CN').split('-')[0],
   },
   transformRequest: [data => qs.stringify(data)],
 })

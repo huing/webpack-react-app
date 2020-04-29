@@ -31,3 +31,24 @@ const hasKey = (type, obj, keys) => {
 }
 export const hasSomeKey = (obj, keys) => hasKey('some', obj, keys)
 export const hasEveryKey = (obj, keys) => hasKey('every', obj, keys)
+
+export function isNum(value, isStrict) {
+  if (!isStrict) {
+    value = +value
+  }
+  return typeof value === 'number' && value - value + 1 === 1
+}
+
+export const getMomentTime = (timeArr, index, fmt = 'YYYY-MM-DD') => {
+  if (!isArr(timeArr)) {
+    return timeArr
+  }
+  if (isNum(index)) {
+    return (timeArr[index] || {}).format && timeArr[index].format(fmt)
+  } else {
+    return timeArr.map(item => {
+      item = item || {}
+      return item.format && item.format(index || fmt)
+    })
+  }
+}

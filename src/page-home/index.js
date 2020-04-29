@@ -2,6 +2,7 @@ import React from 'react'
 import {observer, Provider} from 'mobx-react'
 import BaseBread from '@components/BaseBread'
 import SearchBar from './SearchBar'
+import Tab from './Tab'
 import Table from './Table'
 import store from './store'
 import './index.styl'
@@ -14,9 +15,10 @@ class Home extends React.Component {
   render() {
     return (
       <Provider store={store}>
+        <BaseBread header={['成员管理', '权限管理']} />
         <div className="page-home">
-          <BaseBread header={['成员管理', '权限管理']} />
           <SearchBar />
+          <Tab />
           <Table />
         </div>
       </Provider>
