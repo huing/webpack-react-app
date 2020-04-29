@@ -5,24 +5,20 @@ import CustomizedForm from './form'
 import Store from './store'
 import './index.styl'
 
-console.log(Store)
-
 @observer
 class NormalLogin extends Component {
   constructor(props) {
     super(props)
-    this.store = {}
-    console.log(this.store)
+    this.store = new Store()
+    console.log('-----------login', this.store)
   }
   handleSubmit = values => {
-    console.log(this)
-    // const {store} = this
     const { history} = this.props
-    // store.setLoading(true)
+    this.store.setLoading(true)
     Cookies.set('userName', values.account, {path: '/'})
-    // store.updateName(values.account)
+    this.store.updateName(values.account)
     history.push('/operation/home')
-    // store.setLoading(false)
+    this.store.setLoading(false)
     window.location.reload()
   }
   render() {

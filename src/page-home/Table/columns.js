@@ -1,7 +1,7 @@
 import React from 'react'
 import Operation from '@components/Operation'
 
-const Item = Operation.Item
+const { Item } = Operation
 
 export default store => [
   {

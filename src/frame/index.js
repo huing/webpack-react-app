@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import Cookies from 'js-cookie'
-import {Route, Switch, withRouter, Redirect} from 'react-router-dom'
+import {Route, Switch, withRouter} from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
 import {Layout} from 'antd'
 import PageHeader from './Header'
@@ -40,14 +40,13 @@ class Frame extends Component {
             <Header style={{ position: 'fixed', zIndex: 1, padding: '0 20px', width: 'calc(100% - 200px)'}}>
               <PageHeader {...this.props} store={store} />
             </Header>
-            <Content style={{ marginTop: 64, overflow: 'initial',  padding: '0 20px' }}>
+            <Content style={{ marginTop: 64, overflow: 'auto',  padding: '0 20px' }}>
               <Switch>
                 {
                   (routes || []).map(item => (
                     <Route exact={item.exact} path={'/operation' + item.path} component={item.component} key={item.path} />
                   ))
                 }
-                <Redirect exact from="/" to="/login" />
                 <Route render={() => <div>404</div>} />
               </Switch>
             </Content>

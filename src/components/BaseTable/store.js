@@ -64,8 +64,8 @@ class Store {
       this.$afterGet(data, page)
     })
   }
-  $initParams = (name, value) => {
-    this.$initialParams[name] = value
+  $initParams = (value) => {
+    this.$initialParams = value
     this.$params = Object.assign({}, this.$initialParams, this.$params)
   }
   $resetParams = () => {

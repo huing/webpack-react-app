@@ -1,10 +1,10 @@
 import {observable, action} from 'mobx'
-// import LoginStore from '../user-login/store'
+import LoginStore from '../user-login/store'
 // extends LoginStore 
-class Store {
+class Store extends LoginStore {
   // constructor(props) {
   //   super(props)
-  //   console.log(this, props)
+  //   console.log('-------frame', this, props)
   // }
   @observable loading = false
   @action setLoading = boolean => {

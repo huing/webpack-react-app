@@ -2,9 +2,8 @@ import {action, runInAction, observable} from 'mobx'
 import BaseStore from '@components/BaseTable/store'
 import Api from '../api'
 
-console.log('--------', BaseStore)
-
 class Store extends BaseStore {
+  $listApi = Api.Hello
   @observable detail = {}
   @action init = () => {
     this.getDetail()
