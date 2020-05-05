@@ -12,6 +12,22 @@ const DelayLoading = ({pastDelay, error}) => {
 }
 
 export default [{
+  path: '/overview/order',
+  component: Loadable({loader: () => import('../page-overview-order'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
+  path: '/overview/withdrawal',
+  component: Loadable({loader: () => import('../page-overview-withdrawal'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
+  path: '/goods/spuManagement',
+  component: Loadable({loader: () => import('../page-goods-spuManagement'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
+  path: '/members',
+  component: Loadable({loader: () => import('../page-members'), loading: DelayLoading, delay: 3000}),
+  exact: true,
+}, {
   path: '/home',
   component: Loadable({loader: () => import('../page-home'), loading: DelayLoading, delay: 3000}),
   exact: true,

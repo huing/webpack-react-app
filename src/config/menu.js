@@ -1,4 +1,30 @@
 const menus = [{
+  name: '业务总览',
+  path: '/overview',
+  icon: 'home',
+  routes: [{
+    name: '订单管理',
+    path: '/overview/order',
+    icon: 'home',
+  }, {
+    name: '订单管理',
+    path: '/overview/withdrawal',
+    icon: 'home',
+  }],
+}, {
+  name: '商品管理',
+  path: '/goods',
+  icon: 'home',
+  routes: [{
+    name: 'spu管理',
+    path: '/goods/spuManagement',
+    icon: 'home',
+  }],
+}, {
+  name: '成员管理',
+  path: '/members',
+  icon: 'home',
+}, {
   name: 'Home',
   path: '/home',
   icon: 'home',

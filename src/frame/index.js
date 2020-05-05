@@ -40,7 +40,7 @@ class Frame extends Component {
             <Header style={{ position: 'fixed', zIndex: 1, padding: '0 20px', width: 'calc(100% - 200px)'}}>
               <PageHeader {...this.props} store={store} />
             </Header>
-            <Content style={{ marginTop: 64, overflow: 'auto',  padding: '0 20px' }}>
+            <Content style={{ marginTop: 64, overflow: 'auto' }}>
               <Switch>
                 {
                   (routes || []).map(item => (

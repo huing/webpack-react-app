@@ -1,5 +1,5 @@
 import React, { useState, useEffect, Children, Fragment } from 'react'
-import { Form, Button, Row } from 'antd'
+import { Form, Button } from 'antd'
 import { SearchOutlined, RollbackOutlined, UpOutlined, DownOutlined } from '@ant-design/icons'
 import './index.styl'
 
@@ -110,7 +110,7 @@ const BaseSearch = ({
   return (
     <Form style={style} className='search-bar' initialValues={initialValue} onValuesChange={onValuesChange}>
       {before}
-      <Row gutter={24}>{res}</Row>
+      <div className='FBH'>{res}</div>
       <div className='search-bar-btn'>
         {showSearch && (
           <Form.Item>

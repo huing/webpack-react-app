@@ -31,7 +31,7 @@ export default props => {
             className="login-form-button"
             size="large"
           >
-            Log in
+            登录
           </Button>          
         </Form.Item>
       </Form>
