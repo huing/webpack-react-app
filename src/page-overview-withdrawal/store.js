@@ -1,12 +1,12 @@
 import {action, runInAction, observable} from 'mobx'
-import moment from 'moment'
+// import moment from 'moment'
 import API from '../api'
 
 class Store {
   @observable value = null
 
   @action Hello = async () => {
-    const res = await API.Hello({
+    await API.Hello({
       firstName: 'firstName',
       lastName: 'lastName',
       age: 23,

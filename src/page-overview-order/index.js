@@ -16,7 +16,7 @@ class OverviewOrder extends React.Component {
     return (
       <Provider store={store}>
         <BaseBread header={['成员管理', '权限管理']} />
-        <div className="page-home">
+        <div className="page-overview-order">
           <SearchBar />
           <Tab />
           <Table />

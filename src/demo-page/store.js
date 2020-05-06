@@ -1,5 +1,4 @@
 import {action, runInAction, observable} from 'mobx'
-import moment from 'moment'
 import API from '../api'
 
 class Store {
@@ -15,6 +14,7 @@ class Store {
       isActive: true,
     })
     await API.CatsDetail()
+    console.log(res)
   }
 
   @action getHomeValue = async (id = 1) => {
@@ -30,4 +30,4 @@ class Store {
     }
   }
 }
-export default new Store()
+export default Store

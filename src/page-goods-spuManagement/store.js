@@ -1,33 +1,29 @@
 import {action, runInAction, observable} from 'mobx'
-import moment from 'moment'
-import API from '../api'
+import BaseStore from '@components/BaseTable/store'
+import Api from '../api'
 
-class Store {
-  @observable value = null
-
-  @action Hello = async () => {
-    const res = await API.Hello({
-      firstName: 'firstName',
-      lastName: 'lastName',
-      age: 23,
-      fullName: Date.now().toString(),
-      birthday: '2019-10-14',
-      isActive: true,
-    })
-    await API.CatsDetail()
+class Store extends BaseStore {
+  $listApi = Api.findOrderList
+  $ignoreParams = []
+  @observable modalDetail = {}
+  @observable visible = false
+  @observable visibleSpu = false
+  $getParams = () => {
+    return this.$params
   }
+  @action init = () => {
 
-  @action getHomeValue = async (id = 1) => {
-    try {
-      const res = await API.Cats({
-        id,
-      })
-      runInAction(() => {
-        this.value = res.data
-      })
-    } catch (error) {
-      console.log(error)
-    }
+  }
+  @action toggleModalSpu = () => () => {
+    runInAction(() => {
+      this.visibleSpu = !this.visibleSpu
+    })
+  } 
+  @action toggleModal = info => () => {
+    runInAction(() => {
+      this.modalDetail = info || {}
+      this.visible = !this.visible
+    })
   }
 }
-export default new Store()
+export default Store

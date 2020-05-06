@@ -5,9 +5,10 @@ export default props => {
     const {submit} = props
     return (
       <Form onFinish={submit} initialValues={{ account: 'admin', password: '123456' }}>
-        <Form.Item 
+        <Form.Item
+          label='用户名'
           name='account' 
-          rules={[{required: true, message: 'Please input your username!'}]}
+          rules={[{required: true, message: '请输入用户名'}]}
         >
           <Input
             placeholder="Username" 
@@ -15,8 +16,9 @@ export default props => {
           />
         </Form.Item>
         <Form.Item
+          label='密码'
           name='password'
-          rules={[{required: true, message: 'Please input your Password!'}]}
+          rules={[{required: true, message: '请输入密码'}]}
         >
           <Input 
             type="password" 
