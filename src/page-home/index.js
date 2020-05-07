@@ -11,7 +11,14 @@ class Home extends React.Component {
   render() {
     return (
       <div className="page-home">
-        123
+        <div className="FBH">
+          <div className='dot'></div>
+          <div className="">
+            <div className='line'>123</div>
+            <div className='line'>123</div>
+            <div className='line'>123</div>
+          </div>
+        </div>
       </div>
     )
   }
