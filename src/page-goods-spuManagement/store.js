@@ -6,7 +6,7 @@ class Store extends BaseStore {
   $listApi = Api.findOrderList
   $ignoreParams = []
   @observable modalDetail = {}
-  @observable visible = false
+  @observable visibleSku = false
   @observable visibleSpu = false
   $getParams = () => {
     return this.$params
@@ -14,7 +14,7 @@ class Store extends BaseStore {
   @action init = () => {
 
   }
-  @action toggleModalSpu = () => () => {
+  @action toggleModalSpu = () => {
     runInAction(() => {
       this.visibleSpu = !this.visibleSpu
     })
@@ -22,8 +22,14 @@ class Store extends BaseStore {
   @action toggleModal = info => () => {
     runInAction(() => {
       this.modalDetail = info || {}
-      this.visible = !this.visible
+      this.visibleSku = !this.visibleSku
     })
+  }
+  @action okSpu = async () => {
+
+  }
+  @action okSku = async () => {
+    
   }
 }
 export default Store
