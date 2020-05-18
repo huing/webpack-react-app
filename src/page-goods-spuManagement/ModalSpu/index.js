@@ -1,6 +1,6 @@
 import React from 'react'
 import {observer} from 'mobx-react'
-import { Modal, Form } from 'antd'
+import { Modal, Form, Input, Select } from 'antd'
 
 @observer
 class ModalSpu extends React.Component {
@@ -27,8 +27,24 @@ class ModalSpu extends React.Component {
         destroyOnClose
       >
         <Form {...layout} name="不知道干啥的" onFinish={onFinish}>
-          <Form.Item>
-
+          <Form.Item name={['user', 'email']} label='spu头图' rules={[{
+            type: 'email'
+          }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name={['user', 'email']} label='spu头图' rules={[{
+            type: 'email'
+          }]}>
+            <Input />
+          </Form.Item>
+          <Form.Item name={['user', 'email']} label='spu头图' rules={[{
+            type: 'email'
+          }]}>
+            <Select>
+              <Select.Option>
+                
+              </Select.Option>
+            </Select>
           </Form.Item>
         </Form>
       </Modal>
