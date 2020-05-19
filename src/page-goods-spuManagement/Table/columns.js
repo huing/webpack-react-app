@@ -37,7 +37,7 @@ export default store => [
       <Operation type="column">
         <Item>编辑</Item>
         <Item>删除</Item>
-        <Item onClick={store.toggleModal(record)}>新增sku</Item>
+        <Item onClick={() => store.toggleModal('visibleSku', record)}>新增sku</Item>
       </Operation>
     )
   }

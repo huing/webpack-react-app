@@ -9,7 +9,7 @@ const { Item, Extra } = BaseSearch
 @observer
 class SearchBar extends Component {
   render() {
-    const { toggleModalSpu } = this.props.store
+    const { toggleModal } = this.props.store
     return (
       <BaseSearch
         store={this.props.store}
@@ -39,7 +39,7 @@ class SearchBar extends Component {
         </Item>
         <Extra>
           <Item>
-            <Button type="primary" onClick={toggleModalSpu}>
+            <Button type="primary" onClick={() => toggleModal('visibleSpu')}>
               新增
             </Button>
           </Item>

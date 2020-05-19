@@ -14,15 +14,10 @@ class Store extends BaseStore {
   @action init = () => {
 
   }
-  @action toggleModalSpu = () => {
+  @action toggleModal = (type, info) => {
     runInAction(() => {
-      this.visibleSpu = !this.visibleSpu
-    })
-  } 
-  @action toggleModal = info => () => {
-    runInAction(() => {
+      this[type] = !this[type]
       this.modalDetail = info || {}
-      this.visibleSku = !this.visibleSku
     })
   }
   @action okSpu = async () => {

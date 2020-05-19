@@ -1,11 +1,12 @@
 import React from 'react'
-import {observer} from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 import { Modal, Form, Input, Select } from 'antd'
 
+@inject('store')
 @observer
 class ModalSpu extends React.Component {
   render() {
-    const {visibleSpu, okSpu, toggleModalSpu} = this.props.store
+    const {visibleSpu, okSpu, toggleModal} = this.props.store
     const layout = {
       labelCol: {
         span: 8,
@@ -19,10 +20,10 @@ class ModalSpu extends React.Component {
     }
     return (
       <Modal
-        title="新建"
+        title="新建spu"
         visible={visibleSpu}
         onOk={okSpu}
-        onCancel={toggleModalSpu}
+        onCancel={() => toggleModal('visibleSpu')}
         centered
         destroyOnClose
       >
