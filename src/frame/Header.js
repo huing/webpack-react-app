@@ -1,43 +1,25 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import {Popover} from 'antd'
 import Cookies from 'js-cookie'
 import './index.styl'
 
 @observer 
 class Header extends Component {
   logout = () => {
-    Cookies.remove('userName', {path: '/'})
     this.props.history.replace('/login')
-    window.location.reload()
-  }
-
-  componentDidMount() {
-    let {adminName, updateName} = this.props.store
-    if (adminName === '') {
-      updateName(Cookies.get('userName'))
-    }
-  }
-
-  titleNode = () => {
-    return (
-      <span
-        style={{fontSize: '14px', cursor: 'pointer'}}
-        onClick={this.logout}
-      >
-        退出
-      </span>
-    )
+    Cookies.remove()
   }
 
   render() {
-    const {store} = this.props
-    const {adminName} = store
     return (
       <div className="page-header">
-        <Popover content={this.titleNode()}>
-          {adminName && <span className='admin-name'>{adminName}</span>}
-        </Popover>
+        <span>{(Cookies.getJSON('LOGINDATA') || {}).name}</span>
+        <span
+          style={{fontSize: '14px', cursor: 'pointer', marginLeft: 24}}
+          onClick={this.logout}
+        >
+          退出
+        </span>
       </div>
     )
   }

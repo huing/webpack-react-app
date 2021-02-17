@@ -59,7 +59,7 @@ class Store {
     for (let key of this.$ignoreParams) {
       delete resParams[key]
     }
-    const { data } = await this.$getListApi()(resParams)
+    const data = await this.$getListApi()(resParams)
     runInAction(() => {
       this.$afterGet(data, page)
     })

@@ -23,7 +23,7 @@ class SearchBar extends Component {
           <Input onPressEnter={this.props.store.$search} />
         </Item>
         <Item label="商品分类" name="orderId">
-          <Select>
+          <Select style={{width: 100}}>
             <Select.Option>是</Select.Option>
             <Select.Option>否</Select.Option>
           </Select>
@@ -32,7 +32,7 @@ class SearchBar extends Component {
           <Input onPressEnter={this.props.store.$search} />
         </Item>
         <Item label="是否上架" name="createdDate">
-          <Select>
+          <Select style={{width: 100}}>
             <Select.Option>是</Select.Option>
             <Select.Option>否</Select.Option>
           </Select>

@@ -9,5 +9,6 @@ class Table extends BaseTable {
   $columns = columns(this.props.store)
   $bordered = false
   $style = { marginTop: 20 }
+  $scroll={ x: 2000 }
 }
 export default Table

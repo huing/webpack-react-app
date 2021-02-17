@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
-import Cookies from 'js-cookie'
 import {Route, Switch, withRouter} from 'react-router-dom'
 import DocumentTitle from 'react-document-title'
+import Cookies from 'js-cookie'
 import {Layout} from 'antd'
 import PageHeader from './Header'
 import MenuSider from './Sider'
@@ -17,7 +17,7 @@ const { Header, Content, Sider } = Layout
 class Frame extends Component {
   componentDidMount() {
     const {location, history} = this.props
-    if (location.pathname !== '/login' && !Cookies.get('userName')) {
+    if (location.pathname !== '/login' && !Cookies.get('LOGINDATA')) { 
       history.replace('/login')
     }
   }

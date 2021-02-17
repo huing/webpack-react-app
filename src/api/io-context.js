@@ -1,6 +1,8 @@
 import axios from 'axios'
-import qs from 'qs'
 import {notification} from 'antd'
+// import * as mockApi from '../mock'
+
+// console.log(mockApi)
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -22,55 +24,46 @@ const codeMessage = {
 
 let baseURL = ''
 if (process.env.NODE_ENV === 'development') {
-  baseURL = 'https://lingxi-dev.bleshop.cn/bingling/manageApi'
+  baseURL = 'https://lingxi-dev.bleshop.cn/bingling'
 } else {
-  baseURL = 'https://lingxi.bleshop.cn/bingling/manageApi'
+  baseURL = 'https://lingxi.bleshop.cn/bingling'
 }
  
 const instance = axios.create({
   baseURL,
   headers: {
-    post: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    get: {
-
-    },
+    
   },
-  transformRequest: [data => qs.stringify(data)],
+  withCredentials: true
 })
 
 instance.interceptors.request.use(config => {
-  // console.log(789, config)
-  // Do something before request is sent 在发送请求之前做些什么
+  // console.log('在发送请求之前做些什么', config)
+  // if (config.url.includes('/mock/api')) {
+
+  //   axios.CancelToken.source().cancel()
+  // }
   return config
 }, error => {
-  console.log(102, error)
-  // Do something with request error 对请求错误做些什么
+  console.log('对请求错误做些什么', error)
   return Promise.reject(error)
 })
-// Add a response interceptor 添加响应拦截器
+
 instance.interceptors.response.use(response => {
-  console.log(123, response)
-  // Do something with response data 对响应数据做点什么
-  if (response.status !== 200) {
-    const errortext = codeMessage[response.status] 
-    const {status, url} = response
+  const {data: {data, code, msg}, status, config: {url} } = response
+  // console.log('对响应数据做点什么', response)
+  if (Number(code) !== 200) {
     notification.error({
-      message: `请求错误 ${status}: ${url}`,
-      description: errortext,
+      message: `请求错误 ${code}: ${url}`,
+      description: msg,
     })
+    const errortext = codeMessage[response.status] 
     console.log(`请求错误 ${status}: ${url}`, errortext)
   } 
-  return response.data
+  return data
 }, error => {
-  console.log(456, error)
-  // Do something with response error 对响应错误做点什么
+  console.log('对响应错误做点什么', error)
   return Promise.reject(error)
-  // return Promise.resolve(response: {
-  //   data: {},
-  //   status: 404,
-  // })
 })
 
 const get = url => params => instance.get(url, {params})

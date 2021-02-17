@@ -13,11 +13,10 @@ class Tab extends Component {
         {[
           { title: '全部', value: '' },
           { title: '待付款', value: '0' },
-          { title: '待出库', value: '1' },
-          { title: '待发货', value: '2' },
-          { title: '已发货', value: '3' },
-          { title: '已完成', value: '7' },
-          { title: '订单取消', value: '8' },
+          { title: '待发货', value: '1' },
+          { title: '已发货', value: '2' },
+          { title: '已完成', value: '3' },
+          { title: '订单取消', value: '4' },
           { title: '退款中', value: '5' },
           { title: '已退款', value: '6' }
         ].map(item => (

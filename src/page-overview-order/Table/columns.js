@@ -6,7 +6,7 @@ const { Item } = Operation
 export default store => [
   {
     title: '订单号',
-    dataIndex: 'orderId'
+    dataIndex: 'id'
   },
   {
     title: '下单用户',
@@ -35,7 +35,19 @@ export default store => [
   },
   {
     title: '订单状态',
-    dataIndex: 'status'
+    render: ({status}) => (
+      <div>
+        {{
+          0: '待付款',
+          1: '待发货',
+          2: '已发货',
+          3: '已完成',
+          4: '订单取消',
+          5: '退款中',
+          6: '已退款',
+        }[status]}
+      </div>
+    ),
   },
   {
     title: '下单时间',
@@ -45,9 +57,8 @@ export default store => [
     title: '操作',
     render: record => (
       <Operation type="column">
-        <Item>详情</Item>
-        <Item>发货清单</Item>
-        <Item onClick={store.toggleModal(record)}>退款明细</Item>
+        <Item href={`/operation/overview/order/detail/${record.id}`}>详情</Item>
+        {record.status === 5 && <Item onClick={() => store.toggleModal(record)}>退款明细</Item>} 
       </Operation>
     )
   }
