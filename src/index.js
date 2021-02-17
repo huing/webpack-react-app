@@ -26,3 +26,23 @@ class App extends React.Component {
 export default App
 
 ReactDOM.render(<App />, document.getElementById('root'))
+
+// function getPersonInfo(one, two, three) {
+//   console.log(one)
+//   console.log(two)
+//   console.log(three)
+// }
+
+// const person = 'Lydia'
+// const age = 21
+
+// getPersonInfo`a${person}b d${age}c`
+
+// const set = new Set()
+// set.add(1)
+// set.add('Lydia')
+// set.add({name: 'Lydia', age: 21})
+// console.log('set',set)
+// for (let item of set) {
+//   console.log(item, '->>',item + 2)
+// }
