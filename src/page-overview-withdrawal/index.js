@@ -1,16 +1,30 @@
-import React, {Component} from 'react'
-import {observer} from 'mobx-react'
-// import store from './store'
+import React from 'react'
+import {observer, Provider} from 'mobx-react'
+import BaseBread from '@components/BaseBread'
+import SearchBar from './SearchBar'
+import Table from './Table'
+import store from './store'
+import Modal from './Modal'
+import DetailModal from './DetailModal'
 import './index.styl'
 
 @observer 
-class DemoPage extends Component {
+class OverviewOrder extends React.Component {
+  componentDidMount() {
+    store.init()
+  }
   render() {
     return (
-      <div className="demo-page">
-        page
-      </div> 
+      <Provider store={store}>
+        <BaseBread header={['业务总览', '提现管理']} />
+        <div className="page-overview-order">
+          <SearchBar />
+          <Table />
+          <Modal />
+          <DetailModal />
+        </div>
+      </Provider>
     )
   }
 }
-export default DemoPage
+export default OverviewOrder

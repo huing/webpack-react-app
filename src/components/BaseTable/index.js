@@ -85,8 +85,11 @@ class BaseTable extends Component {
       $extra,
       $is_show_pagination,
       $is_show_pagination_noAll,
-      $expandedRowRender
+      $expandable,
+      $scroll,
     } = this
+
+    console.log('this---', this)
     let rowSelection = {
       selectedRowKeys: $selectedRowKeys,
       onChange: $onSelectChange
@@ -137,7 +140,8 @@ class BaseTable extends Component {
           onChange={this.$store.$paging}
           pagination={$is_show_pagination ? $pagination : false}
           rowKey={r => r[$rowKey]}
-          expandedRowRender={$expandedRowRender}
+          expandable={$expandable}
+          scroll={$scroll ? $scroll : null}
           {...otherProps}
         />
         {!$is_show_pagination && !$is_show_pagination_noAll && (
