@@ -102,3 +102,66 @@
 
 // ['1', '2', '3'].map(parseInt)
 
+// [3,15,8,29,102,22].sort()
+// [3,15,8,29,102,22].sort((a,b) => a-b)
+
+// function debounce(func, time) {
+//   var obj = {}
+//   var timer = null;
+//   console.log(obj)
+//   return () => {
+//     console.log(timer, obj)
+//     clearTimeout(timer);
+//     timer = setTimeout(() => {
+//       func.apply(this, arguments)
+//     }, time);
+//     obj[timer] = timer
+//     console.log('timer--->', timer, obj)
+//   }
+// }
+// function debounce(func, wait, immediate) {
+//   var timeout, result;
+//   return function () {
+//     var context = this;
+//     var args = arguments;
+
+//     if (timeout) clearTimeout(timeout);
+//     if (immediate) {
+//       // 如果已经执行过，不再执行
+//       var callNow = !timeout;
+//       timeout = setTimeout(function () {
+//         timeout = null;
+//       }, wait);
+//       if (callNow) result = func.apply(context, args);
+//     } else {
+//       timeout = setTimeout(function () {
+//         func.apply(context, args);
+//       }, wait);
+//     }
+//     return result;
+//   };
+// }
+// const onscroll = debounce(() => console.log('ok'), 500)
+// onscroll()
+// onscroll()
+// onscroll()
+
+// function throtte(func, time) {
+//   var activeTime = 0;
+//   return () => {
+//     const current = Date.now();
+//     const context  = this
+//     if (current - activeTime > time) {
+//       func.apply(context, arguments);
+//       activeTime = Date.now();
+//     }
+//   }
+// }
+// 一定要是给个新的名字，不然过不了，这样作用域才是一样的
+// const onscroll1 = throtte(() => console.log('ok'), 500)
+// onscroll1()
+// onscroll1()
+// onscroll1()
+
+// let arr = [1,2,3,4,5]
+// arr.forEach((num, index) => arr[index] = num * 2)
