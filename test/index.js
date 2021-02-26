@@ -165,3 +165,27 @@
 
 // let arr = [1,2,3,4,5]
 // arr.forEach((num, index) => arr[index] = num * 2)
+
+// function Person() {
+
+// }
+// var person = new Person()
+// person.name = 'Kevin'
+// console.log(person)
+
+// person.__proto__ == Person.prototype
+
+// null 表示没有对象，即该处不应该有值
+// Object.prototype.__proto__ === null
+
+// const s = new Set([1,2,3])
+// console.log(s)
+
+// var a = 10;
+// (function () {
+//   console.log(a);
+//   a = 5;
+//   console.log(window.a);
+//   var a= 20;
+//   console.log(a);
+// })()
