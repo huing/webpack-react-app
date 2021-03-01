@@ -189,3 +189,33 @@
 //   var a= 20;
 //   console.log(a);
 // })()
+
+// const person = {name: 'Lydia'}
+// function sayHi(age) {
+//   console.log(`${this.name} is ${age}`)
+// }
+// sayHi.call(person, 21)
+// sayHi.bind(person, 21)
+
+
+// var obj = {
+//   '2': 3,
+//   '3': 4,
+//   'length': 2,
+//   'splice': Array.prototype.splice,
+//   'push': Array.prototype.push,
+// }
+
+// obj = {
+//   1: 1,
+//   3: 4,
+//   'length': 2,
+//   'splice': Array.prototype.splice,
+//   'push': Array.prototype.push,
+// }
+
+// obj.push(1)
+// obj.push(2)
+// console.log(obj)
+
+
