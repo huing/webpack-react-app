@@ -218,4 +218,57 @@
 // obj.push(2)
 // console.log(obj)
 
+// var a = {n: 1};
+// var b=a;
+// a.x = a = {n:2}
 
+// var a = {n: 1}
+// a.x = a = {n:2}
+
+// let array = new Array(100000)
+// let array = new Array(1000000)
+// let array = new Array(10000000)
+// console.time('for')
+// for (let index = 0; index < array.length; index++) {
+// }
+// console.timeEnd('for')
+// console.time('forEach')
+// array.forEach((item) => {})
+// console.timeEnd('forEach')
+
+// var a = {}, b = '123', c = 123;
+// a[b] = 'b';
+// a[c] = 'c';
+// console.log(a[b]);
+
+// var a = {}, b = Symbol('123'), c= Symbol('123');
+// a[b] = 'b';
+// a[c] = 'c';
+// console.log(a[b]);
+
+// var a = {}, b = {key: '123'}, c= {key: '456'};
+// a[b] = 'b';
+// a[c] = 'c';
+// console.log(a[b]);
+
+// function changeObjProperty(o) {
+//   o.siteUrl = 'baidu'
+//   o = new Object()
+//   o.siteUrl = 'google'
+// }
+// let webSite = new Object()
+// changeObjProperty(webSite)
+// console.log(webSite.siteUrl)
+// function changeObjProperty(o, b) {
+//   o.siteUrl = 'baidu'
+//   b = 5
+//   o = {}
+//   // let b
+//   o.siteUrl = 'google'
+//   b= 6
+//   console.log(o, b)
+// }
+// let webSite = {}
+// let a = 1
+// changeObjProperty(webSite, a)
+// console.log(webSite.siteUrl, a)
