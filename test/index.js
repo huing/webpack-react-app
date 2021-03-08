@@ -272,3 +272,33 @@
 // let a = 1
 // changeObjProperty(webSite, a)
 // console.log(webSite.siteUrl, a)
+
+// function Foo() {
+//   Foo.a = function() {
+//     console.log(1)
+//   }
+//   this.a = function() {
+//     console.log(2)
+//   }
+// }
+// Foo.prototype.a = function() {
+//   console.log(3)
+// }
+// Foo.a = function() {
+//   console.log(4)
+// }
+// Foo.a();
+// let obj = new Foo();
+// obj.a();
+// Foo.a();
+
+// // true
+// String('11') == new String('11');
+// // false
+// String('11') === new String('11');
+
+
+// var template = '{{name}}很厉害,才{{age}}岁'
+// var context = {name: 'bottle', age: '15'}
+
+// render(template, context)
