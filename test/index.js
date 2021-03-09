@@ -297,8 +297,29 @@
 // // false
 // String('11') === new String('11');
 
+// 1 + '1'
+// 2 * '2'
+// [1,2] + [2,1]
+// 'a' + + 'b'
+// var msg = 'hello';
+// for (var i = 0; i < 10; i++) {
+//   var msg = 'hello' + i * 2 + i;
+// }
+
+// var name = 'Tom';
+// (function() {
+//   if (typeof name == 'undefined') {
+//     var name = 'Jack';
+//     // name = 'Jack';
+//     console.log('Goodbye ' + name);
+//   } else {
+//     console.log('Hello ' + name);
+//   }
+// })();
+
 
 // var template = '{{name}}很厉害,才{{age}}岁'
 // var context = {name: 'bottle', age: '15'}
 
 // render(template, context)
+
