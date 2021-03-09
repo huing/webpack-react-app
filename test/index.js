@@ -317,9 +317,3 @@
 //   }
 // })();
 
-
-// var template = '{{name}}很厉害,才{{age}}岁'
-// var context = {name: 'bottle', age: '15'}
-
-// render(template, context)
-
