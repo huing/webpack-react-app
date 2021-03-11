@@ -1,10 +1,3 @@
-// var template = '{{name}}很厉害,才{{age}}岁'
-// var context = {name: 'bottle', age: '15'}
-
-// render(template, context)
-// effects
-// reducers
-
 // function wait() {
 //   return new Promise(resolve => setTimeout(resolve, 10 * 1000))
 // }
@@ -31,3 +24,17 @@
 // setTimeout(() => console.log('B', 0));
 // while(true) {}
 // console.log('B');
+
+// var a = 10;
+// (function () {
+//   console.log(1, a);
+//   a = 5;
+//   console.log(2, a)
+//   console.log(3, window.a);
+  
+//   var a= 20;
+//   console.log(4, a);
+//   console.log(5, window.a);
+// })()
+// console.log(6, window.a);
+// console.log(7, a);
