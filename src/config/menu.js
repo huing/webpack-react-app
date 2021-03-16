@@ -24,44 +24,44 @@ const menus = [{
   name: '成员管理',
   path: '/members',
   icon: 'home',
-// }, {
-//   name: 'Home',
-//   path: '/home',
-//   icon: 'home',
-// }, {
-//   name: 'CSS',
-//   path: '/css',
-//   icon: 'home',
-// }, {
-//   name: 'Chart',
-//   path: '/chart',
-//   icon: 'bar-chart',
-//   routes: [{
-//     name: 'Bar',
-//     path: '/chart/bar',
-//     icon: 'bar-chart',
-//   }, {
-//     name: 'Shape',
-//     path: '/chart/shape',
-//     icon: 'bar-chart',
-//   }, {
-//     name: 'Stack',
-//     path: '/chart/stack',
-//     icon: 'bar-chart',
-//   }],
-// }, {
-//   name: 'Antd',
-//   path: '/antd',
-//   icon: 'home',
-//   routes: [{
-//     name: 'Calendar',
-//     path: '/antd/calendar',
-//     icon: 'bar-chart',
-//   }, {
-//     name: 'Tree',
-//     path: '/antd/tree',
-//     icon: 'bar-chart',
-//   }],
+}, {
+  name: 'Home',
+  path: '/home',
+  icon: 'home',
+}, {
+  name: 'CSS',
+  path: '/css',
+  icon: 'home',
+}, {
+  name: 'Chart',
+  path: '/chart',
+  icon: 'bar-chart',
+  routes: [{
+    name: 'Bar',
+    path: '/chart/bar',
+    icon: 'bar-chart',
+  }, {
+    name: 'Shape',
+    path: '/chart/shape',
+    icon: 'bar-chart',
+  }, {
+    name: 'Stack',
+    path: '/chart/stack',
+    icon: 'bar-chart',
+  }],
+}, {
+  name: 'Antd',
+  path: '/antd',
+  icon: 'home',
+  routes: [{
+    name: 'Calendar',
+    path: '/antd/calendar',
+    icon: 'bar-chart',
+  }, {
+    name: 'Tree',
+    path: '/antd/tree',
+    icon: 'bar-chart',
+  }],
 }]
 
 function formatter(data) {
