@@ -1,4 +1,3 @@
-
 // ['1', '2', '3'].map(parseInt)
 
 // [3,15,8,29,102,22].sort()
@@ -86,7 +85,6 @@
 // }
 // sayHi.call(person, 21)
 // sayHi.bind(person, 21)
-
 
 // var obj = {
 //   '2': 3,
@@ -206,4 +204,3 @@
 //     console.log('Hello ' + name);
 //   }
 // })();
-
