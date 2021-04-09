@@ -25,3 +25,15 @@
 // for (let item of set) {
 //   console.log(item, '->>',item + 2)
 // }
+
+// function* startGame() {
+//   const 答案 = yield "Do you love JavaScript?";
+//   if (答案 !== "Yes") {
+//     return "Oh wow... Guess we're gone here";
+//   }
+//   return "JavaScript loves you back ❤️";
+// }
+
+// const game = startGame();
+// console.log(/* 1 */); // Do you love JavaScript?
+// console.log(/* 2 */); // JavaScript loves you back ❤️
