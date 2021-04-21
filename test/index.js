@@ -1,8 +1,9 @@
-require('./test1.js')
-require('./test2.js')
-require('./test3.js')
-require('./test5.js')
-
+// require("./test1.js");
+// require("./test2.js");
+// require("./test3.js");
+// require("./test5.js");
+require("./test6.js");
+require("./test7.js");
 // const a = {key:'a'}
 // const b = {key:'b'}
 // const c = {key:'c'}

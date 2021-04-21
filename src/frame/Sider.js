@@ -1,103 +1,86 @@
-import React, {Component} from 'react'
-import {observer} from 'mobx-react'
-import {Link} from 'react-router-dom'
-import {Menu} from 'antd'
-import {menuData} from '../config/menu'
-import {getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus} from '../config/util'
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { Link } from "react-router-dom";
+import { Menu } from "antd";
+import { menuData } from "../config/routes";
+import { getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus } from "../config/util";
 
-const flatMenuKeys = getFlatMenuKeys(menuData)
+const flatMenuKeys = getFlatMenuKeys(menuData);
 
-@observer 
+@observer
 class Sider extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       pathname: props.location.pathname,
       flatMenuKeysLen: flatMenuKeys.length,
       openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
-    }
+    };
   }
 
-  isMainMenu = key => {
-    return menuData.some(item => {
+  isMainMenu = (key) => {
+    return menuData.some((item) => {
       if (key) {
-        return item.key === key || item.path === key
+        return item.key === key || item.path === key;
       }
-      return false
-    })
-  }
+      return false;
+    });
+  };
 
-  handleOpenChange = openKeys => {
-    const moreThanOne = openKeys.filter(openKey => this.isMainMenu(openKey)).length > 1
+  handleOpenChange = (openKeys) => {
+    const moreThanOne = openKeys.filter((openKey) => this.isMainMenu(openKey)).length > 1;
     this.setState({
       openKeys: moreThanOne ? [openKeys.pop()] : [...openKeys],
-    })
-  }
+    });
+  };
 
   static getDerivedStateFromProps(props, state) {
-    const {pathname, flatMenuKeysLen} = state
+    const { pathname, flatMenuKeysLen } = state;
     if (props.location.pathname !== pathname || flatMenuKeys.length !== flatMenuKeysLen) {
       return {
         pathname: props.location.pathname,
         flatMenuKeysLen: flatMenuKeys.length,
         openKeys: getDefaultCollapsedSubMenus(flatMenuKeys, props),
-      }
+      };
     }
-    return null
+    return null;
   }
 
   render() {
     const {
-      location: {pathname},
-    } = this.props
-    const {openKeys} = this.state
-    let selectedKeys = getSelectedMenuKeys(flatMenuKeys, pathname)
+      location: { pathname },
+    } = this.props;
+    const { openKeys } = this.state;
+    let selectedKeys = getSelectedMenuKeys(flatMenuKeys, pathname);
     if (!selectedKeys.length && openKeys) {
-      selectedKeys = [openKeys[openKeys.length - 1]]
+      selectedKeys = [openKeys[openKeys.length - 1]];
     }
-    let props = {}
+    let props = {};
     if (openKeys) {
       props = {
         openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys,
-      }
+      };
     }
 
     return (
-      <Menu 
-        key="Menu"
-        mode="inline"
-        theme="dark"
-        onOpenChange={this.handleOpenChange}
-        selectedKeys={selectedKeys}
-        {...props}
-      > 
-        {
-          (menuData || []).map(item => 
-            (item.children && item.children.length) ? (
-              <Menu.SubMenu 
-                key={item.path}  
-                title={<span>{item.name}</span>}>
-                {
-                  item.children.map(subItem =>
-                    <Menu.Item key={subItem.path}>
-                      <Link to={subItem.path}>
-                        {subItem.name}
-                      </Link>
-                    </Menu.Item>
-                  )
-                }
-              </Menu.SubMenu>
-            ) : (
-              <Menu.Item key={item.path}>                  
-                <Link to={item.path}>
-                  {item.name}
-                </Link>
-              </Menu.Item>
-            )
+      <Menu key="Menu" mode="inline" theme="dark" onOpenChange={this.handleOpenChange} selectedKeys={selectedKeys} {...props}>
+        {(menuData || []).map((item) =>
+          item.children && item.children.length ? (
+            <Menu.SubMenu key={item.path} title={<span>{item.name}</span>}>
+              {item.children.map((subItem) => (
+                <Menu.Item key={subItem.path}>
+                  <Link to={subItem.path}>{subItem.name}</Link>
+                </Menu.Item>
+              ))}
+            </Menu.SubMenu>
+          ) : (
+            <Menu.Item key={item.path}>
+              <Link to={item.path}>{item.name}</Link>
+            </Menu.Item>
           )
-        }
+        )}
       </Menu>
-    )
+    );
   }
 }
-export default Sider
+export default Sider;
