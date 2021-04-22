@@ -1,9 +1,8 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
+import Markdown from "../components/Markdown";
 import markdown from "./HTML.md";
 
 const MarkdownDemo = () => {
-  return <ReactMarkdown remarkPlugins={[gfm]} children={markdown} />;
+  return <Markdown markdown={markdown} />;
 };
 export default MarkdownDemo;

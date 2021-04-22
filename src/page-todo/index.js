@@ -1,13 +1,8 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
+import Markdown from "../components/Markdown";
 import markdown20210421 from "./20210421.md";
 
 const MarkdownDemo = () => {
-  return (
-    <div>
-      <ReactMarkdown remarkPlugins={[gfm]}>{markdown20210421}</ReactMarkdown>
-    </div>
-  );
+  return <Markdown markdown={markdown20210421} />;
 };
 export default MarkdownDemo;
