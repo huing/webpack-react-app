@@ -7,6 +7,24 @@ import { getFlatMenuKeys, getSelectedMenuKeys, getDefaultCollapsedSubMenus } fro
 
 const flatMenuKeys = getFlatMenuKeys(menuData);
 
+const getMenuData = (currentMenuData) =>
+  currentMenuData.map((item) => {
+    if (Array.isArray(item.routes) && item.routes.length) {
+      return (
+        <Menu.SubMenu key={item.path} title={<span>{item.name}</span>}>
+          {getMenuData(item.routes)}
+        </Menu.SubMenu>
+      );
+    }
+    // 'markdown/html(/:id)'.replace(/\(\/:id\)/g, '')
+    // 'markdown/js/:id?'.replace(/\/:id\?/g, '')
+    return (
+      <Menu.Item key={item.path}>
+        <Link to={item.path.replace(/:id\?/g, "")}>{item.name}</Link>
+      </Menu.Item>
+    );
+  });
+
 @observer
 class Sider extends Component {
   constructor(props) {
@@ -64,21 +82,7 @@ class Sider extends Component {
 
     return (
       <Menu key="Menu" mode="inline" theme="dark" onOpenChange={this.handleOpenChange} selectedKeys={selectedKeys} {...props}>
-        {(menuData || []).map((item) =>
-          item.children && item.children.length ? (
-            <Menu.SubMenu key={item.path} title={<span>{item.name}</span>}>
-              {item.children.map((subItem) => (
-                <Menu.Item key={subItem.path}>
-                  <Link to={subItem.path}>{subItem.name}</Link>
-                </Menu.Item>
-              ))}
-            </Menu.SubMenu>
-          ) : (
-            <Menu.Item key={item.path}>
-              <Link to={item.path}>{item.name}</Link>
-            </Menu.Item>
-          )
-        )}
+        {getMenuData(menuData)}
       </Menu>
     );
   }

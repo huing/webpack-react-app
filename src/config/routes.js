@@ -72,19 +72,19 @@ const routes = [
     routes: [
       {
         name: "JS",
-        path: "/markdown/js",
+        path: "/markdown/js/:id?",
         component: Loadable({ loader: () => import("../page-interview-js"), loading: DelayLoading, delay: 3000 }),
         exact: true,
       },
       {
         name: "HTML",
-        path: "/markdown/html",
+        path: "/markdown/html/:id?",
         component: Loadable({ loader: () => import("../page-interview-html"), loading: DelayLoading, delay: 3000 }),
         exact: true,
       },
       {
         name: "CSS",
-        path: "/markdown/css",
+        path: "/markdown/css/:id?",
         component: Loadable({ loader: () => import("../page-interview-css"), loading: DelayLoading, delay: 3000 }),
         exact: true,
       },
@@ -98,30 +98,6 @@ const routes = [
   },
 ];
 
-function formatter(data) {
-  if (!data) {
-    return undefined;
-  }
-  return data
-    .map((item) => {
-      if (!item.name || !item.path) {
-        return null;
-      }
-      const name = item.name;
-      const result = {
-        ...item,
-        name,
-      };
-      if (item.routes) {
-        const children = formatter(item.routes);
-        result.children = children;
-      }
-      delete result.routes;
-      return result;
-    })
-    .filter((item) => item);
-}
-
 const getBreadcrumbNameMap = (menuData) => {
   if (!menuData) {
     return {};
@@ -129,8 +105,8 @@ const getBreadcrumbNameMap = (menuData) => {
   const routerMap = {};
   const flattenMenuData = (data) => {
     data.forEach((menuItem) => {
-      if (menuItem.children) {
-        flattenMenuData(menuItem.children);
+      if (menuItem.routes) {
+        flattenMenuData(menuItem.routes);
       }
       routerMap[menuItem.path] = menuItem;
     });
@@ -140,10 +116,10 @@ const getBreadcrumbNameMap = (menuData) => {
 };
 
 const getSubMenu = (item) => {
-  if (item.children && !item.hideChildrenInMenu && item.children.some((child) => child.name)) {
+  if (item.routes && !item.hideRoutesInMenu && item.routes.some((child) => child.name)) {
     return {
       ...item,
-      children: filterMenuData(item.children),
+      routes: filterMenuData(item.routes),
     };
   }
   return item;
@@ -159,10 +135,9 @@ const filterMenuData = (menuData) => {
     .filter((item) => item);
 };
 
-const originalMenuData = formatter(routes);
 // 去除不显示的菜单项
-const menuData = filterMenuData(originalMenuData);
+const menuData = filterMenuData(routes);
 // 面包线
-const breadcrumbNameMap = getBreadcrumbNameMap(originalMenuData);
+const breadcrumbNameMap = getBreadcrumbNameMap(routes);
 
 export { menuData, breadcrumbNameMap, routes };

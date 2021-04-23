@@ -1,13 +1,11 @@
 import React from "react";
 import Markdown from "../components/Markdown";
-import markdownJS from "./JS.md";
-import markdownZY from "./ZY.md";
+import markdown from "./index.md";
+import Array from "./Array.md";
+import JS from "./JS.md";
+import ZY from "./ZY.md";
 
-const MarkdownDemo = () => {
-  return (
-    <div>
-      <Markdown markdown={markdownJS + markdownZY} />
-    </div>
-  );
+const MarkdownDemo = (props) => {
+  return <Markdown markdown={markdown + { undefined: "", Array, JS, ZY }[props.match.params.id]} />;
 };
 export default MarkdownDemo;
