@@ -3,6 +3,9 @@ import { observer } from "mobx-react";
 import { Button } from "antd";
 import "./index.styl";
 
+console.log(process);
+console.log(process.env);
+
 function Example() {
   const [count, setCount] = useState(0);
 
@@ -29,17 +32,17 @@ class Home extends React.Component {
   render() {
     return (
       <div className="page-home">
-        <div className="FBH">
+        <img src="../../public/clipboard-css.png" alt="img" />
+        <img src="/clipboard-css.png" alt="img" />
+        <Example />
+        {/* <div className="FBH">
           <div className="dot"></div>
           <div className="">
             <div className="line">123</div>
             <div className="line">123</div>
             <div className="line">123</div>
-            <Example />
-            <Example />
-            <Example />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
