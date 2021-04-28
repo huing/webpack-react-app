@@ -17,7 +17,7 @@ class Frame extends Component {
   componentDidMount() {
     const { location, history } = this.props;
     if (location.pathname !== "/login" && !Cookies.get("LOGINDATA")) {
-      history.replace("/login");
+      history.push("/login");
     }
   }
   render() {

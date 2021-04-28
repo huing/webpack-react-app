@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
-import Cookies from "js-cookie";
+import { withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
+import Cookies from "js-cookie";
 import "./index.styl";
 
+@withRouter
 @observer
 class NormalLogin extends Component {
   handleSubmit = async (values) => {
@@ -12,7 +14,6 @@ class NormalLogin extends Component {
       name: "小西",
     });
     history.push("/home");
-    // window.location.reload()
   };
   render() {
     return (

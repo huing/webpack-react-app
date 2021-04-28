@@ -16,11 +16,7 @@ const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 // We can't use a relative path in HTML because we don't want to load something
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 
-console.log(process.env.NODE_ENV === "development", require(resolveApp("package.json")).homepage, process.env.PUBLIC_URL);
-console.log(JSON.stringify(getPublicUrlOrPath));
 const publicUrlOrPath = getPublicUrlOrPath(process.env.NODE_ENV === "development", require(resolveApp("package.json")).homepage, process.env.PUBLIC_URL);
-console.log(publicUrlOrPath);
-
 const moduleFileExtensions = ["web.mjs", "mjs", "web.js", "js", "web.ts", "ts", "web.tsx", "tsx", "json", "web.jsx", "jsx"];
 
 // Resolve file paths in the same order as webpack
