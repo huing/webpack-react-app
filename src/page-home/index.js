@@ -1,30 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { observer } from "mobx-react";
-import { Button } from "antd";
 import "./index.styl";
+import img from "./1.jpg";
 
-console.log(process);
-console.log(process.env);
-
-function Example() {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log("useEffect", count);
-    return () => {
-      console.log("return", count);
-    };
-  }, [count]);
-
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <Button onClick={() => setCount(count + 1)}>Click me</Button>
-    </div>
-  );
-}
-
-// Example(0);
+// console.log(process);
+// console.log(process.env);
 
 @observer
 class Home extends React.Component {
@@ -32,9 +12,8 @@ class Home extends React.Component {
   render() {
     return (
       <div className="page-home">
-        <img src="../../public/clipboard-css.png" alt="img" />
+        <img src={img} alt="img" />
         <img src="/clipboard-css.png" alt="img" />
-        <Example />
         {/* <div className="FBH">
           <div className="dot"></div>
           <div className="">

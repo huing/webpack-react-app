@@ -4,27 +4,30 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 import { ConfigProvider } from "antd";
 import zhCN from "antd/es/locale/zh_CN";
 import "moment/locale/zh-cn";
-import "./common";
+import { getFlatRoute } from "./config/util";
+import { routes } from "./config/routes";
 import Frame from "./frame";
-import Login from "./user-login";
+import "./common";
 
-// 测试github提交
-
-class App extends React.Component {
+class Index extends React.Component {
   render() {
     return (
       <ConfigProvider locale={zhCN}>
         <Router>
           <Switch>
-            <Route path="/" component={Frame} />
-            <Route exact path="/login" component={Login} />
-            <Redirect exact from="/" to="/login" />
+            <Frame>
+              {(getFlatRoute(routes) || []).map((item) => (
+                <Route key={item.path} exact={item.exact || true} path={item.path} component={item.component} />
+              ))}
+            </Frame>
+            <Redirect to="/login" />
+            <Route render={() => <div>404</div>} />
           </Switch>
         </Router>
       </ConfigProvider>
     );
   }
 }
-export default App;
+export default Index;
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<Index />, document.getElementById("root"));

@@ -9,6 +9,9 @@ const flatMenuKeys = getFlatMenuKeys(menuData);
 
 const getMenuData = (currentMenuData) =>
   currentMenuData.map((item) => {
+    if (item.path === "/login") {
+      return undefined;
+    }
     if (Array.isArray(item.routes) && item.routes.length) {
       return (
         <Menu.SubMenu key={item.path} title={<span>{item.name}</span>}>

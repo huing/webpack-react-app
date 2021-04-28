@@ -51,3 +51,15 @@ export const getDefaultCollapsedSubMenus = (flatMenuKeys, props) => {
     .filter((item) => item)
     .reduce((acc, curr) => [...acc, curr], ["/"]);
 };
+
+// 返回所有的路由
+export const getFlatRoute = (current) => {
+  const arr = [];
+  current.forEach((item) => {
+    if (item.routes) {
+      arr.push(...getFlatRoute(item.routes));
+    }
+    arr.push(item);
+  });
+  return arr;
+};

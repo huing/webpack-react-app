@@ -13,6 +13,12 @@ const DelayLoading = ({ pastDelay, error }) => {
 
 const routes = [
   {
+    name: "Login",
+    path: "/login",
+    component: Loadable({ loader: () => import("../user-login"), loading: DelayLoading, delay: 3000 }),
+    exact: true,
+  },
+  {
     path: "/home",
     component: Loadable({ loader: () => import("../page-home"), loading: DelayLoading, delay: 3000 }),
     exact: true,
