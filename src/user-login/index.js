@@ -3,7 +3,7 @@ import { Form, Input, Button } from "antd";
 import { withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 import Cookies from "js-cookie";
-import "./index.styl";
+import "./index.less";
 
 @withRouter
 @observer

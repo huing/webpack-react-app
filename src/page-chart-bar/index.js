@@ -1,136 +1,118 @@
-import React, {Component} from 'react'
-import {observer} from 'mobx-react'
-import {toJS, observable} from 'mobx'
-import {
-  scaleLinear, scaleBand,
-  axisBottom, axisLeft,
-  max,
-  select, mouse, event,
-} from 'd3'
-import store from './store'
-import './index.styl'
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { toJS, observable } from "mobx";
+import { scaleLinear, scaleBand, axisBottom, axisLeft, max, select, mouse, event } from "d3";
+import store from "./store";
+import "./index.less";
 
-
-@observer    
+@observer
 class BarChart extends Component {
-  @observable width = 0
+  @observable width = 0;
 
   render() {
     return (
       <div className="chart bar" id="bar">
-        <svg  
-          ref={node => this.node = node}
-          width={this.width}
-          height={410}
-          style={{border: '1px solid #cd0000'}}
-          viewBox={`0, 0, ${this.width}, 410`}
-        >
-        </svg>
-        <div 
-          className="chart-tooltip tooltip" 
-          id="chart-tooltip" 
-          style={{display: 'none', left: 0, top: 0}}>
-        </div>
-      </div> 
-    )
+        <svg ref={(node) => (this.node = node)} width={this.width} height={410} style={{ border: "1px solid #cd0000" }} viewBox={`0, 0, ${this.width}, 410`}></svg>
+        <div className="chart-tooltip tooltip" id="chart-tooltip" style={{ display: "none", left: 0, top: 0 }}></div>
+      </div>
+    );
   }
 
   updateDimensions = () => {
-    this.width = document.getElementById('bar').offsetWidth - 22
-  }
+    this.width = document.getElementById("bar").offsetWidth - 22;
+  };
 
   createBarChart = () => {
-    const svg = select('#bar').select('svg')
+    const svg = select("#bar").select("svg");
 
-    const data = toJS(store.LockCount)
-    const dataMax = max(data, d => d.lockCount)
+    const data = toJS(store.LockCount);
+    const dataMax = max(data, (d) => d.lockCount);
 
-    const margin = {left: 40, top: 20, right: 0, bottom: 30}
-    const height = svg.attr('height') - 2 
-    
-    svg.selectAll('g').remove()
+    const margin = { left: 40, top: 20, right: 0, bottom: 30 };
+    const height = svg.attr("height") - 2;
+
+    svg.selectAll("g").remove();
 
     const xScale = scaleBand()
-      .domain(data.map(d => d.month))
-      .range([margin.left, svg.attr('width') - margin.right])
+      .domain(data.map((d) => d.month))
+      .range([margin.left, svg.attr("width") - margin.right]);
 
     const yScale = scaleLinear()
-      .domain([0, dataMax]).nice()
-      .range([height - margin.bottom, margin.top])
-      
-    const xAxis = g => g.attr('transform', `translate(0, ${height - margin.bottom})`)
-      .attr('class', 'axis axisX')
-      .call(axisBottom(xScale).tickSizeOuter(0))
+      .domain([0, dataMax])
+      .nice()
+      .range([height - margin.bottom, margin.top]);
 
-    const yAxis = g => g.attr('transform', `translate(${margin.left}, 0)`)
-      .attr('class', 'axis axisY')
-      .call(axisLeft(yScale).ticks(5, 's'))
+    const xAxis = (g) =>
+      g
+        .attr("transform", `translate(0, ${height - margin.bottom})`)
+        .attr("class", "axis axisX")
+        .call(axisBottom(xScale).tickSizeOuter(0));
 
-    svg.append('g').call(xAxis)
+    const yAxis = (g) => g.attr("transform", `translate(${margin.left}, 0)`).attr("class", "axis axisY").call(axisLeft(yScale).ticks(5, "s"));
 
-    svg.append('g').call(yAxis)
+    svg.append("g").call(xAxis);
 
-    const gChart = svg
-      .selectAll('.g-bar')
-      .data(data)
-      .enter()
-      .append('g')
-      .attr('class', 'g-bar')
+    svg.append("g").call(yAxis);
 
-    gChart.exit().remove()
-      
-    gChart.append('rect')
-      .attr('x', d => xScale(d.month) + (xScale.bandwidth() * 0.4 / 2))
-      .attr('y', d => yScale(d.lockCount))
-      .attr('height', d => yScale(0) - yScale(d.lockCount))
-      .attr('width', xScale.bandwidth() * 0.6  )
-      .attr('fill', '#6997fe')
+    const gChart = svg.selectAll(".g-bar").data(data).enter().append("g").attr("class", "g-bar");
 
-    gChart.append('text')
-      .attr('dy', '0.75em')
-      .attr('y', d => yScale(d.lockCount) - 16)
-      .attr('x', d => xScale(d.month))
-      .attr('text-anchor', 'middle')
-      .attr('dx', xScale.bandwidth() / 2)
-      .text(d => d.lockCount)  
+    gChart.exit().remove();
 
-    gChart.append('rect')
-      .attr('class', 'rect-bg')
-      .attr('x', d => xScale(d.month))
-      .attr('y', 0)
-      .attr('height',yScale(0))
-      .attr('width', xScale.bandwidth())
-      .attr('fill', 'rgba(0, 0, 0, 0.3)')
-      .attr('opacity', 0)
-      
-    gChart.on('mouseover', function(d) {
-      select(this).selectAll('.rect-bg').attr('opacity', 0.3)
-    })
-      .on('mousemove', function(d) {
-        const left = event.screenX + document.getElementById('chart-tooltip').offsetWidth + 30 > window.innerWidth ? 
-          mouse(this)[0] - document.getElementById('chart-tooltip').offsetWidth : mouse(this)[0] + 30
-        select('#chart-tooltip')
-          .attr('style', 'left:' + left + 'px; top:' + (event.offsetY + 35) + 'px')
-          .html(`<div>${d.month}</div><div class="dot">添加锁：${d.lockCount}</div> `)
+    gChart
+      .append("rect")
+      .attr("x", (d) => xScale(d.month) + (xScale.bandwidth() * 0.4) / 2)
+      .attr("y", (d) => yScale(d.lockCount))
+      .attr("height", (d) => yScale(0) - yScale(d.lockCount))
+      .attr("width", xScale.bandwidth() * 0.6)
+      .attr("fill", "#6997fe");
+
+    gChart
+      .append("text")
+      .attr("dy", "0.75em")
+      .attr("y", (d) => yScale(d.lockCount) - 16)
+      .attr("x", (d) => xScale(d.month))
+      .attr("text-anchor", "middle")
+      .attr("dx", xScale.bandwidth() / 2)
+      .text((d) => d.lockCount);
+
+    gChart
+      .append("rect")
+      .attr("class", "rect-bg")
+      .attr("x", (d) => xScale(d.month))
+      .attr("y", 0)
+      .attr("height", yScale(0))
+      .attr("width", xScale.bandwidth())
+      .attr("fill", "rgba(0, 0, 0, 0.3)")
+      .attr("opacity", 0);
+
+    gChart
+      .on("mouseover", function (d) {
+        select(this).selectAll(".rect-bg").attr("opacity", 0.3);
       })
-      .on('mouseout', function(d) {
-        select(this).selectAll('.rect-bg').attr('opacity', 0)
-        select('#chart-tooltip').attr('style', 'display: none')
+      .on("mousemove", function (d) {
+        const left =
+          event.screenX + document.getElementById("chart-tooltip").offsetWidth + 30 > window.innerWidth ? mouse(this)[0] - document.getElementById("chart-tooltip").offsetWidth : mouse(this)[0] + 30;
+        select("#chart-tooltip")
+          .attr("style", "left:" + left + "px; top:" + (event.offsetY + 35) + "px")
+          .html(`<div>${d.month}</div><div class="dot">添加锁：${d.lockCount}</div> `);
       })
-  }
+      .on("mouseout", function (d) {
+        select(this).selectAll(".rect-bg").attr("opacity", 0);
+        select("#chart-tooltip").attr("style", "display: none");
+      });
+  };
 
   componentDidMount() {
-    this.updateDimensions()
-    window.addEventListener("resize", this.updateDimensions)
+    this.updateDimensions();
+    window.addEventListener("resize", this.updateDimensions);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("resize", this.updateDimensions)
+    window.removeEventListener("resize", this.updateDimensions);
   }
 
   componentDidUpdate() {
-    this.createBarChart()
+    this.createBarChart();
   }
-
 }
-export default BarChart
+export default BarChart;

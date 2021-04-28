@@ -1,37 +1,34 @@
-import React, {Component} from 'react'
-import {observer} from 'mobx-react'
-import {action} from 'mobx'
-import './index.styl'
-import './index.css'
-import './index.less'
-/* eslint-disable */
+import React, { Component } from "react";
+import { observer } from "mobx-react";
+import { action } from "mobx";
+import "./index.css";
 
-let id = null
-@observer 
+let id = null;
+@observer
 class PageModal extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       mousestate: 0,
       oldEvent: null,
       left: 0,
       index: 0,
-    }
+    };
   }
 
   @action handleBtnClick = () => {
     // const modal = document.getElementById('myModal')
     // const btn = document.getElementById('myBtn')
     // const closeBtn = document.getElementById('closeBtn')
-    document.getElementById('myModal').style.display = 'block'
-  }
+    document.getElementById("myModal").style.display = "block";
+  };
 
   @action handleCloseBtn = () => {
-    document.getElementById('myModal').style.display = 'none'
-  }
+    document.getElementById("myModal").style.display = "none";
+  };
 
   componentDidMount() {
-    const that = this
+    const that = this;
     // window.onclick = event => {
     //   if (event.target === document.getElementById('myModal')) {
     //     document.getElementById('myModal').style.display = 'none'
@@ -39,22 +36,21 @@ class PageModal extends Component {
     // }
 
     // 首先获取视图层元素
-    const swiperEl = document.querySelector('.swiper')
+    const swiperEl = document.querySelector(".swiper");
     // 在视图层里边查找容器元素
-    const containerEl = swiperEl.querySelector('.swiper-container')
+    const containerEl = swiperEl.querySelector(".swiper-container");
 
     // 获取到所有的滑块元素
-    const itemEls = containerEl.querySelectorAll('.swiper-item');
-    console.log(itemEls)
+    const itemEls = containerEl.querySelectorAll(".swiper-item");
+    console.log(itemEls);
     // 获取到滑块的宽度
     const itemWidth = itemEls[0].offsetWidth;
 
-    const parent = document.getElementById('margintop')
+    const parent = document.getElementById("margintop");
 
     id = setInterval(() => {
-      const nodeList = document.querySelectorAll('.rect')
-      parent.appendChild(nodeList[0])
-
+      const nodeList = document.querySelectorAll(".rect");
+      parent.appendChild(nodeList[0]);
 
       // 默认向左滑动
       // that.setState(prevState => {
@@ -72,12 +68,12 @@ class PageModal extends Component {
 
       // 下面的代码跟我们鼠标抬起的事件的代码一样的，要不要考虑简单的封装一下？
       // 追加一个move样式
-      containerEl.className += ' move';
+      containerEl.className += " move";
       // 当过度动画结束后，一定要把这个类给移除掉
-      containerEl.addEventListener('transitionend', () => {
-          // 正则替换 \s+ 表示一个或多个空白字符
-          containerEl.className = containerEl.className.replace(/\s+move/, '');
-      })
+      containerEl.addEventListener("transitionend", () => {
+        // 正则替换 \s+ 表示一个或多个空白字符
+        containerEl.className = containerEl.className.replace(/\s+move/, "");
+      });
       // that.setState((prevState, props) => {
       //   // console.log(prevState, props)
       //   return {
@@ -87,7 +83,6 @@ class PageModal extends Component {
 
       // containerEl.style.left = that.state.left + 'px'
     }, 3000);
-
 
     // containerEl.addEventListener('mousedown', (event) => {
     //   that.setState({
@@ -99,7 +94,7 @@ class PageModal extends Component {
     // })
 
     // containerEl.addEventListener('mousemove', (event) => {
-    //   if (that.state.mousestate !== 1) return 
+    //   if (that.state.mousestate !== 1) return
 
     //   // if (event.pageX < that.state.startEvent.pageX) {
     //   //   that.setState((prevState, props) => {
@@ -161,21 +156,20 @@ class PageModal extends Component {
     //       containerEl.className = containerEl.className.replace(/\s+move/, '');
     //   })
 
-
     //   that.setState((prevState, props) => {
     //     console.log(prevState, props)
     //     return {
     //       left: 0 - itemWidth * prevState.index
     //     }
     //   })
-  
+
     //   containerEl.style.left = that.state.left + 'px'
     //   console.log('鼠标抬起了')
     // })
   }
 
   componentWillUnmount() {
-    clearInterval(id) 
+    clearInterval(id);
   }
 
   render() {
@@ -184,15 +178,23 @@ class PageModal extends Component {
         <div className="swiper-test">
           <div className="swiper">
             <div className="swiper-container" id="margintop">
-              <div id="item1" className="swiper-item rect" style={{background: '#000'}}>1</div>
-              <div id="item2" className="swiper-item rect" style={{background: '#4269eb'}}>2</div>
-              <div id="item3" className="swiper-item rect" style={{background: '#247902'}}>3</div>
-              <div id="item4" className="swiper-item rect" style={{background: '#747902'}}>4</div>
+              <div id="item1" className="swiper-item rect" style={{ background: "#000" }}>
+                1
+              </div>
+              <div id="item2" className="swiper-item rect" style={{ background: "#4269eb" }}>
+                2
+              </div>
+              <div id="item3" className="swiper-item rect" style={{ background: "#247902" }}>
+                3
+              </div>
+              <div id="item4" className="swiper-item rect" style={{ background: "#747902" }}>
+                4
+              </div>
             </div>
           </div>
         </div>
-      </div> 
-    )
+      </div>
+    );
   }
 }
-export default PageModal
+export default PageModal;

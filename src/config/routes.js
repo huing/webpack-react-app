@@ -55,24 +55,6 @@ const routes = [
     ],
   },
   {
-    name: "Antd",
-    path: "/antd",
-    routes: [
-      {
-        name: "Calendar",
-        path: "/antd/calendar",
-        component: Loadable({ loader: () => import("../page-antd-calendar"), loading: DelayLoading, delay: 3000 }),
-        exact: true,
-      },
-      {
-        name: "Tree",
-        path: "/antd/tree",
-        component: Loadable({ loader: () => import("../page-antd-tree"), loading: DelayLoading, delay: 3000 }),
-        exact: true,
-      },
-    ],
-  },
-  {
     name: "Markdown",
     path: "/markdown",
     routes: [

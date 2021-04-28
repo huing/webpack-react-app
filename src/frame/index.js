@@ -7,7 +7,7 @@ import { Layout } from "antd";
 import PageHeader from "./Header";
 import MenuSider from "./Sider";
 import store from "./store";
-import "./index.styl";
+import "./index.less";
 
 const { Header, Content, Sider } = Layout;
 

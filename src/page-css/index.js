@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
 import './index.less'
-import './empty.styl'
+import './empty.less'
 
 @observer 
 class PageCSS extends Component {

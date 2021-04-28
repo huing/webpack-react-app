@@ -278,7 +278,7 @@ module.exports = function (webpackEnv) {
         ...(modules.webpackAliases || {}),
         "@/util": path.join(__dirname, "../src/util"),
         "@/components": path.join(__dirname, "../src/components"),
-        "@/public": path.join(__dirname, "../public"),
+        "@/assets": path.join(__dirname, "../src/assets"),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
@@ -484,31 +484,6 @@ module.exports = function (webpackEnv) {
                   },
                 },
                 "less-loader"
-              ),
-            },
-            {
-              test: /\.styl$/,
-              exclude: /\.module\.styl$/,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
-                "stylus-loader"
-              ),
-              sideEffects: true,
-            },
-            {
-              test: /\.module\.styl$/,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  modules: {
-                    getLocalIdent: getCSSModuleLocalIdent,
-                  },
-                },
-                "stylus-loader"
               ),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.

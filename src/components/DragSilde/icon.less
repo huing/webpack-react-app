@@ -1,0 +1,43 @@
+.dot-span {
+  position: relative;
+  height: 16px;
+  width: 16px;
+  display: block;
+  border-radius: 16px;
+  -webkit-border-radius: 16px;
+  -moz-border-radius: 16px;
+  background: #7ac23c;
+  &::after,
+  &::before {
+    content: "";
+    width: 2px;
+    display: block;
+    background: #fff;
+    position: absolute;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+  }
+
+  &::after {
+    height: 9px;
+    top: 4px;
+    left: 9px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+  }
+
+  &::before {
+    height: 7px;
+    top: 6px;
+    left: 4px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+  }
+}
