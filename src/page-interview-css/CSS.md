@@ -36,4 +36,4 @@
 
 - border-box 不包含 margin
 
-![css 盒模型](../../public/clipboard-css.png)
+![css 盒模型](/clipboard-css.png)

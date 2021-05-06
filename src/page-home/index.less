@@ -21,4 +21,9 @@
       vertical-align: middle;
     }
   }
+  // 此注释不会编译输出到 CSS 文件中
+  /* 此注释会编译输出到 CSS 文件中 */
+  .foo[style*="color: red"] {
+    color: green !important;
+  }
 }

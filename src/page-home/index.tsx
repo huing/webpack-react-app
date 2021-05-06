@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
-import "./index.less";
 import img from "@/assets/image/1.jpg";
+import "./index.less";
 
 console.log(process);
 console.log(process.env);
@@ -12,16 +12,18 @@ class Home extends React.Component {
   render() {
     return (
       <div className="page-home">
-        <img src={img} alt="img" />
-        <img src="/clipboard-css.png" alt="img" />
+        <div className="foo" style={{ color: "red" }}>
+          What color am I?
+        </div>
         <div className="FBH">
           <div className="dot"></div>
           <div className="">
             <div className="line">123</div>
-            <div className="line">123</div>
-            <div className="line">123</div>
           </div>
         </div>
+        {/* 两种加载图片的方式，一个用import加载，一个用public下的目录 */}
+        <img src={img} alt="img" height="327px" />
+        <img src="/clipboard-css.png" alt="img" height="250px" />
       </div>
     );
   }
