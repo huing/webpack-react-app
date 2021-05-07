@@ -84,7 +84,7 @@ class Sider extends Component {
     }
 
     return (
-      <Menu key="Menu" mode="inline" theme="dark" onOpenChange={this.handleOpenChange} selectedKeys={selectedKeys} {...props}>
+      <Menu key="Menu" mode="inline" onOpenChange={this.handleOpenChange} selectedKeys={selectedKeys} {...props}>
         {getMenuData(menuData)}
       </Menu>
     );

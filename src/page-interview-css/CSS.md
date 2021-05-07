@@ -36,4 +36,4 @@
 
 - border-box 不包含 margin
 
-![css 盒模型](/clipboard-css.png)
+- <https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Background_and_Borders/Box-shadow_generator>

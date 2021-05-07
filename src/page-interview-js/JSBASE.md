@@ -139,3 +139,5 @@ const {Provider, Consumer} = React.createContext(defaultValue)
 #### 为什么要打包
 
 #### 函数组件和 class 组件区别
+
+#### new URL()

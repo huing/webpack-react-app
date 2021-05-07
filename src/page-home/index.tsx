@@ -23,7 +23,7 @@ class Home extends React.Component {
         </div>
         {/* 两种加载图片的方式，一个用import加载，一个用public下的目录 */}
         <img src={img} alt="img" height="327px" />
-        <img src="/clipboard-css.png" alt="img" height="250px" />
+        <img src="/logo192.png" alt="img" height="250px" />
       </div>
     );
   }

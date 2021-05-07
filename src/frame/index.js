@@ -28,6 +28,7 @@ class Frame extends Component {
       <DocumentTitle title="Demo">
         <Layout>
           <Sider
+            theme="light"
             style={{
               overflow: "auto",
               height: "100vh",
@@ -39,7 +40,7 @@ class Frame extends Component {
             <MenuSider {...this.props} store={store} />
           </Sider>
           <Layout style={{ marginLeft: 200 }}>
-            <Header style={{ position: "fixed", zIndex: 1, padding: "0 20px", width: "calc(100% - 200px)" }}>
+            <Header style={{ position: "fixed", zIndex: 1, width: "calc(100% - 200px)", background: "#FFF", boxShadow: "0 1px 0 0 rgb(205, 205, 205)" }}>
               <PageHeader {...this.props} store={store} />
             </Header>
             <Content style={{ margin: "74px 10px 10px 10px", overflow: "auto", backgroundColor: "#fff", padding: 10 }}>{this.props.children}</Content>
