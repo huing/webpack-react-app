@@ -1,7 +1,7 @@
 #### mobx
 
 - mobx 是一个库，通过函数响应式编程使状态管理变得简单和可扩展
-  ![mobxstatus](./clipboard.png)
+  ![mobxstatus](/clipboard.png)
 - Observable state (可观察的状态)
 - Computed values (计算值)
 - Reactions (反应)

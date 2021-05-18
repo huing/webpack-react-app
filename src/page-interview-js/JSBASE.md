@@ -61,7 +61,7 @@ console.log(
 - 严格相等 ===
 - 宽松相等 ==
 - Object.is(val1, val2)
-  ![equal](./pCyqkLc.png)
+  ![equal](/pCyqkLc.png)
 
 #### js 浏览器的缓存机制
 
