@@ -1,8 +1,8 @@
 import React from "react";
 import Markdown from "../components/Markdown";
-import markdown from "./CSS.md";
+import markdownText from "./CSS.md";
 
 const MarkdownDemo = () => {
-  return <Markdown markdown={markdown} />;
+  return <Markdown markdown={markdownText} />;
 };
 export default MarkdownDemo;
