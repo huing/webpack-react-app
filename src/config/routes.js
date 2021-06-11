@@ -17,72 +17,79 @@ const routes = [
     path: "/login",
     component: Loadable({ loader: () => import("../user-login"), loading: DelayLoading, delay: 3000 }),
     exact: true,
+    hideInMenu: true,
   },
   {
-    path: "/home",
-    component: Loadable({ loader: () => import("../page-home"), loading: DelayLoading, delay: 3000 }),
-    exact: true,
-    name: "Home",
-  },
-  {
-    path: "/css",
-    component: Loadable({ loader: () => import("../page-css"), loading: DelayLoading, delay: 3000 }),
-    exact: true,
-    name: "CSS",
-  },
-  {
-    name: "Chart",
-    path: "/chart",
+    name: "布局",
+    path: "/",
     routes: [
       {
-        name: "Bar",
-        path: "/chart/bar",
-        component: Loadable({ loader: () => import("../page-chart-bar"), loading: DelayLoading, delay: 3000 }),
+        path: "/home",
+        component: Loadable({ loader: () => import("../page-home"), loading: DelayLoading, delay: 3000 }),
         exact: true,
+        name: "Home",
       },
       {
-        name: "Shape",
-        path: "/chart/shape",
-        component: Loadable({ loader: () => import("../page-chart-shape"), loading: DelayLoading, delay: 3000 }),
+        path: "/css",
+        component: Loadable({ loader: () => import("../page-css"), loading: DelayLoading, delay: 3000 }),
         exact: true,
-      },
-      {
-        name: "Stack",
-        path: "/chart/stack",
-        component: Loadable({ loader: () => import("../page-chart-stack"), loading: DelayLoading, delay: 3000 }),
-        exact: true,
-      },
-    ],
-  },
-  {
-    name: "Markdown",
-    path: "/markdown",
-    routes: [
-      {
-        name: "JS",
-        path: "/markdown/js/:id?",
-        component: Loadable({ loader: () => import("../page-interview-js"), loading: DelayLoading, delay: 3000 }),
-        exact: true,
-      },
-      {
-        name: "HTML",
-        path: "/markdown/html/:id?",
-        component: Loadable({ loader: () => import("../page-interview-html"), loading: DelayLoading, delay: 3000 }),
-        exact: true,
-      },
-      {
         name: "CSS",
-        path: "/markdown/css/:id?",
-        component: Loadable({ loader: () => import("../page-interview-css"), loading: DelayLoading, delay: 3000 }),
+      },
+      {
+        name: "Chart",
+        path: "/chart",
+        routes: [
+          {
+            name: "Bar",
+            path: "/chart/bar",
+            component: Loadable({ loader: () => import("../page-chart-bar"), loading: DelayLoading, delay: 3000 }),
+            exact: true,
+          },
+          {
+            name: "Shape",
+            path: "/chart/shape",
+            component: Loadable({ loader: () => import("../page-chart-shape"), loading: DelayLoading, delay: 3000 }),
+            exact: true,
+          },
+          {
+            name: "Stack",
+            path: "/chart/stack",
+            component: Loadable({ loader: () => import("../page-chart-stack"), loading: DelayLoading, delay: 3000 }),
+            exact: true,
+          },
+        ],
+      },
+      {
+        name: "Markdown",
+        path: "/markdown",
+        routes: [
+          {
+            name: "JS",
+            path: "/markdown/js/:id?",
+            component: Loadable({ loader: () => import("../page-interview-js"), loading: DelayLoading, delay: 3000 }),
+            exact: true,
+          },
+          {
+            name: "HTML",
+            path: "/markdown/html/:id?",
+            component: Loadable({ loader: () => import("../page-interview-html"), loading: DelayLoading, delay: 3000 }),
+            exact: true,
+          },
+          {
+            name: "CSS",
+            path: "/markdown/css/:id?",
+            component: Loadable({ loader: () => import("../page-interview-css"), loading: DelayLoading, delay: 3000 }),
+            exact: true,
+          },
+        ],
+      },
+      {
+        name: "Plan",
+        path: "/plan",
+        component: Loadable({ loader: () => import("../page-todo"), loading: DelayLoading, delay: 3000 }),
         exact: true,
       },
     ],
-  },
-  {
-    name: "Plan",
-    path: "/plan",
-    component: Loadable({ loader: () => import("../page-todo"), loading: DelayLoading, delay: 3000 }),
-    exact: true,
   },
 ];
 

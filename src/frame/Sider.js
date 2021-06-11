@@ -9,8 +9,8 @@ const flatMenuKeys = getFlatMenuKeys(menuData);
 
 const getMenuData = (currentMenuData) =>
   currentMenuData.map((item) => {
-    if (item.path === "/login") {
-      return undefined;
+    if (item.path === "/") {
+      return getMenuData(item.routes);
     }
     if (Array.isArray(item.routes) && item.routes.length) {
       return (
