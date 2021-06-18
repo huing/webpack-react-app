@@ -1,6 +1,8 @@
+// https://leetcode-cn.com/problems/binary-search/
+
 const search = (nums, target) => {
   let right = nums.length - 1;
-  let middle = right;
+  let middle = 0;
   let left = 0;
   while (left <= right) {
     middle = left + Math.floor((right - left) / 2);

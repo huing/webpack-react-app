@@ -1,44 +1,37 @@
-// const arrFun = (array) => {
-//   let index = 0;
-//   let currentIndex = 0;
-//   let optioner = "+";
-//   for (index; index < array.length; index += 1) {
-//     const element = array[index];
-//     if (optioner === "+" && element >= array[index + 1]) {
-//       if (element >= array[currentIndex]) {
-//         currentIndex = index;
-//       }
-//       optioner = "-";
-//     }
-//     if (optioner === "-" && element <= array[index + 1]) {
-//       optioner = "+";
-//     }
-//   }
-//   console.log(currentIndex);
-// };
+// https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
 
-const arrFun = (array) => {
+const arr = [24,69,100,99,79,78,67,36,26,19];
+// const arr = [1, 3, 5, 7, 6, 4, 2, 0];
+// const arr = [1,9,3];
+const arrFun = (arr) => {
   let index = 0;
   let currentIndex = 0;
-  for (index; index < array.length - 1; index += 1) {
-    if (array[index] > array[index + 1] && array[index] >= array[currentIndex]) {
+  for (index; index < arr.length - 1; index += 1) {
+    if (arr[index] > arr[index + 1] && arr[index] > arr[currentIndex]) {
       currentIndex = index;
     }
   }
-  // console.log(currentIndex);
   return currentIndex;
 };
-const arr = [1, 3, 5, 4, 7, 9, 6, 8, 2, 0];
-arrFun(arr);
+const result1 = arrFun(arr);
+console.log(result1);
 
-const peakIndexInMountainArray = (array) => {
-  let right = array.length - 1;
+const peakIndexInMountainArray = (arr) => {
+  let right = arr.length - 1;
   let left = 0;
-  let ans = 0;
-  while (left < right) {
-    let middle = Math.floor(right / 2);
-    if (array[middle] < array[middle + 1]) {
+  let middle = 0;
+  let ans = 0
+  while (left <= right) {
+    middle = left + Math.floor((right - left) / 2);
+    if (arr[middle] < arr[middle + 1]) {
+      left = middle + 1
+    }
+    if (arr[middle] > arr[middle + 1]) {
+      ans = middle
+      right = middle -1
     }
   }
+  return ans  
 };
-peakIndexInMountainArray(arr);
+const result = peakIndexInMountainArray(arr);
+console.log(result)

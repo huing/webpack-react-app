@@ -1,3 +1,5 @@
+// https://leetcode-cn.com/problems/smallest-good-base/
+
 const smallestGoodBase = function (n) {
   const num = Number(n);
   let result = 1;
