@@ -30,6 +30,12 @@ const routes = [
         name: "Home",
       },
       {
+        path: "/js",
+        component: Loadable({ loader: () => import("../page-js"), loading: DelayLoading, delay: 3000 }),
+        exact: true,
+        name: "JS",
+      },
+      {
         path: "/css",
         component: Loadable({ loader: () => import("../page-css"), loading: DelayLoading, delay: 3000 }),
         exact: true,
