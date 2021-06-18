@@ -25,7 +25,7 @@ const arrFun = (array) => {
       currentIndex = index;
     }
   }
-  console.log(currentIndex);
+  // console.log(currentIndex);
   return currentIndex;
 };
 const arr = [1, 3, 5, 4, 7, 9, 6, 8, 2, 0];
@@ -36,7 +36,7 @@ const peakIndexInMountainArray = (array) => {
   let left = 0;
   let ans = 0;
   while (left < right) {
-    let middle = Math.ceil(right / 2);
+    let middle = Math.floor(right / 2);
     if (array[middle] < array[middle + 1]) {
     }
   }

@@ -2,11 +2,11 @@
 const flatLastCategorys = (arr) => {
   const result = [];
   (arr || []).map((cate) => {
-    console.info("cate", JSON.stringify(cate));
+    // console.info("cate", JSON.stringify(cate));
     if (Array.isArray(cate.children) && cate.children.length !== 0) {
       result.push(...flatLastCategorys(cate.children));
     } else {
-      console.info("????");
+      // console.info("????");
       result.push(cate);
     }
     return cate;

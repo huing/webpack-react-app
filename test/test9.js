@@ -1,7 +1,7 @@
 const obj = {
   bar: function () {
     return () => {
-      console.log(this);
+      // console.log(this);
       return this;
     };
   },
@@ -13,7 +13,7 @@ f()();
 const obj1 = {
   bar: function () {
     return function () {
-      console.log(this);
+      // console.log(this);
       return this;
     };
   },
@@ -24,7 +24,7 @@ f1()();
 
 const obj2 = {
   bar: function () {
-    console.log(this);
+    // console.log(this);
     // const x = () => {
     //   console.log("x", this);
     // };
@@ -33,10 +33,10 @@ const obj2 = {
     // };
     return {
       x: () => {
-        console.log("x", this);
+        // console.log("x", this);
       },
       y: function () {
-        console.log("y", this);
+        // console.log("y", this);
       },
     };
   },
@@ -46,10 +46,10 @@ const obj3 = {
   bar: function () {
     return {
       x: () => {
-        console.log("x", this);
+        // console.log("x", this);
       },
       y: function () {
-        console.log("y", this);
+        // console.log("y", this);
       },
     };
   },
