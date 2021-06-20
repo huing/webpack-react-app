@@ -9,4 +9,28 @@
 // require("./test10.js");
 // require("./test11.js");
 // require("./test12.js");
-require("./test13.js");
+// require("./test13.js");
+// require("./test14.js");
+// require("./test15.js");
+// require("./test16.js");
+// require("./test17.js");
+require("./test18.js");
+
+
+// const fs = require("fs");
+// const path = require('path');
+// const readDir = (entry) => {
+// 	const dirInfo = fs.readdirSync(entry);
+//   console.log('dirInfo', dirInfo)
+// 	dirInfo.forEach(item=>{
+// 		const location = path.join(entry,item);
+// 		const info = fs.statSync(location);
+// 		if(info.isDirectory()){
+// 			console.log(`dir:${location}`);
+// 			readDir(location);
+// 		}else{
+// 			console.log(`file:${location}`);
+// 		}
+// 	})
+// }
+// readDir(__dirname);
