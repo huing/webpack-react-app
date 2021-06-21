@@ -1,30 +1,26 @@
 // https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
+// https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/submissions/
 
 var minArray = function (numbers) {
   let left = 0;
   let right = numbers.length - 1;
   let middle = right;
-  if (right < 3) {
-    return Math.min(...numbers)
-  }
-  while (left <= right) {
+  while (left < right) {
     middle = left + Math.floor((right - left) / 2);
-    if (numbers[left] <= numbers[middle]) {
-      // right = middle - 1;
-      left = middle + 1;
+    if (numbers[middle] <= numbers[right]) {
+      right = middle
     } else {
-      right = middle - 1;
+      left = middle
     }
-
-    // if (numbers[middle] > numbers[middle + 1]) {
-    //   // ans = numbers[middle];
-    //   // right = middle - 1;
-    //   return numbers[middle + 1]
-    // }
+    if (left + 1 === right) {
+      return Math.min(numbers[left], numbers[right])
+    }
   }
-  return left === numbers.length ? numbers[0] : numbers[right];
+  return numbers[0];
 };
-
+console.log(minArray([1, 3, 3]));
+console.log(minArray([1, 3, 3, 1]));
+console.log(minArray([3, 3, 1, 3]));
 console.log(minArray([7, 8, 9, 1, 2, 3, 4, 5, 6]));
 console.log(minArray([6, 7, 8, 9, 1, 2, 3, 4, 5]));
 console.log(minArray([5, 6, 7, 8, 9, 1, 2, 3, 4]));
