@@ -1,26 +1,40 @@
 // https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/
 // https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/submissions/
 
-var minArray = function (numbers) {
+var minArray = function (numbers, target) {
   let left = 0;
   let right = numbers.length - 1;
   let middle = right;
+
   while (left < right) {
     middle = left + Math.floor((right - left) / 2);
-    if (numbers[middle] <= numbers[right]) {
-      right = middle
+    if (numbers[middle] < numbers[right]) {
+      right = middle;
+    } else if (numbers[middle] > numbers[right]) {
+      left = middle + 1;
     } else {
-      left = middle
+      right = right - 1;
     }
-    if (left + 1 === right) {
-      return Math.min(numbers[left], numbers[right])
-    }
+
+    // 有相等值的情况下，这种写法是错的
+    // if (numbers[middle] < numbers[right]) {
+    //   right = middle;
+    // }
+    // if (numbers[middle] > numbers[right]) {
+    //   left = middle + 1;
+    // }
+    // if (numbers[middle] === numbers[right]) {
+    //   right = right - 1;
+    // }
   }
-  return numbers[0];
+  return numbers[left];
 };
+console.log(minArray([3, 1, 3]));
 console.log(minArray([1, 3, 3]));
 console.log(minArray([1, 3, 3, 1]));
 console.log(minArray([3, 3, 1, 3]));
+console.log(minArray([3, 1, 3, 3, 3]));
+console.log(minArray([3, 3, 3, 1, 3, 3, 3]));
 console.log(minArray([7, 8, 9, 1, 2, 3, 4, 5, 6]));
 console.log(minArray([6, 7, 8, 9, 1, 2, 3, 4, 5]));
 console.log(minArray([5, 6, 7, 8, 9, 1, 2, 3, 4]));
