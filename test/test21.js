@@ -16,7 +16,7 @@ var minArray = function (numbers, target) {
       right = right - 1;
     }
 
-    // 有相等值的情况下，这种写法是错的
+    // 有相等值的情况下，这种写法是错的 可以带上 continue
     // if (numbers[middle] < numbers[right]) {
     //   right = middle;
     // }
