@@ -39,7 +39,9 @@ const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
 const HOST = process.env.HOST || "0.0.0.0";
 
 if (process.env.HOST) {
-  console.log(chalk.cyan(`Attempting to bind to HOST environment variable: ${chalk.yellow(chalk.bold(process.env.HOST))}`));
+  console.log(
+    chalk.cyan(`Attempting to bind to HOST environment variable: ${chalk.yellow(chalk.bold(process.env.HOST))}`)
+  );
   console.log(`If this was unintentional, check that you haven't mistakenly set it in your shell.`);
   console.log(`Learn more here: ${chalk.yellow("https://bit.ly/CRA-advanced-config")}`);
   console.log();
@@ -100,9 +102,9 @@ checkBrowsers(paths.appPath, isInteractive)
         return console.log(err);
       }
       // 关闭清空控制台
-      // if (isInteractive) {
-      //   clearConsole();
-      // }
+      if (isInteractive) {
+        clearConsole();
+      }
 
       // We used to support resolving modules according to `NODE_PATH`.
       // This now has been deprecated in favor of jsconfig/tsconfig.json
@@ -117,7 +119,7 @@ checkBrowsers(paths.appPath, isInteractive)
 
       console.log(chalk.cyan("Starting the development server...\n"));
       // 关闭打开浏览器
-      // openBrowser(urls.localUrlForBrowser);
+      openBrowser(urls.localUrlForBrowser);
     });
 
     ["SIGINT", "SIGTERM"].forEach(function (sig) {
