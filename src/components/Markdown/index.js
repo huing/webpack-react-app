@@ -29,7 +29,8 @@ const components = {
       </code>
     );
   },
-  a: ({ href, children, ...props }) => {
+  a: ({ node, href, children, ...props }) => {
+    // console.log(props);
     let isMd = /^md-/.test(href);
     return (
       <a
@@ -41,6 +42,10 @@ const components = {
         {children}
       </a>
     );
+  },
+  img({ node, src, alt, ...props }) {
+    // console.log(props);
+    return <img src={src.replace(/^(..\/)*public/g, "")} alt={alt} {...props} />;
   },
   // h1: "h2",
   // em: ({ node, ...props }) => <i style={{ color: "red" }} {...props} />,
