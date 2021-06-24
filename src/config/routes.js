@@ -29,12 +29,12 @@ const routes = [
         exact: true,
         name: "Home",
       },
-      {
-        path: "/js",
-        component: Loadable({ loader: () => import("../page-js"), loading: DelayLoading, delay: 3000 }),
-        exact: true,
-        name: "JS",
-      },
+      // {
+      //   path: "/js",
+      //   component: Loadable({ loader: () => import("../page-js"), loading: DelayLoading, delay: 3000 }),
+      //   exact: true,
+      //   name: "JS",
+      // },
       {
         path: "/css",
         component: Loadable({ loader: () => import("../page-css"), loading: DelayLoading, delay: 3000 }),
@@ -68,26 +68,8 @@ const routes = [
       {
         name: "Markdown",
         path: "/markdown",
-        routes: [
-          {
-            name: "JS",
-            path: "/markdown/js/:id?",
-            component: Loadable({ loader: () => import("../page-interview-js"), loading: DelayLoading, delay: 3000 }),
-            exact: true,
-          },
-          {
-            name: "HTML",
-            path: "/markdown/html/:id?",
-            component: Loadable({ loader: () => import("../page-interview-html"), loading: DelayLoading, delay: 3000 }),
-            exact: true,
-          },
-          {
-            name: "CSS",
-            path: "/markdown/css/:id?",
-            component: Loadable({ loader: () => import("../page-interview-css"), loading: DelayLoading, delay: 3000 }),
-            exact: true,
-          },
-        ],
+        component: Loadable({ loader: () => import("../page-markdown"), loading: DelayLoading, delay: 3000 }),
+        exact: true,
       },
       {
         name: "Plan",

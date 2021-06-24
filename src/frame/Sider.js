@@ -19,11 +19,9 @@ const getMenuData = (currentMenuData) =>
         </Menu.SubMenu>
       );
     }
-    // 'markdown/html(/:id)'.replace(/\(\/:id\)/g, '')
-    // 'markdown/js/:id?'.replace(/\/:id\?/g, '')
     return (
       <Menu.Item key={item.path}>
-        <Link to={item.path.replace(/:id\?/g, "")}>{item.name}</Link>
+        <Link to={item.path}>{item.name}</Link>
       </Menu.Item>
     );
   });
