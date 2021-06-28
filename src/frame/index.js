@@ -17,7 +17,12 @@ class Frame extends Component {
   componentDidMount() {
     const { location, history } = this.props;
     if (location.pathname !== "/login" && !Cookies.get("LOGINDATA")) {
-      history.push("/login");
+      history.replace("/login");
+      return;
+    }
+    if (location.pathname === "/") {
+      history.replace("/home");
+      return;
     }
   }
   render() {
@@ -40,10 +45,20 @@ class Frame extends Component {
             <MenuSider {...this.props} store={store} />
           </Sider>
           <Layout style={{ marginLeft: 200 }}>
-            <Header style={{ position: "fixed", zIndex: 1, width: "calc(100% - 200px)", background: "#FFF", boxShadow: "0 1px 0 0 rgb(205, 205, 205)" }}>
+            <Header
+              style={{
+                position: "fixed",
+                zIndex: 1,
+                width: "calc(100% - 200px)",
+                background: "#FFF",
+                boxShadow: "0 1px 0 0 rgb(205, 205, 205)",
+              }}
+            >
               <PageHeader {...this.props} store={store} />
             </Header>
-            <Content style={{ margin: "74px 10px 10px 10px", overflow: "auto", backgroundColor: "#fff", padding: 10 }}>{this.props.children}</Content>
+            <Content style={{ margin: "74px 10px 10px 10px", overflow: "auto", backgroundColor: "#fff", padding: 10 }}>
+              {this.props.children}
+            </Content>
           </Layout>
         </Layout>
       </DocumentTitle>
