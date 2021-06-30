@@ -1,102 +1,117 @@
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
+// https://leetcode-cn.com/problems/binary-tree-preorder-traversal/
+// https://leetcode-cn.com/problems/binary-tree-inorder-traversal/
+// https://leetcode-cn.com/problems/binary-tree-postorder-traversal/
 
-function getRoot(root, index, tree) {
-  if (!root[index]) {
-    return null;
-  }
-  // tree = new TreeNode(
-  //   root[index],
-  //   index > root.length - 1 ? undefined : root[index + 1],
-  //   index > root.length - 2 ? undefined : root[index + 2]
-  // );
+// function TreeNode(val, left, right) {
+//   this.val = val === undefined ? 0 : val;
+//   this.left = left === undefined ? null : left;
+//   this.right = right === undefined ? null : right;
+// }
 
-  // if (index === root.length) {
-  //   return tree;
-  // }
-  tree.val = root[index];
-  if (index > root.length - 1 ? undefined : root[index + 1]) {
-    console.log("left");
-    tree.left = getRoot(root, index + 1, tree);
-  }
-  if (index > root.length - 2 ? undefined : root[index + 2]) {
-    console.log("right");
-    tree.right = getRoot(root, index + 2, tree);
-  }
-  return tree;
-}
-console.log(getRoot([1, null, 2, 3], 0, {}));
-
-function preorder(root, res) {
-  if (root === null) {
-    return;
-  }
-  res.push(root.val);
-  preorder(root.left, res);
-  preorder(root.right, res);
-}
+// 前 根->左->右
+// 中 左->根->右
+// 后 左->右->根
 
 var preorderTraversal = function (root) {
-  // const nodeList = root.map((item, index) => ({
-  //   [item]: ,
-  // }));
-  // console.log("--->", nodeList);
-  // let res = [];
-  // preorder(new TreeNode(item, index === 0 ? undefined : root[index - 1], index === root.length ? undefined : root[index + 1]), res);
-  // let queue = [root];
-  // if (!root) return [];
-  // while (queue.length) {
-  //   let arr = [],
-  //     temp = [];
-  //   while (queue.length) {
-  //     let curr = queue.shift();
-  //     arr.push(curr.val);
-  //     if (curr.left) temp.push(curr.left);
-  //     if (curr.right) temp.push(curr.right);
+  let res = [];
+  // 递归
+  // function preorder(root, res) {
+  //   if (root === null) {
+  //     return;
   //   }
-  //   queue = temp;
-  //   res.push(arr);
+  //   res.push(root.val);
+  //   preorder(root.left, res);
+  //   preorder(root.right, res);
   // }
-  // return res;
+  // preorder(root, res);
+
+  // 迭代
+  let stack = []
+  while (stack.length || root) {
+    while (root) {
+      stack.push(root)
+      res.push(root.val)
+      root = root.left
+    }
+    root = stack.pop()
+    root = root.right
+  }
+  return res;
 };
-preorderTraversal([1, null, 2, 3]);
-preorderTraversal([1, null, 2, 3]);
-preorderTraversal([]);
-preorderTraversal([1]);
-preorderTraversal([1, 2]);
-preorderTraversal([1, null, 2]);
 
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
-//  class Solution {
-//   public List<Integer> preorderTraversal(TreeNode root) {
-//       List<Integer> res = new ArrayList<Integer>();
-//       preorder(root, res);
-//       return res;
-//   }
+var inorderTraversal = function (root) {
+  let res = [];
+  let stack = []
+  while (stack.length || root) {
+    while (root) {
+      stack.push(root)
+      root = root.left
+    }
+    root = stack.pop()
+    res.push(root.val)
+    root = root.right
+  }
+  return res;
+};
 
-//   public void preorder(TreeNode root, List<Integer> res) {
-//       if (root == null) {
-//           return;
-//       }
-//       res.add(root.val);
-//       preorder(root.left, res);
-//       preorder(root.right, res);
+var postorderTraversal = function (root) {
+  let res = [];
+  let stack = []
+  let prev = null
+  while (stack.length || root) {
+    while (root) {
+      stack.push(root)
+      root = root.left
+    }
+    root = stack.pop()
+    if (root.right === null || root.right === prev) {
+      res.push(root.val)
+      prev = root
+      root = null
+    } else {
+      stack.push(root)
+      root = root.right
+    }
+  }
+  return res;
+};
+let root = {
+  val: 1,
+  left: null,
+  right: {
+    val: 2,
+    left: {
+      val: 3,
+      left: null,
+      right: null,
+    },
+    right: null,
+  }
+}
+console.log(
+  preorderTraversal(root),
+  inorderTraversal(root),
+  postorderTraversal(root)
+)
+
+// function getRoot(root, index, tree) {
+//   if (index === 0) {
+//     return tree;
 //   }
+//   const node = new TreeNode(
+//     root[index],
+//     index >=1 ? root[index - 1] : undefined,
+//     index >= 2 ? root[index - 2] : undefined
+//   );
+//   // tree.val = root[index];
+//   if (index > root.length - 1 ? undefined : root[index + 1]) {
+//     console.log("left");
+//     tree.left = getRoot(root, index + 1, tree);
+//   }
+//   if (index > root.length - 2 ? undefined : root[index + 2]) {
+//     console.log("right");
+//     tree.right = getRoot(root, index + 2, tree);
+//   }
+//   return tree;
 // }
+// console.log(getRoot([1, null, 2, 3], 3, {}));
