@@ -26,51 +26,51 @@ var preorderTraversal = function (root) {
   // preorder(root, res);
 
   // 迭代
-  let stack = []
+  let stack = [];
   while (stack.length || root) {
     while (root) {
-      stack.push(root)
-      res.push(root.val)
-      root = root.left
+      stack.push(root);
+      res.push(root.val);
+      root = root.left;
     }
-    root = stack.pop()
-    root = root.right
+    root = stack.pop();
+    root = root.right;
   }
   return res;
 };
 
 var inorderTraversal = function (root) {
   let res = [];
-  let stack = []
+  let stack = [];
   while (stack.length || root) {
     while (root) {
-      stack.push(root)
-      root = root.left
+      stack.push(root);
+      root = root.left;
     }
-    root = stack.pop()
-    res.push(root.val)
-    root = root.right
+    root = stack.pop();
+    res.push(root.val);
+    root = root.right;
   }
   return res;
 };
 
 var postorderTraversal = function (root) {
   let res = [];
-  let stack = []
-  let prev = null
+  let stack = [];
+  let prev = null;
   while (stack.length || root) {
     while (root) {
-      stack.push(root)
-      root = root.left
+      stack.push(root);
+      root = root.left;
     }
-    root = stack.pop()
+    root = stack.pop();
     if (root.right === null || root.right === prev) {
-      res.push(root.val)
-      prev = root
-      root = null
+      res.push(root.val);
+      prev = root;
+      root = null;
     } else {
-      stack.push(root)
-      root = root.right
+      stack.push(root);
+      root = root.right;
     }
   }
   return res;
@@ -86,32 +86,6 @@ let root = {
       right: null,
     },
     right: null,
-  }
-}
-console.log(
-  preorderTraversal(root),
-  inorderTraversal(root),
-  postorderTraversal(root)
-)
-
-// function getRoot(root, index, tree) {
-//   if (index === 0) {
-//     return tree;
-//   }
-//   const node = new TreeNode(
-//     root[index],
-//     index >=1 ? root[index - 1] : undefined,
-//     index >= 2 ? root[index - 2] : undefined
-//   );
-//   // tree.val = root[index];
-//   if (index > root.length - 1 ? undefined : root[index + 1]) {
-//     console.log("left");
-//     tree.left = getRoot(root, index + 1, tree);
-//   }
-//   if (index > root.length - 2 ? undefined : root[index + 2]) {
-//     console.log("right");
-//     tree.right = getRoot(root, index + 2, tree);
-//   }
-//   return tree;
-// }
-// console.log(getRoot([1, null, 2, 3], 3, {}));
+  },
+};
+console.log(preorderTraversal(root), inorderTraversal(root), postorderTraversal(root));
