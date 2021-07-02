@@ -27,7 +27,8 @@
 // require("./test28.js");
 // require("./test29.js");
 // require("./test30.js");
-require("./test32.js");
+// require("./test32.js");
+require("./test39.js");
 // const fs = require("fs");
 // const path = require('path');
 // const readDir = (entry) => {
