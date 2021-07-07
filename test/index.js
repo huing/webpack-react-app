@@ -1,5 +1,4 @@
-
-require("./test0005.js");
+require("./test0726.js");
 
 // const fs = require("fs");
 // const path = require('path');
