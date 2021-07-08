@@ -9,19 +9,15 @@ var deleteAndEarn = function (nums) {
     maxVal = Math.max(maxVal, val);
   }
   const sum = new Array(maxVal + 1).fill(0);
+  console.log(sum, maxVal);
   for (const val of nums) {
     sum[val] += val;
   }
-  return rob(sum);
-};
-
-const rob = (nums) => {
-  const size = nums.length;
-  let first = nums[0],
-    second = Math.max(nums[0], nums[1]);
-  for (let i = 2; i < size; i++) {
+  let first = sum[0],
+    second = Math.max(sum[0], sum[1]);
+  for (let i = 2; i < sum.length; i++) {
     let temp = second;
-    second = Math.max(first + nums[i], second);
+    second = Math.max(first + sum[i], second);
     first = temp;
   }
   return second;
