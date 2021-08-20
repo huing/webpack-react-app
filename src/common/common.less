@@ -1,10 +1,12 @@
+@import "~antd/lib/style/color/colors";
+
 @fontWeights: {
   4: 400;
   5: 500;
   b: bold;
 }
 each(@fontWeights, {
-  .fw@{key} {
+   .fw@{key} {
     font-weight: @value;
   }
 })
@@ -80,10 +82,6 @@ each(@fontWeights, {
   height: 0;
 }
 
-// // 填加单位后缀
-// u(n)
-//   n == 0 ? n : unit(n, px);
-
 @fontColors: {
   0: #000;
   3: #333;
@@ -107,32 +105,22 @@ each(@fontColors, {
   }
 })
 
-// // font color
-// $font-colors = {
-//     '0': #000,
-//     '3': #333,
-//     '4': #444,
-//     '5': #555,
-//     '6': #666,
-//     '7': #777,
-//     '8': #888,
-//     '9': #999,
-//     'a': #aaa,
-//     'b': #bbb,
-//     'c': #ccc,
-//     'd': #ddd,
-//     'e': #eee,
-//     'f': #fff,
-// }
+.red {
+  color: @red-6;
+}
 
-// for $key, $value in $font-colors
-//   .fc{$key}
-//     color $value
+.green {
+  color: @green-6;
+}
+
+.blue {
+  color: @blue-6;
+}
 
 @fontSizes: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 48, 70, 100;
 
 each(@fontSizes, {
-  .fc@{value} {
+  .fs@{value} {
     font-size: unit(@value, px);
   }
   .p@{value} {
@@ -165,7 +153,44 @@ each(@fontSizes, {
   .mb@{value} {
     margin-bottom: unit(@value, px);
   }
+  .line@{value} {
+    height: unit(@value, px);
+    width: 100%;
+    background-color: #eeeeee;
+    overflow: hidden;
+    font-size: 0;
+  }
 })
+
+
+
+
+// // 填加单位后缀
+// u(n)
+//   n == 0 ? n : unit(n, px);
+
+// // font color
+// $font-colors = {
+//     '0': #000,
+//     '3': #333,
+//     '4': #444,
+//     '5': #555,
+//     '6': #666,
+//     '7': #777,
+//     '8': #888,
+//     '9': #999,
+//     'a': #aaa,
+//     'b': #bbb,
+//     'c': #ccc,
+//     'd': #ddd,
+//     'e': #eee,
+//     'f': #fff,
+// }
+
+// for $key, $value in $font-colors
+//   .fc{$key}
+//     color $value
+
 
 // // font size
 // for $n in 0 10 12 14 16 18 20 22 24 26 28 30 40 42 70 100

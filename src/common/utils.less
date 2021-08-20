@@ -5,6 +5,8 @@
   word-break: break-all;
 }
 
+textOverflow(1)
+
 .textOverflowMulti(@line: 3, @bg: #fff) {
   position: relative;
   max-height: @line * 1.5em;
@@ -31,6 +33,12 @@
     content: '';
   }
 }
+
+@lines: 1,2,3
+
+each(@lines, {
+  .textOverflowMulti(@value)
+})
 
 // mixins for clearfix
 // ------------------------

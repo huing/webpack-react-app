@@ -1,0 +1,60 @@
+.border {
+  border-width: 10px;
+  border-style: dashed solid double dotted;
+  border-color: red cyan black gold;
+}
+.border_reve {
+  border-width: 10px;
+  border-style: inset groove outset ridge;
+  border-top-color: red;
+  border-right-color: cyan;
+  border-bottom-color: black;
+  border-left-color: gold;
+}
+.border_groove {
+  border: 10px groove;
+  border-top-color: red;
+  border-right-color: cyan;
+  border-bottom-color: black;
+  border-left-color: gold;
+}
+.border_groove_red {
+  border: 10px groove red;
+}
+.box_border_image {
+  border: 30px solid;
+  border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30;
+  // border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30 stretch;
+  // border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30 round;
+  // border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30 30 30 30 fill repeat;
+  // border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30 30 30 30 fill stretch;
+  // border-image: url("https://mdn.mozillademos.org/files/4127/border.png") 30 30 30 30 fill repeat stretch;
+}
+.box_background_image {
+  background-image: linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)), url('https://mdn.mozillademos.org/files/7693/catfront.png');
+}
+.box_background_image_1 {
+  background-image:
+          url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png"),
+          url("https://mdn.mozillademos.org/files/11991/startransparent.gif"),
+          url("https://mdn.mozillademos.org/files/7693/catfront.png");
+}
+.box_linear_gradient_1 {
+  background-image: linear-gradient(45deg, blue, red);
+  // background: linear-gradient(#e66465, #9198e5);
+}
+.box_linear_gradient_2 {
+  background-image: linear-gradient(to left top, blue, red);
+}
+.box_linear_gradient_3 {
+  // background-image: linear-gradient(0deg, blue, green 40%, red);
+  // background-image: linear-gradient(180deg, blue, green 40%, red);
+  // background-image: linear-gradient(360deg, blue, green 40%, red);
+  // background-image: linear-gradient(336deg, blue, green 40%, red);
+  height: 300px;
+  width: 300px;
+  background:
+          linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+          linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+          linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}

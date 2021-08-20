@@ -1,0 +1,74 @@
+.center1 {
+  background: red;
+  position: relative;
+  height: 200px;
+  .box1 {
+    background: green;
+    position: absolute;
+    height: 100px;
+    width: 400px;
+    left: 50%;
+    top: 50%;
+    margin: -100px 0 0 -200px;
+  }
+}
+
+.center2 {
+  background: red;
+  position: relative;
+  height: 400px;
+  width: 1000px;
+  .box2 {
+    background: green;
+    position: absolute;
+    height: 100px;
+    width: 400px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+
+.center3 {
+  background: red;
+  position: relative;
+  .box3 {
+    background: green;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.center4 {
+  background: red;
+  height: 400px;
+  width: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .box4 {
+    background: green;
+    width: 400px;
+    height: 100px;
+  }
+}
+
+.center5 {
+  background: red;
+  height: 400px;
+  width: 1000px;
+  display: table;
+  .box5 {
+    background: green;
+      // 不起作用，green 覆盖了 red,box与center同宽高
+      // width 400px
+      // height 100px
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
