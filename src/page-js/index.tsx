@@ -1,9 +1,10 @@
 import React from 'react'
-import getMap from './getMap'
-import Debounce from './debounce'
+// import getMap from './getMap'
+// import Debounce from './debounce'
+import Demo from './Demo'
 
 const PageJS: React.FC = () => {
-  getMap()
+  // getMap()
   const arrFun = (array: number[]) => {
     let index = 0
     let currentIndex = 0
@@ -35,7 +36,8 @@ const PageJS: React.FC = () => {
   arrFun(arr)
   return (
     <div>
-      <Debounce />
+      {/*<Debounce />*/}
+      <Demo />
     </div>
   )
 }
