@@ -118,7 +118,7 @@ const BlogPostWithSubscription = withSubscription(
   (DataSource: any, props: { id: number }) => DataSource.getBlogPost(props.id),
 )
 
-export default class Demo extends React.Component<{}, {}> {
+export default class HOCDemo extends React.Component<{}, {}> {
   render() {
     return (
       <div>

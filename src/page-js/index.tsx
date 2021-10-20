@@ -1,7 +1,8 @@
 import React from 'react'
+import UploadInput from '../components/UploadInput'
 // import getMap from './getMap'
 // import Debounce from './debounce'
-import Demo from './Demo'
+import HOCDemo from './HOCDemo'
 
 const PageJS: React.FC = () => {
   // getMap()
@@ -37,7 +38,8 @@ const PageJS: React.FC = () => {
   return (
     <div>
       {/*<Debounce />*/}
-      <Demo />
+      <HOCDemo />
+      <UploadInput />
     </div>
   )
 }
