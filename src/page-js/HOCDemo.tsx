@@ -1,6 +1,12 @@
 import React from 'react'
 // 高阶组件是参数为组件，返回值为新组件的函数
 // 组件是将 props 转换为 UI，而高阶组件是将组件转换为另一个组件
+// https://zh-hans.reactjs.org/docs/higher-order-components.html
+// todo
+
+interface Params {
+  id: number
+}
 
 class DataSource {
   static addChangeListener(handleChange: () => void) {}

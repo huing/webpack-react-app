@@ -1,4 +1,4 @@
-// 文章链接地址
+// 文章链接地址 todo
 // https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype
 // @ts-ignore
 interface TodoPartial {

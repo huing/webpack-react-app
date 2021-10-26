@@ -1,20 +1,11 @@
 import React from 'react'
 import { Select } from 'antd'
-// fetch(url, {
-//     method: 'POST', // or 'PUT'
-//     body: JSON.stringify(data), // data can be `string` or {object}!
-//     headers: new Headers({
-//         'Content-Type': 'application/json'
-//     })
-// }).then(res => res.json())
-//     .catch(error => console.error('Error:', error))
-//     .then(response => console.log('Success:', response));
 
-// import request from '@/utils/request';
-// type TableListItem = {
-//     id: number;
-//     regionName: string;
-// };
+// todo
+// hooks 作用域问题
+// 例如 useEffect 作用域
+// setState 第二参数，同步异步
+
 interface Props<T> {
   list: T[]
 }
@@ -22,7 +13,6 @@ class SelectComponentType<T extends { id: number; name: string }> extends React.
   Props<T>,
   {}
 > {
-  
   render() {
     // & {id: number; name: string}
     const { list, ...rest } = this.props
