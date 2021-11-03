@@ -5,51 +5,33 @@ import UploadInput from '../components/UploadInput'
 import HOCDemo from './HOCDemo'
 import { Person } from './data'
 import { PersonC } from './data1'
-
-// interface Person {
-//   name: string
-//   // age: number;
-//   // location: string;
-// }
-//
-// type k1 = keyof Person
-// type k2 = keyof Person[]
-// type k3 = keyof { [x: string]: Person }
-// // console.log(k2)
-//
-// enum Difficulty {
-//   Easy,
-//   Intermediate,
-//   Hard,
-// }
-//
-// function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
-//   return obj[key]
-// }
-
-// let tsInfo = {
-//   name: 'Typescript',
-//   supersetOf: 'Javascript',
-//   difficulty: Difficulty.Intermediate,
-// }
-//
-// let difficulty: Difficulty = getProperty(tsInfo, 'difficulty') // OK
-//
-// let supersetOf: string = getProperty(tsInfo, 'superset_of') // Error
-
-interface PersonA {
-  name: string
-}
+import ClassComp from './ClassComp'
+import FuncComp from './FuncComp'
+import { instanceOf } from 'prop-types'
+import { autorun, computed, observable } from 'mobx'
 
 const PageJS: React.FC = () => {
-  const personA: PersonC = { name: 'lili a' }
-  const person: Person = { name: 'lili' }
-  console.log(personA, person)
+  var numbers = observable([1, 2, 3])
+  var sum = computed(() => numbers.reduce((a, b) => a + b, 0))
+
+  var disposer = autorun(() => console.log(sum.get()))
+  console.log(disposer)
+  // 输出 '6'
+  numbers.push(4)
+  // 输出 '10'
+
+  // disposer()
+  numbers.push(5)
+  // 不会再输出任何值。`sum` 不会再重新计算。
+
   return (
+    // call
     <div>
       {/*<Debounce />*/}
-      <HOCDemo />
-      <UploadInput />
+      {/*<HOCDemo />*/}
+      {/*<UploadInput />*/}
+      <ClassComp />
+      {/*<FuncComp />*/}
     </div>
   )
 }
@@ -73,9 +55,14 @@ const list = [
   { id: 4, name: '黄' },
 ]
 
-list.sort(function (a, b) {
-  // @ts-ignore
-  return color[a.name] - color[b.name]
-})
+// list.sort(function (a, b) {
+//   return color[a.name] - color[b.name]
+// })
 
-console.log('list', list)
+// list.sort(function() {
+//   return function (a, b) {
+//     return [a.name].id - [b.name].id
+//   }}
+// })
+
+// console.log('list', list)
