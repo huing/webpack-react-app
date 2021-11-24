@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { observer } from 'mobx-react'
 import './index.less'
-import Omit from './omit'
-import BFC from './bfc'
-import Borders from './borders'
+// import Omit from './omit'
+// import BFC from './bfc'
+// import Borders from './borders'
 import JuZhong from './juzhong'
 
 @observer

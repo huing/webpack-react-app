@@ -4,6 +4,26 @@ import React from 'react'
 // https://zh-hans.reactjs.org/docs/higher-order-components.html
 // todo
 
+interface A {
+  id: number
+  name: string
+}
+interface B {
+  id: number
+  age: number
+}
+// interface HasT<T> {
+//  [P in keyof T]: T[P]
+// }
+type HasT<T> = {
+  [P in keyof T]: T[P]
+}
+const c: HasT<A & B>[] = [{ id: 1, name: 'name', age: 20 }]
+const a: A[] = [{ id: 1, name: 'name' }, ...c]
+const b: B[] = [{ id: 2, age: 20 }, ...c]
+
+console.log(a, b)
+
 interface Params {
   id: number
 }

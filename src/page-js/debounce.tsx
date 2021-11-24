@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 /*
  节流: n 秒内只运行一次，若在 n 秒内重复触发，只有一次生效
@@ -42,7 +42,7 @@ function throtte(fun: Function, wait: number) {
 const PageJS: React.FC = () => {
   const [count, setCount] = useState<number>(0)
   const [countD, setCountD] = useState<number>(0)
-  const [countT, setCountT] = useState<number>(0)
+  // const [countT, setCountT] = useState<number>(0)
   // const container = useRef(null)
   useEffect(() => {
     const container = document.getElementById('container')
@@ -65,7 +65,7 @@ const PageJS: React.FC = () => {
 
     const handleCountT = function (this: any) {
       console.log('mousemove T', this)
-      setCountT((countT) => countT + 1)
+      // setCountT((countT) => countT + 1)
     }
     container?.addEventListener('mousemove', handleCount)
     container?.addEventListener('mousemove', debounce(handleCountD, 1000))

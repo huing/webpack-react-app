@@ -17,25 +17,25 @@ class Page extends React.Component<PropsDTO, PropsDTO> {
     console.log('componentDidMount')
   }
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.log('componentDidCatch')
+    console.log('componentDidCatch', error, errorInfo)
   }
   componentDidUpdate(prevProps: Readonly<PropsDTO>, prevState: Readonly<PropsDTO>, snapshot?: any) {
-    console.log('componentDidUpdate')
+    console.log('componentDidUpdate', prevProps, prevState, snapshot)
   }
   componentWillUnmount() {
     console.log('componentWillUnmount')
   }
   shouldComponentUpdate(
-    nextProps: Readonly<PropsDTO>,
-    nextState: Readonly<PropsDTO>,
-    nextContext: any,
+    _nextProps: Readonly<PropsDTO>,
+    _nextState: Readonly<PropsDTO>,
+    _nextContext: any,
   ): boolean {
     console.log('shouldComponentUpdate')
     return true
   }
   getSnapshotBeforeUpdate(
-    prevProps: Readonly<PropsDTO>,
-    prevState: Readonly<PropsDTO>,
+    _prevProps: Readonly<PropsDTO>,
+    _prevState: Readonly<PropsDTO>,
   ): any | null {
     console.log('getSnapshotBeforeUpdate')
   }

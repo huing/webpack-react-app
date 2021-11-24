@@ -17,6 +17,8 @@ const UploadInput: React.FC<PropsDTO> = () => {
   const [fileList, setFileList] = useState<any[]>([])
   const ref = useRef<HTMLInputElement>(null)
 
+  console.log(fileList)
+
   const handleChange = (e: any) => {
     // const photos: any = document.querySelector("input[type='file'][multiple]")
     // console.log(photos?.files)
