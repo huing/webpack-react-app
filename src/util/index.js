@@ -22,10 +22,8 @@ const hasKey = (type, obj, keys) => {
     return obj.hasOwnProperty(keys)
   }
   if (isArr(keys)) {
-    const cb = item => hasKey(type, obj, item)
-    return type === 'some' ?
-      keys.some(cb) :
-      keys.every(cb)
+    const cb = (item) => hasKey(type, obj, item)
+    return type === 'some' ? keys.some(cb) : keys.every(cb)
   }
   return false
 }
@@ -46,7 +44,7 @@ export const getMomentTime = (timeArr, index, fmt = 'YYYY-MM-DD') => {
   if (isNum(index)) {
     return (timeArr[index] || {}).format && timeArr[index].format(fmt)
   } else {
-    return timeArr.map(item => {
+    return timeArr.map((item) => {
       item = item || {}
       return item.format && item.format(index || fmt)
     })
