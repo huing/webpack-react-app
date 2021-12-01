@@ -31,7 +31,7 @@ class Frame extends Component {
     }
     return (
       <DocumentTitle title="HOCDemo">
-        <Layout>
+        <Layout style={{ height: '100vh' }}>
           <Sider
             theme="light"
             style={{

@@ -49,13 +49,27 @@ const routes = [
       },
       {
         path: '/css',
-        component: Loadable({
-          loader: () => import('../page-css'),
-          loading: DelayLoading,
-          delay: 3000,
-        }),
-        exact: true,
         name: 'CSS',
+        routes: [
+          {
+            path: '/css/css',
+            component: Loadable({
+              loader: () => import('../page-css'),
+              loading: DelayLoading,
+              delay: 3000,
+            }),
+            name: 'CSS',
+          },
+          {
+            path: '/css/flex',
+            component: Loadable({
+              loader: () => import('../page-css/flex'),
+              loading: DelayLoading,
+              delay: 3000,
+            }),
+            name: 'CSS',
+          },
+        ],
       },
       {
         name: 'Chart',
