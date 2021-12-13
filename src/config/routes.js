@@ -67,7 +67,25 @@ const routes = [
               loading: DelayLoading,
               delay: 3000,
             }),
-            name: 'CSS',
+            name: 'Flex',
+          },
+          {
+            path: '/css/position',
+            component: Loadable({
+              loader: () => import('../page-css/position'),
+              loading: DelayLoading,
+              delay: 3000,
+            }),
+            name: 'Position',
+          },
+          {
+            path: '/css/zIndex',
+            component: Loadable({
+              loader: () => import('../page-css/zIndex'),
+              loading: DelayLoading,
+              delay: 3000,
+            }),
+            name: 'zIndex',
           },
         ],
       },
