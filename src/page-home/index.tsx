@@ -42,6 +42,7 @@ class Home extends React.Component {
   //   const res = await import("@/assets/image/1.jpg");
   //   return res.default;
   // };
+
   render() {
     return (
       <div className="page-home">
