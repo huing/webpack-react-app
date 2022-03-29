@@ -1,23 +1,19 @@
-import React, { Component } from 'react'
-import { observer } from 'mobx-react'
 import './index.less'
-// import Omit from './omit'
-// import BFC from './bfc'
-// import Borders from './borders'
+import Omit from './omit'
+import BFC from './bfc'
+import Borders from './borders'
 import JuZhong from './juzhong'
+import Grid from './grid'
+import Modal from './modal'
+import File from './file'
 
-@observer
-class PageCSS extends Component {
-  render() {
-    return (
-      <div className="page-css">
-        {/*<Omit />*/}
-        {/*<BFC />*/}
-        {/*<Borders />*/}
-        <JuZhong />
-      </div>
-    )
-  }
-}
+export default File
 
-export default PageCSS
+// import React from 'react'
+// import 'index.less'
+
+// const PageCSS: React.FC<{}> = () => {
+//   return <div className="page-css">content</div>
+// }
+
+// export default PageCSS

@@ -50,44 +50,11 @@ const routes = [
       {
         path: '/css',
         name: 'CSS',
-        routes: [
-          {
-            path: '/css/css',
-            component: Loadable({
-              loader: () => import('../page-css'),
-              loading: DelayLoading,
-              delay: 3000,
-            }),
-            name: 'CSS',
-          },
-          {
-            path: '/css/flex',
-            component: Loadable({
-              loader: () => import('../page-css/flex'),
-              loading: DelayLoading,
-              delay: 3000,
-            }),
-            name: 'Flex',
-          },
-          {
-            path: '/css/position',
-            component: Loadable({
-              loader: () => import('../page-css/position'),
-              loading: DelayLoading,
-              delay: 3000,
-            }),
-            name: 'Position',
-          },
-          {
-            path: '/css/zIndex',
-            component: Loadable({
-              loader: () => import('../page-css/zIndex'),
-              loading: DelayLoading,
-              delay: 3000,
-            }),
-            name: 'zIndex',
-          },
-        ],
+        component: Loadable({
+          loader: () => import('../page-css'),
+          loading: DelayLoading,
+          delay: 3000,
+        }),
       },
       {
         name: 'Chart',
@@ -167,7 +134,11 @@ const getBreadcrumbNameMap = (menuData) => {
 }
 
 const getSubMenu = (item) => {
-  if (item.routes && !item.hideRoutesInMenu && item.routes.some((child) => child.name)) {
+  if (
+    item.routes &&
+    !item.hideRoutesInMenu &&
+    item.routes.some((child) => child.name)
+  ) {
     return {
       ...item,
       routes: filterMenuData(item.routes),

@@ -1,0 +1,44 @@
+.exampleModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s;
+  .exampleMask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    // transition: all 0.3s;
+  }
+  .exampleBody {
+    position: fixed;
+    top: calc(50vh - 300px);
+    left: calc(50vw - 400px);
+    width: 800px;
+    height: 600px;
+    background-color: rgba(0, 255, 255, 0.2);
+  }
+  .exampleBodyCenter {
+    position: relative;
+  }
+  .exampleClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background-color: bisque;
+  }
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+  &.hidden {
+    visibility: hidden;
+    opacity: 0;
+  }
+}

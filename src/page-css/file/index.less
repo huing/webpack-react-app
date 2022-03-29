@@ -1,0 +1,18 @@
+.page-css {
+  .visually-hidden {
+    height: 0;
+    width: 0;
+    // overflow: hidden;
+  }
+  /* Separate rule for compatibility, :focus-within is required on modern Firefox and Chrome */
+  input.visually-hidden:focus + label {
+    // 轮廓
+    // 类似 border， 但是不占据空间
+    // thin 1px medium 3px thick 5px
+    outline: thin solid #aaa;
+  }
+  // focus-within 元素自身或者后代匹配 :focus 伪类
+  input.visually-hidden:focus-within + label {
+    outline: thin solid #aaa;
+  }
+}

@@ -48,7 +48,7 @@ class Frame extends Component {
             <Header
               style={{
                 position: 'fixed',
-                zIndex: 1,
+                // zIndex: 1,
                 width: 'calc(100% - 200px)',
                 background: '#FFF',
                 boxShadow: '0 1px 0 0 rgb(205, 205, 205)',
