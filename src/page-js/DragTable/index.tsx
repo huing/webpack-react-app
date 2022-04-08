@@ -6,8 +6,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import ProTable, { ProColumns } from '@ant-design/pro-table';
 import { MenuOutlined } from '@ant-design/icons';
-
-// export default Example;
+import Card from './card';
 
 const type = 'DraggableBodyRow';
 
@@ -41,7 +40,6 @@ const DraggableRow = memo(
         };
       },
       drop: (item: any) => {
-        console.log('drop', item, index);
         moveRow(item.index, index);
       },
     });
@@ -133,6 +131,7 @@ const DragSortingTable: React.FC = () => {
           pagination={false}
           scroll={{ x: 800, y: 600 }}
         />
+        <Card />
       </DndProvider>
     </>
   );

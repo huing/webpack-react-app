@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useRef, memo } from 'react';
 import './index.less';
 
 interface FileDTO {
@@ -11,7 +11,7 @@ interface FileDTO {
   webkitRelativePath: string;
 }
 
-const PageCSS: React.FC<{}> = () => {
+const FileInput: React.FC = () => {
   const [fileList, setFileList] = useState<FileDTO[]>([]);
   const maxCount = 2;
 
@@ -44,31 +44,22 @@ const PageCSS: React.FC<{}> = () => {
   console.table(fileList);
 
   return (
-    <div className="page-css">
-      <input
-        type="file"
-        id="fileElem"
-        multiple
-        onChange={handleChange}
-        className="visually-hidden"
-      />
+    <div>
+      <input type="file" id="fileElem" multiple onChange={handleChange} />
       <label htmlFor="fileElem" className="input-label">
         Select some files
       </label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        required
+        minLength={4}
+        maxLength={8}
+        size={10}
+      ></input>
     </div>
   );
 };
 
-export default PageCSS;
-
-// const arr = [
-//   {
-//     a: 0,
-//   },
-//   {
-//     a: 1,
-//   },
-//   {
-//     a: 2,
-//   },
-// ];
+export default FileInput;

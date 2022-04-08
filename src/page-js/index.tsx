@@ -10,9 +10,15 @@
 // import { func, instanceOf } from 'prop-types';
 // import { autorun, computed, observable } from 'mobx';
 // import { curry } from '../util'
-import DragTable from './DragTable';
 
+import DragTable from './DragTable';
 export default DragTable;
+
+// import FileInput from './FileInput';
+// export default FileInput;
+
+// import CloneChild from './CloneChild';
+// export default CloneChild;
 
 // 函数柯里化
 // export function curry(fn: Function) {
